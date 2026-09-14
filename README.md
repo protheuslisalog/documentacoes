@@ -10,9 +10,9 @@ Utilize o índice abaixo para navegar entre os módulos, processos, APIs e confi
 
 Informações gerais sobre o sistema e seus principais conceitos.
 
-* [Visão geral do sistema](teste2/README.md)
-* [Conceitos](teste3/README.md)
-* [Teste alguma coisa](teste3/README.md)
+* [Visão geral do sistema](exemplo1/README.md)
+* [Conceitos](exemplo1/README.md)
+* [Teste alguma coisa](exemplo1/README.md)
 
 ---
 
