@@ -75,7 +75,7 @@ Informações sobre atendimento da área de T.I.
 | [WMS](03-wms/README.md)                     | Funcionalidades do WMS     |
 | [Processos](04-processos/README.md)         | Fluxos e rotinas           |
 | [Configurações](05-configuracoes/README.md) | Parâmetros e configurações |
-| [Manual Atendimento](Atendimento/README.md) | Manual de atendimento   |
+| [Manual Atendimento](atendimento/README.md) | Manual de atendimento   |
 
 ---
 
