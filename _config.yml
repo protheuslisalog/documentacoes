@@ -1,0 +1,4 @@
+# Arquivo: docs/_config.yml
+title: Manual do Sistema XYZ
+description: Central de ajuda para usuários e analistas.
+theme: jekyll-theme-cayman # Um tema padrão, limpo e moderno do GitHub
