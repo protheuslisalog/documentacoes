@@ -58,6 +58,14 @@ Parâmetros e configurações necessárias para o funcionamento do sistema.
 
 ---
 
+## 📖 6. Manual de atendimento T.I.
+
+Informações sobre atendimento da área de T.I.
+
+* [Manual](06-atendimento/README.md)
+
+---
+
 ## 🗂️ Navegação rápida
 
 | Área                                        | Descrição                  |
@@ -67,6 +75,7 @@ Parâmetros e configurações necessárias para o funcionamento do sistema.
 | [WMS](03-wms/README.md)                     | Funcionalidades do WMS     |
 | [Processos](04-processos/README.md)         | Fluxos e rotinas           |
 | [Configurações](05-configuracoes/README.md) | Parâmetros e configurações |
+| [Manual Atendimento](06-Atendimento/README.md) | Manual de atendimento   |
 
 ---
 
