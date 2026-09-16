@@ -51,11 +51,11 @@ Informar quantidade total de volumes
 
 Acesse a rotina **conf1pn** para iniciar a conferência do pedido:
 
-01acessandorotina.png
+![01acessandorotina](caminho/da/01acessandorotina.png)
 
 Preencher os campos conforme necessidade:
 
-02parametrosiniciais.png
+![02parametrosiniciais](02parametrosiniciais)
 
 - `Local DANFE` — Código da fila de impressão da DANFE;
 - `lOCAL ETIQUETA` — Código da fila de impressão da etiqueta;
