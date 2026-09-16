@@ -36,6 +36,7 @@ Documentação das principais funcionalidades do WMS.
 * [Separação](03-wms/separacao.md)
 * [Conferência](03-wms/conferencia.md)
 * [Expedição](03-wms/expedicao.md)
+* [Leitura de código de barras](wms/leiturabarras/README.md)
 
 ---
 
@@ -70,11 +71,11 @@ Informações sobre atendimento da área de T.I.
 
 | Área                                        | Descrição                  |
 | ------------------------------------------- | -------------------------- |
-| [Introdução](01-introducao/README.md)       | Conceitos e visão geral    |
-| [APIs](02-api/README.md)                    | Endpoints e integrações    |
-| [WMS](03-wms/README.md)                     | Funcionalidades do WMS     |
-| [Processos](04-processos/README.md)         | Fluxos e rotinas           |
-| [Configurações](05-configuracoes/README.md) | Parâmetros e configurações |
+| [Introdução](introducao/README.md)       | Conceitos e visão geral    |
+| [APIs](api/README.md)                    | Endpoints e integrações    |
+| [WMS](wms/README.md)                     | Funcionalidades do WMS     |
+| [Processos](processos/README.md)         | Fluxos e rotinas           |
+| [Configurações](configuracoes/README.md) | Parâmetros e configurações |
 | [Manual Atendimento](atendimento/README.md) | Manual de atendimento   |
 
 ---
