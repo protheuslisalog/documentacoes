@@ -34,7 +34,7 @@ Documentação das principais funcionalidades do WMS.
 * [Visão geral do WMS](03-wms/README.md)
 * [Pedidos](03-wms/pedidos.md)
 * [Separação](03-wms/separacao.md)
-* [Conferência](03-wms/conferencia.md)
+* [Conferência](wms/conferencia)
 * [Expedição](03-wms/expedicao.md)
 * [Leitura de código de barras](wms/leiturabarras/README.md)
 
