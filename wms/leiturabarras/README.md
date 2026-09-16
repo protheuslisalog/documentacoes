@@ -10,7 +10,7 @@ O tratamento contempla diferentes formas de identificação do produto, respeita
 
 ## 2. Parâmetros de Configuração
 
-### 2.1 MV_XFILGRU
+### 2.1 MV_XFILGRU (código da filial)
 
 **Finalidade:**  
 Realiza a conversão de grupo por cliente para localização do produto no apanhe, inventário ou endereçamento.
@@ -27,7 +27,7 @@ O produto somente poderá ser considerado para a filial corrente quando o víncu
 
 ---
 
-### 2.2 MV_XFILBAR
+### 2.2 MV_XFILBAR (código da filial)
 
 **Finalidade:**  
 Restringe a localização do produto exclusivamente pela utilização do código de barras.
@@ -42,7 +42,7 @@ Quando habilitado, o sistema **não permite localizar o produto por outro códig
 
 ---
 
-### 2.3 MV_XWMSCOL
+### 2.3 MV_XWMSCOL (código da filial)
 
 **Finalidade:**  
 Controla a atribuição da quantidade total durante o processo de apanhe.
@@ -57,7 +57,7 @@ Ao realizar a identificação do produto durante o apanhe, a quantidade consider
 
 ---
 
-### 2.4 MV_XCF1REC
+### 2.4 MV_XCF1REC (código da filial)
 
 **Finalidade:**  
 Controla a apresentação da quantidade durante a conferência do recebimento.
@@ -295,7 +295,6 @@ Pesquisa B1_CODBAR
 | Configuração / Campo | Finalidade |
 |---|---|
 | `MV_XFILGRU` | Conversão de grupo por cliente e validação do cliente/filial durante a localização do produto. |
-| `A1_XCLIFIL` | Validação do vínculo do cliente com a filial corrente. |
 | `MV_XFILBAR` | Não permite localização do produto que não seja realizada pelo código de barras. |
 | `MV_XWMSCOL` | Atribui a quantidade total no apanhe. |
 | `MV_XCF1REC` | Não informa quantidade na conferência do recebimento. |
