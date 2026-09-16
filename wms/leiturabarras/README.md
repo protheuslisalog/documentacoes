@@ -13,17 +13,13 @@ O tratamento contempla diferentes formas de identificação do produto, respeita
 ### 2.1 MV_XFILGRU
 
 **Finalidade:**  
-Realiza a conversão de grupo por cliente para localização do produto no apanhe.
+Realiza a conversão de grupo por cliente para localização do produto no apanhe, inventário ou endereçamento.
 
 ### Funcionamento
 
-Durante a localização do produto, o sistema consulta o **cliente vinculado à zona de armazenagem do endereço** para determinar a qual cliente pertence o produto existente no inventário.
+Inventário: Durante a localização do produto, o sistema consulta o **cliente vinculado à zona de armazenagem do endereço inventáriado** para determinar a qual cliente pertence o produto.
 
-No processo de **endereçamento sem documento**, o sistema consulta os produtos que possuem **saldo a endereçar** para o EAN informado.
-
-Após localizar o produto, é validado se o cliente do produto está vinculado à filial corrente por meio do campo:
-
-`A1_XCLIFIL`
+Endereçamento: No processo de **endereçamento sem documento**, o sistema consulta os produtos que possuem **saldo a endereçar** para o EAN informado na filial logada consultando o campo `A1_XCLIFIL` no cadastro do cliente.
 
 ### Regra
 
