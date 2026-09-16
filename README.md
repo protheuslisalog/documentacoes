@@ -31,7 +31,7 @@ Documentação dos endpoints disponibilizados pelo sistema.
 
 Documentação das principais funcionalidades do WMS.
 
-* [Conferência](wms/conferencia1pn/README.md)
+* [Conferência 1PN](wms/conferencia1pn/README.md)
 * [Leitura de código de barras](wms/leiturabarras/README.md)
 
 ---
