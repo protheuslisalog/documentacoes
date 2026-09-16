@@ -75,7 +75,7 @@ Para consultar os produtos já conferidos pressione `Ctrl + C`
 
 ![05ctrlc](05ctrlc.png)
 
-Após a conferência realializada com sucesso informar a quantidade de volumes:
+Após a conferência realizada com sucesso informar a quantidade de volumes:
 
 ![06informandovolume](06informandovolume.png)
 
@@ -87,17 +87,17 @@ Ao acessear a rotina de conferência 1pn e informar o campo `Composicao` igual a
 
 Se localizado um pedido para a onda ou com a composição do pedido base informado, o sistema irá atribuir o pedido ao usuário logado e apresentá-lo para conferência na tela do usuário.
 
-> ATENÇÃO → Serão atribuidos apenas pedidos no status A CONFERIR sem recurso humano atribuído ou com o recurso humano do usuário logado e a ordem para atribuição do pedido seguirá: Data do pedido, Prioridade (configurada no cadastro GrupoXCampanha), Campanha.
+> ATENÇÃO → Serão atribuidos apenas pedidos no status A CONFERIR sem recurso humano atribuído ou com o recurso humano do usuário logado, a ordem para atribuição do pedido seguirá: Data do pedido, Prioridade (configurada no cadastro GrupoXCampanha), Campanha.
 
 ---
 
 # 4. Informações adicionais
 
-Todos os erros e mensagens apresentadas ao usuário no momento da conferência do pedido ficam registradas e estão disponíveis para consulta no Prothues através do cadastro `Log de conferencia`:
+Todos os erros e mensagens apresentadas ao usuário no momento da conferência do pedido ficam registradas e estão disponíveis para consulta no Protheus através do cadastro `Log de conferencia`:
 
 ![08logdeconferencia](08logdeconferencia.png)
 
-As conferências registradas no momento da conferência ficam disponíveis para consulta no Prothues através do cadastro `Registro de conferencia`:
+As conferências registradas no momento da conferência ficam disponíveis para consulta no Protheus através do cadastro `Registro de conferencia`:
 
 ![09registroconferencia](09registroconferencia.png)
 
