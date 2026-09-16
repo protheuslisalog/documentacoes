@@ -99,4 +99,5 @@ Todos os erros e mensagens apresentadas ao usuário no momento da conferência d
 
 As conferências registradas no momento da conferência ficam disponíveis para consulta no Prothues através do cadastro `Registro de conferencia`:
 
-09registroconferencia.png
+![09registroconferencia](09registroconferencia.png)
+
