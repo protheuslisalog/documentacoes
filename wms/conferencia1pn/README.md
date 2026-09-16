@@ -89,6 +89,10 @@ Se localizado um pedido para a onda ou com a composição do pedido base informa
 
 > ATENÇÃO → Serão atribuidos apenas pedidos no status A CONFERIR sem recurso humano atribuído ou com o recurso humano do usuário logado, a ordem para atribuição do pedido seguirá: Data do pedido, Prioridade (configurada no cadastro GrupoXCampanha), Campanha.
 
+💡 Sugestão: Extrair o relatório `Conferir similares` ou `Pedido similares` para obter a quantidade de pedidos e os pedidos de uma mesma composição.
+
+Pedidos de mesma composição são pedidos com os mesmos produtos e quantidades.
+
 ---
 
 # 4. Informações adicionais
