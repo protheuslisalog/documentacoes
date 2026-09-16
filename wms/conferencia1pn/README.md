@@ -65,25 +65,25 @@ Preencher os campos conforme necessidade:
 
 Informar o pedido a ser conferido:
 
-03informarpedido.png
+![03informarpedido](03informarpedido.png)
 
 Informar o código de barras do produto a ser conferido:
 
-04informarproduto.png
+![04informarproduto](04informarproduto.png)
 
 Para consultar os produtos já conferidos pressione `Ctrl + C`
 
-05ctrlc.png
+![05ctrlc](05ctrlc.png)
 
 Após a conferência realializada com sucesso informar a quantidade de volumes:
 
-06informandovolume.png
+![06informandovolume](06informandovolume.png)
 
 #### Conferência por composição/onda
 
 Ao acessear a rotina de conferência 1pn e informar o campo `Composicao` igual a S, será solicitado a onda ou o pedido base:
 
-07informarondacompisicao.png
+![07informarondacompisicao](07informarondacompisicao.png)
 
 Se localizado um pedido para a onda ou com a composição do pedido base informado, o sistema irá atribuir o pedido ao usuário logado e apresentá-lo para conferência na tela do usuário.
 
@@ -95,7 +95,7 @@ Se localizado um pedido para a onda ou com a composição do pedido base informa
 
 Todos os erros e mensagens apresentadas ao usuário no momento da conferência do pedido ficam registradas e estão disponíveis para consulta no Prothues através do cadastro `Log de conferencia`:
 
-08logdeconferencia.png
+![08logdeconferencia](08logdeconferencia.png)
 
 As conferências registradas no momento da conferência ficam disponíveis para consulta no Prothues através do cadastro `Registro de conferencia`:
 
