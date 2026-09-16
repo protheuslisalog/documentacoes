@@ -324,5 +324,3 @@ Pesquisa B1_CODBAR
 12. `MV_XWMSCOL` atribui a quantidade total no apanhe.
 13. `MV_XCF1REC` impede que a quantidade seja informada na conferência do recebimento.
 """
-
-print("Documento estruturado em formato Markdown e exibido no bloco acima.")
