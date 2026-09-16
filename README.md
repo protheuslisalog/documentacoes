@@ -31,11 +31,7 @@ Documentação dos endpoints disponibilizados pelo sistema.
 
 Documentação das principais funcionalidades do WMS.
 
-* [Visão geral do WMS](03-wms/README.md)
-* [Pedidos](03-wms/pedidos.md)
-* [Separação](03-wms/separacao.md)
-* [Conferência](wms/conferencia)
-* [Expedição](03-wms/expedicao.md)
+* [Conferência](wms/conferencia1pn/README.md)
 * [Leitura de código de barras](wms/leiturabarras/README.md)
 
 ---
