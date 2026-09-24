@@ -5,11 +5,11 @@ Digite:
 Na primeira coluna: o armazém.
 Na segunda coluna: os endereços.
 
-![Imagem 1](imagem1.png)
+![Imagem1](imagem1.png)
 
 Salve o arquivo do Excel como .CSV em alguma pasta do computador, por exemplo, C:\.
 
-![Imagem 2](imagem2.png)
+![Imagem2](imagem2.png)
 
 2. Acessando a rotina
 Pesquise por:
