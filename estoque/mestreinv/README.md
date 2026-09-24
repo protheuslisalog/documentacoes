@@ -5,54 +5,54 @@ Digite:
 Na primeira coluna: o armazém.
 Na segunda coluna: os endereços.
 
-![Imagem 1](imagem1.png)
+![Imagem1](Imagem1.png)
 
 Salve o arquivo do Excel como .CSV em alguma pasta do computador, por exemplo, C:\.
 
-![Imagem 2](imagem2.png)
+![Imagem2](Imagem2.png)
 
 2. Acessando a rotina
 Pesquise por:
 
 Mestre > Estoque/Custos > Inventário > Mestre
 
-![Imagem 3](imagem3.png)
+![Imagem3](Imagem3.png)
 
 3. Criando os mestres
 Acesse:
 
 Outras Ações > Automático > Gera Mestre > Endereço
 
-![Imagem 4](imagem4.png)
+![Imagem4](Imagem4.png)
 
 Parâmetros
 Na tela de geração automática:
 
-![Imagem 5](imagem5.png)
+![Imagem5](Imagem5.png)
 
 Geração Automática: selecione a opção correspondente.
 Gera Mestre: selecione Endereço.
 
-![Imagem 6](imagem6.png)
+![Imagem6](Imagem6.png)
 
 Informe os parâmetros necessários.
 
-![Imagem 7](imagem7.png)
+![Imagem7](Imagem7.png)
 
-![Imagem 8](imagem8.png)
+![Imagem8](Imagem8.png)
 
 Ponto de atenção: os endereços presentes no arquivo CSV precisam estar dentro da cadeia informada nos parâmetros Endereço de? e Endereço até?.
 
 4. Processando o arquivo CSV
 Clique em Sim. 
 
-![Imagem 9](imagem9.png)
+![Imagem9](Imagem9.png)
 
 Altere a busca para o tipo criado, CSV.
 Selecione o arquivo CSV.
 Clique em Salvar.
 
-![Imagem 10](imagem10.png)
+![Imagem10](Imagem10.png)
 
 
 5. Resultado do processamento
