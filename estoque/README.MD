@@ -44,7 +44,7 @@ Informe os parâmetros necessários.
 Ponto de atenção: os endereços presentes no arquivo CSV precisam estar dentro da cadeia informada nos parâmetros Endereço de? e Endereço até?.
 
 4. Processando o arquivo CSV
-Clique em Sim.
+Clique em Sim. 
 
 ![Imagem 9](mestreinv/imagem9.png)
 
