@@ -5,7 +5,7 @@ Digite:
 Na primeira coluna: o armazém.
 Na segunda coluna: os endereços.
 
-![Imagem1](imagem1.png)
+![Imagem1](Imagem1.png)
 
 Salve o arquivo do Excel como .CSV em alguma pasta do computador, por exemplo, C:\.
 
