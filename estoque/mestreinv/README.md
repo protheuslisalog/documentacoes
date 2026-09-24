@@ -1,4 +1,4 @@
-# Criação de Mestre em Massa
+# Criação de Mestre por Arquivo
 
 1. Gerando arquivo para criação dos mestres
 Abra uma planilha no Excel.
