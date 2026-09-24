@@ -9,11 +9,7 @@ Na segunda coluna: os endereços.
 
 Salve o arquivo do Excel como .CSV em alguma pasta do computador, por exemplo, C:\.
 
-<<<<<<< HEAD
 ![Imagem2](Imagem2.png)
-=======
-![Imagem2](imagem2.png)
->>>>>>> 5dc72663404ce9e07b38407cd937a655de1e780a
 
 2. Acessando a rotina
 Pesquise por:
