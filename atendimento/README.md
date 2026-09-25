@@ -5,7 +5,7 @@ Sul-americana**\
 **Versão:** 1.0\
 **Emissão:** Fevereiro/2026\
 **Próxima revisão:** Fevereiro/2027\
-**Data de geração:** 24/09/2026
+**Data de geração:** 25/09/2026
 
 ## Sumário
 
