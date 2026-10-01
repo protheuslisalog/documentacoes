@@ -34,15 +34,15 @@ Acesse pelo navegador de internet o link abaixo e informe o código de usuário 
 - **Ambiente de TESTE:** <https://li195955.protheus.cloudtotvs.com.br:11303/webapp/?StartProg=SIGAESP&Env=CCFMH3_DEV>
 - **Ambiente de PROD:** <https://li195954.protheus.cloudtotvs.com.br:4010/webapp/?Startprog=SIGAESP&Env=CCFMH3_PROD>
 
-![Acessando com o usuário e senha](imagem1.png)
+![Acessando com o usuário e senha](./Imagem1.png)
 
-![Acessando com o usuário e senha](imagem2.png)
+![Acessando com o usuário e senha](./Imagem2.png)
 
 *Figura 1 - Acessando com o usuário e senha*
 
 Informe o código do grupo e filial que deseja acessar. (Essas informações já virão preenchidas, altere apenas se necessário)
 
-![Informando filial Lisalog do acesso](imagem3.png)
+![Informando filial Lisalog do acesso](./Imagem3.png)
 
 *Figura 2 - Informando filial Lisalog do acesso*
 
@@ -68,7 +68,7 @@ Em Atualizações estão disponíveis as seguintes opções:
 - **Log de Integração** — Consultar log de integração dos pedidos
 - **Integrações** — Executa a integra com outros sistemas já integrados com o Protheus
 
-![Opções Menu atualizações](imagem4.png)
+![Opções Menu atualizações](./Imagem4.png)
 
 *Figura 3 - Opções Menu atualizações*
 
@@ -76,7 +76,7 @@ Em Atualizações estão disponíveis as seguintes opções:
 
 A rotina Api Pedido possui as seguintes opções:
 
-![Opções Api Pedido](imagem5.png)
+![Opções Api Pedido](./Imagem5.png)
 
 *Figura 4 - Opções Api Pedido*
 
@@ -84,27 +84,27 @@ A rotina Api Pedido possui as seguintes opções:
 
 Realizar a inclusão manual de pedido ou importar informações de um arquivo TXT/XML e DANFE.
 
-![Outras ações Api Pedido](imagem6.png)
+![Outras ações Api Pedido](./Imagem6.png)
 
 *Figura 5 - Outras ações Api Pedido*
 
-![Importar TXT/XML ou Danfe Api Pedido](imagem7.png)
+![Importar TXT/XML ou Danfe Api Pedido](./Imagem7.png)
 
 *Figura 6 - Importar TXT/XML ou Danfe Api Pedido*
 
-![Indicando arquivos locais](imagem8.png)
+![Indicando arquivos locais](./Imagem8.png)
 
 *Figura 7 - Indicando arquivos locais*
 
-![Selecionando o arquivo](imagem9.png)
+![Selecionando o arquivo](./Imagem9.png)
 
 *Figura 8 - Selecionando o arquivo*
 
-![Layout de arquivo TXT no Excel](imagem10.png)
+![Layout de arquivo TXT no Excel](./Imagem10.png)
 
 *Figura 9 - Layout de arquivo TXT no Excel*
 
-![Conteúdo do arquivo TXT](imagem11.png)
+![Conteúdo do arquivo TXT](./Imagem11.png)
 
 *Figura 10 - Conteúdo do arquivo TXT*
 
@@ -112,7 +112,7 @@ Realizar a inclusão manual de pedido ou importar informações de um arquivo TX
 
 Faz uma solicitação de cancelamento do pedido.
 
-![Solicitar cancelamento de pedido](imagem12.png)
+![Solicitar cancelamento de pedido](./Imagem12.png)
 
 *Figura 11 - Solicitar cancelamento de pedido*
 
@@ -120,15 +120,15 @@ Faz uma solicitação de cancelamento do pedido.
 
 Realizar o upload da nota fiscal de saída
 
-![Enviar Danfe do pedido](imagem13.png)
+![Enviar Danfe do pedido](./Imagem13.png)
 
 *Figura 12 - Enviar Danfe do pedido*
 
-![Campo preenchido com o XML](imagem14.png)
+![Campo preenchido com o XML](./Imagem14.png)
 
 *Figura 13 - Campo preenchido com o XML*
 
-![Campo preenchido com a DANFE](imagem15.png)
+![Campo preenchido com a DANFE](./Imagem15.png)
 
 *Figura 14 - Campo preenchido com a DANFE*
 
@@ -136,7 +136,7 @@ Realizar o upload da nota fiscal de saída
 
 Consulta o status do pedido.
 
-![Consulta de status do pedido](imagem16.png)
+![Consulta de status do pedido](./Imagem16.png)
 
 *Figura 15 - Consulta de status do pedido*
 
@@ -144,23 +144,23 @@ Consulta o status do pedido.
 
 Realiza a importação de múltiplos arquivos XML das notas fiscais ou arquivos TXT para geração de pedidos para separação.
 
-![Importando múltiplos arquivos para geração de pedidos (xml)](imagem17.png)
+![Importando múltiplos arquivos para geração de pedidos (xml)](./Imagem17.png)
 
 *Figura 16 - Importando múltiplos arquivos para geração de pedidos (xml)*
 
-![Importando múltiplos arquivos para geração de pedidos (txt)](imagem18.png)
+![Importando múltiplos arquivos para geração de pedidos (txt)](./Imagem18.png)
 
 *Figura 17 - Importando múltiplos arquivos para geração de pedidos (txt)*
 
-![Criando arquivo TXT no layout completo](imagem19.png)
+![Criando arquivo TXT no layout completo](./Imagem19.png)
 
 *Figura 18 - Criando arquivo TXT no layout completo*
 
-![Salvando arquivo TXT](imagem20.png)
+![Salvando arquivo TXT](./Imagem20.png)
 
 *Figura 19 - Salvando arquivo TXT*
 
-![Layout do arquivo TXT](imagem21.png)
+![Layout do arquivo TXT](./Imagem21.png)
 
 *Figura 20 - Layout do arquivo TXT*
 
@@ -168,81 +168,81 @@ Realiza a importação de múltiplos arquivos XML das notas fiscais ou arquivos 
 
 Imprimir dados listados na tela atual.
 
-![Tela de Outras ações > Ajuste CEP](imagem22.png)
+![Tela de Outras ações > Ajuste CEP](./Imagem22.png)
 
 #### Outras ações > Importar por armazém
 
 Integrar pedidos por armazém.
 
-![Tela de Outras ações > Importar por armazém](imagem23.png)
+![Tela de Outras ações > Importar por armazém](./Imagem23.png)
 
 #### Outras ações > Importar por campanha
 
 Integrar pedidos por campanha.
 
-![Tela de Outras ações > Importar por campanha](imagem24.png)
+![Tela de Outras ações > Importar por campanha](./Imagem24.png)
 
 #### Outras ações > Transportadora
 
 Incluir ou alterar transportadora dos pedidos.
 
-![Tela de Outras ações > Transportadora](imagem25.png)
+![Tela de Outras ações > Transportadora](./Imagem25.png)
 
 #### Outras ações > Carta de correção
 
 Enviar carta de correção em (PDF).
 
-![Tela de Outras ações > Carta de correção](imagem26.png)
+![Tela de Outras ações > Carta de correção](./Imagem26.png)
 
 #### Outras ações > Upload Mult Docs
 
 Fazer o Upload de múltiplos documentos.
 
-![Tela de Outras ações > Upload Mult Docs](imagem27.png)
+![Tela de Outras ações > Upload Mult Docs](./Imagem27.png)
 
 #### Outras ações > Reprocessa todos sem saldo
 
 Reprocessa todos pedidos sem saldo.
 
-![Tela de Outras ações > Reprocessa todos sem saldo](imagem28.png)
+![Tela de Outras ações > Reprocessa todos sem saldo](./Imagem28.png)
 
 #### Outras ações > Pedido parcial
 
 Acessa a tela dos pedidos parciais.
 
-![Tela de Outras ações > Pedido parcial](imagem29.png)
+![Tela de Outras ações > Pedido parcial](./Imagem29.png)
 
 #### Outras ações > Relatório parcial / sem saldo
 
 Imprimir relatório dos pedidos parciais e sem saldo.
 
-![Tela de Outras ações > Relatório parcial / sem saldo](imagem30.png)
+![Tela de Outras ações > Relatório parcial / sem saldo](./Imagem30.png)
 
-![Tela de Outras ações > Relatório parcial / sem saldo](imagem31.png)
+![Tela de Outras ações > Relatório parcial / sem saldo](./Imagem31.png)
 
 #### Outras ações > Estimativa envio
 
 Altera a estimativa de envio dos pedidos (**Obs.:** rotina da integração da API infracommerce).
 
-![Tela de Outras ações > Estimativa envio](imagem32.png)
+![Tela de Outras ações > Estimativa envio](./Imagem32.png)
 
 #### Outras ações > Upload documentos
 
 Fazer upload de documento em PDF.
 
-![Tela de Outras ações > Upload documentos](imagem33.png)
+![Tela de Outras ações > Upload documentos](./Imagem33.png)
 
 #### Outras ações > Imprimir browse
 
 Imprimir dados listados na tela atual.
 
-![Tela de Outras ações > Imprimir browse](imagem34.png)
+![Tela de Outras ações > Imprimir browse](./Imagem34.png)
 
 ### 2.2 Api Nota de Saída
 
 Disponível apenas para consultar notas de saída enviadas para os pedidos.
 
-![Dados Api Nota Saida](imagem35.png)
+![Dados Api Nota Saida](./Imagem35.png)
 
 *Figura 21 - Dados Api Nota Saida*
 
@@ -250,7 +250,7 @@ Disponível apenas para consultar notas de saída enviadas para os pedidos.
 
 Enviar entradas de armazenagem.
 
-![API Entrada opções](imagem36.png)
+![API Entrada opções](./Imagem36.png)
 
 *Figura 22 - API Entrada opções*
 
@@ -258,7 +258,7 @@ Enviar entradas de armazenagem.
 
 Faz o upload das informações de entrada através do XML das notas fiscais.
 
-![Upload de notas de entrada](imagem37.png)
+![Upload de notas de entrada](./Imagem37.png)
 
 *Figura 23 - Upload de notas de entrada*
 
@@ -270,7 +270,7 @@ Exclui o registro da entrada.
 
 Consulta o status da entrada no armazém.
 
-![Consulta de status da entrada](imagem38.png)
+![Consulta de status da entrada](./Imagem38.png)
 
 *Figura 24 - Consulta de status da entrada*
 
@@ -278,7 +278,7 @@ Consulta o status da entrada no armazém.
 
 Permite alterar o armazém da nota fiscal integrada.
 
-![Alterar Armazém](imagem39.png)
+![Alterar Armazém](./Imagem39.png)
 
 *Figura 25 - Alterar Armazém*
 
@@ -286,7 +286,7 @@ Permite alterar o armazém da nota fiscal integrada.
 
 Permite alterar o código de postagem da nota fiscal integrada.
 
-![Alterar Código de Postagem](imagem40.png)
+![Alterar Código de Postagem](./Imagem40.png)
 
 *Figura 26 - Alterar Código de Postagem*
 
@@ -294,7 +294,7 @@ Permite alterar o código de postagem da nota fiscal integrada.
 
 Permite alterar a nota fiscal de origem.
 
-![Alterar NF de Origem](imagem41.png)
+![Alterar NF de Origem](./Imagem41.png)
 
 *Figura 27 - Alterar NF de Origem*
 
@@ -302,7 +302,7 @@ Permite alterar a nota fiscal de origem.
 
 Retorna o status atual da nota fiscal integrada.
 
-![Status Nota Fiscal](imagem42.png)
+![Status Nota Fiscal](./Imagem42.png)
 
 *Figura 28 - Status Nota Fiscal*
 
@@ -310,7 +310,7 @@ Retorna o status atual da nota fiscal integrada.
 
 Permite enviar o código do produto diferente ao XML.
 
-![Entrada por CSV](imagem43.png)
+![Entrada por CSV](./Imagem43.png)
 
 *Figura 29 - Entrada por CSV*
 
@@ -318,7 +318,7 @@ Permite enviar o código do produto diferente ao XML.
 
 Permite enviar a Danfe e o XML da nota fiscal.
 
-![Enviar DANFE/XML](imagem44.png)
+![Enviar DANFE/XML](./Imagem44.png)
 
 *Figura 30 - Enviar DANFE/XML*
 
@@ -326,7 +326,7 @@ Permite enviar a Danfe e o XML da nota fiscal.
 
 Permite baixar a Danfe da nota fiscal.
 
-![Download DANFE](imagem45.png)
+![Download DANFE](./Imagem45.png)
 
 *Figura 31 - Download DANFE*
 
@@ -342,7 +342,7 @@ Apresenta agenda para inclusão de agendamento.
 
 Incluir, alterar, visualizar ou excluir cadastro de produto por fornecedor.
 
-![Cadastro de produtos por fornecedor](imagem46.png)
+![Cadastro de produtos por fornecedor](./Imagem46.png)
 
 *Figura 32 - Cadastro de produtos por fornecedor*
 
@@ -354,7 +354,7 @@ Disponíveis as seguintes opções:
 
 Apresenta os pedidos com status.
 
-![Monitor Pedidos](imagem47.png)
+![Monitor Pedidos](./Imagem47.png)
 
 *Figura 33 - Monitor Pedidos*
 
@@ -362,7 +362,7 @@ Apresenta os pedidos com status.
 
 Monitoramento dos recebimentos no armazém.
 
-![Consulta recebimento](imagem48.png)
+![Consulta recebimento](./Imagem48.png)
 
 *Figura 34 - Consulta recebimento*
 
@@ -370,11 +370,11 @@ Monitoramento dos recebimentos no armazém.
 
 Apresenta uma análise detalhada das separações realizadas na data escolhida.
 
-![Informando data do painel por hora](imagem49.png)
+![Informando data do painel por hora](./Imagem49.png)
 
 *Figura 35 - Informando data do painel por hora*
 
-![Painel por hora](imagem50.png)
+![Painel por hora](./Imagem50.png)
 
 *Figura 36 - Painel por hora*
 
@@ -382,7 +382,7 @@ Apresenta uma análise detalhada das separações realizadas na data escolhida.
 
 Monitoramento da separação dos pedidos no armazém.
 
-![Monitor de separações](imagem51.png)
+![Monitor de separações](./Imagem51.png)
 
 *Figura 37 - Monitor de separações*
 
@@ -390,7 +390,7 @@ Monitoramento da separação dos pedidos no armazém.
 
 Visão geral das operações no armazém.
 
-![Indicadores](imagem52.png)
+![Indicadores](./Imagem52.png)
 
 *Figura 38 – Indicadores*
 
@@ -398,7 +398,7 @@ Visão geral das operações no armazém.
 
 Permite pesquisar, visualizar detalhes e importar por arquivo TXT.
 
-![Números de serie](imagem53.png)
+![Números de serie](./Imagem53.png)
 
 *Figura 39 - Números de serie*
 
