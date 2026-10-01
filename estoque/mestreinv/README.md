@@ -13,7 +13,7 @@ Salve o arquivo do Excel como .CSV em alguma pasta do computador, por exemplo, C
 ![Imagem2](Imagem2.png)
 
 2. Acessando a rotina
-Pesquise por:
+Pesquise por: 
 
 Mestre > Estoque/Custos > Inventário > Mestre
 
