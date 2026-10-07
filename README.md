@@ -34,6 +34,7 @@ Documentação das principais funcionalidades do WMS.
 * [Conferência 1PN](wms/conferencia1pn/README.md)
 * [Leitura de código de barras](wms/leiturabarras/README.md)
 * [Mestre de Inventario por Arquivo](estoque/mestreinv/README.md)
+* [Conferência de embarque](wms/conferenciaembarque/README.md)
 
 ---
 
