@@ -104,5 +104,5 @@ Modelo de e-mail enviado quando não há sobras de embarque.
 # 4. Informações adicionais
 
 - Apenas pedidos no status `CONFERIDO` podem iniciar a conferência de embarque.
-- E-mail de solicitação do fatumento só é envido para conferência `Fechada`.
+- E-mail de solicitação do fatumento só é enviado para conferência `Fechada`.
 - Após o envio com sucesso do e-mail de solicitação de faturamento o campo `Enviado (ZAO_ENVIA)` é marcado como `S` identificando que já foi enviado e-mail do pedido.
