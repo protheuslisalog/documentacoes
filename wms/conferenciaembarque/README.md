@@ -8,9 +8,9 @@ Realizar a confência dos produtos embarcados do veículo no momento da expediç
 
 ## 2. Configuração
 
-| Campo | Conteúdo | Descrição |
-|---|---|---|
-| `ZCI_MAILFT` | E-mails | Destinatário de e-mail para recebimento da solicitação de faturamento (separar e-mails por um ponto e vírgula) |
+| Cadastro | Campo | Conteúdo | Descrição |
+|---|---|---|---|
+|Config Cliente Wms| Email Sol Ft `ZCI_MAILFT` | E-mails | Destinatário de e-mail para recebimento da solicitação de faturamento (separar e-mails por um ponto e vírgula) |
 
 ---
 
