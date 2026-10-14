@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-Realizar a confência dos produtos embarcados do veículo no momento da expedição e enviar solicitação de faturamento com produtos conferidos e embarcados.
+Realizar a conferência dos produtos embarcados do veículo no momento da expedição e enviar solicitação de faturamento com produtos conferidos e embarcados.
 
 ---
 
@@ -40,7 +40,7 @@ Confirma fechamento
 Envia e-mail para faturamento
 ```
 
-Acesse a rotina **Conf Recebimento** para iniciar a conferência do pedido:
+Acesse a rotina **Conf Embarque** para iniciar a conferência do pedido:
 
 ![01acessomenucoletor](01acessomenucoletor.png)
 
