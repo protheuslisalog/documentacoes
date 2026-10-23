@@ -16,7 +16,7 @@ Realizar a pré separação de produtos para um endereço permitindo geração d
 
 ---
 
-# 3. Processo de conferência
+# 3. Processo de pré separação
 
 ### Fluxo
 
