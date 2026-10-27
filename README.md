@@ -66,6 +66,14 @@ Informações sobre atendimento da área de T.I.
 
 ---
 
+## 📖 7. Aplicativo Lisalog
+
+Documentação das funcionalizadades do aplicativo Lisalog App
+
+* [LisalogApp](lisalogapp/README.md)
+
+---
+
 ## 🗂️ Navegação rápida
 
 | Área                                        | Descrição                  |
