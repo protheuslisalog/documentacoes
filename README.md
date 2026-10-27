@@ -84,6 +84,7 @@ Documentação das funcionalidades do aplicativo Lisalog App
 | [Processos](processos/README.md)         | Fluxos e rotinas           |
 | [Configurações](configuracoes/README.md) | Parâmetros e configurações |
 | [Manual Atendimento](atendimento/README.md) | Manual de atendimento   |
+| [Aplicativo Lisalog](lisalogapp/README.md) | Manual do App   |
 
 ---
 
