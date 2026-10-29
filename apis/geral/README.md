@@ -2,7 +2,9 @@
 
 **Lisa — Logística Integrada Sulamericana**
 
-Documentação unificada de todas as APIs de integração com o WMS (Protheus/TOTVS), consolidada a partir dos 17 documentos de especificação (`ET_API_*`, `API_*` e `Processo_API`).
+Documentação unificada das APIs de integração com o WMS Lisalog.
+
+> 📘 **Documentação interativa (Swagger/OpenAPI):** [https://protheuslisalog.github.io/documentacoes/apis/geral/docs/](https://protheuslisalog.github.io/documentacoes/apis/geral/docs/)
 
 ## Sumário
 
