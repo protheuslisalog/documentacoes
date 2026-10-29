@@ -56,7 +56,7 @@ Todas as APIs utilizam **Basic Authorization**:
 ```http
 Authorization: Basic <base64(usuario:senha)>
 Content-Type: application/json
-x-id-cliente: {{chaveDeAcesso}}
+x-id-cliente: {chaveDeAcesso}
 ```
 ### 2.1 Header `tenantId` (APIs v2)
 
