@@ -108,30 +108,13 @@ tenantId: {empresa},{filial}
 
 ### 3.2 Fluxo de entrada (recebimento)
 
-```mermaid
-flowchart TD
-    A([Início]) --> B["POST /NOTAENTRADA<br/>Envia nota de entrada"]
-    B --> C["GET /WMSSTSENT<br/>Consulta status da entrada"]
-    C --> D{"Status<br/>FINALIZADO?"}
-    D -- Não --> C
-    D -- Sim --> E["Saldo disponível para pedidos"]
-    E --> F([Fim])
-```
+![Fluxo de entrada (recebimento): POST /NOTAENTRADA, depois GET /WMSSTSENT repetido até o status FINALIZADO; então o saldo fica disponível para pedidos](img/fluxo-recebimento.svg)
+
 É possível indicar o armazém de entrada dos produtos, ou recuperar, pela consulta de status, os armazéns onde os produtos foram alocados.
 
 ### 3.3 Fluxo de expedição
 
-```mermaid
-flowchart TD
-    A([Início]) --> B["POST /PEDIDOWMS<br/>Envia pedido / nota fiscal"]
-    B --> C{"Pedido enviado<br/>faturado?"}
-    C -- Sim --> F([Fim])
-    C -- Não --> D["GET /WMSSTATUS<br/>Consulta status do pedido"]
-    D --> E{"Status<br/>CONFERIDO?"}
-    E -- Não --> D
-    E -- Sim --> G["POST /NOTASAIDA<br/>Envia nota fiscal"]
-    G --> F
-```
+![Fluxo de expedição: POST /PEDIDOWMS; se o pedido foi enviado faturado, fim; senão, GET /WMSSTATUS repetido até o status CONFERIDO e então POST /NOTASAIDA](img/fluxo-expedicao.svg)
 
 - Quando o pedido **não** é enviado faturado, é possível recuperar a quantidade de volumes pela consulta de status (`GET /WMSSTATUS`).
 - Se o pedido não for enviado faturado **e** o integrador não precisar da quantidade de volumes, a nota fiscal pode ser enviada a qualquer momento.

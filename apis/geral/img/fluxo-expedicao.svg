@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="700" viewBox="0 0 460 700" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">
+  <title>Fluxo de expedição</title>
+  <defs>
+    <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a5568"/>
+    </marker>
+  </defs>
+  <rect width="460" height="700" fill="#ffffff"/>
+
+  <g stroke="#4a5568" stroke-width="1.6" fill="none" marker-end="url(#seta)">
+    <line x1="230" y1="60" x2="230" y2="88"/>
+    <line x1="230" y1="146" x2="230" y2="178"/>
+    <polyline points="140,230 50,230 50,660 168,660"/>
+    <line x1="230" y1="280" x2="230" y2="318"/>
+    <line x1="230" y1="376" x2="230" y2="408"/>
+    <polyline points="320,460 400,460 400,348 342,348"/>
+    <line x1="230" y1="510" x2="230" y2="548"/>
+    <line x1="230" y1="606" x2="230" y2="638"/>
+  </g>
+
+  <g fill="#ebf4ff" stroke="#3182ce" stroke-width="1.6">
+    <rect x="170" y="20" width="120" height="40" rx="20"/>
+    <rect x="120" y="90" width="220" height="56" rx="6"/>
+    <polygon points="230,180 320,230 230,280 140,230" fill="#fffaf0" stroke="#dd6b20"/>
+    <rect x="120" y="320" width="220" height="56" rx="6"/>
+    <polygon points="230,410 320,460 230,510 140,460" fill="#fffaf0" stroke="#dd6b20"/>
+    <rect x="120" y="550" width="220" height="56" rx="6"/>
+    <rect x="170" y="640" width="120" height="40" rx="20"/>
+  </g>
+
+  <g fill="#1a202c" text-anchor="middle">
+    <text x="230" y="45">Início</text>
+    <text x="230" y="114" font-weight="600" font-family="Consolas, Menlo, monospace">POST /PEDIDOWMS</text>
+    <text x="230" y="134">Envia pedido / nota fiscal</text>
+    <text x="230" y="225" font-size="13">Pedido enviado</text>
+    <text x="230" y="243" font-size="13" font-weight="600">faturado?</text>
+    <text x="230" y="344" font-weight="600" font-family="Consolas, Menlo, monospace">GET /WMSSTATUS</text>
+    <text x="230" y="364">Consulta status do pedido</text>
+    <text x="230" y="455" font-size="13">Status</text>
+    <text x="230" y="473" font-size="13" font-weight="600">CONFERIDO?</text>
+    <text x="230" y="574" font-weight="600" font-family="Consolas, Menlo, monospace">POST /NOTASAIDA</text>
+    <text x="230" y="594">Envia nota fiscal</text>
+    <text x="230" y="665">Fim</text>
+  </g>
+
+  <g fill="#4a5568" font-size="13">
+    <text x="62" y="222">Sim</text>
+    <text x="240" y="302">Não</text>
+    <text x="352" y="452">Não</text>
+    <text x="240" y="532">Sim</text>
+  </g>
+</svg>
