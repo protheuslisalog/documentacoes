@@ -1,4 +1,4 @@
-# Documentação das APIs WMS — Lisa / Lisalog
+# Documentação das APIs WMS — Lisalog
 
 **Lisa — Logística Integrada Sulamericana**
 
