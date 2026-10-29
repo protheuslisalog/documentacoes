@@ -27,7 +27,6 @@ Documentação unificada das APIs de integração com o WMS Lisalog.
 17. [Envio de documentos](#17-envio-de-documentos) — `POST /DOCUMENTOS`
 18. [Transferência entre armazéns](#18-transferência-entre-armazéns) — `POST` / `GET /TRANSFERENCIA`
 19. [Glossário de status e códigos](#19-glossário-de-status-e-códigos)
-20. [Pontos de atenção nos documentos originais](#20-pontos-de-atenção-nos-documentos-originais)
 
 ---
 
@@ -63,23 +62,23 @@ x-id-cliente: {chaveDeAcesso}
 As APIs `/wms/v2/...` exigem o header com a empresa e a filial:
 
 ```http
-tenantId: {{empresa}},{{filial}}
+tenantId: {empresa},{filial}
 ```
 
-- `{{empresa}}`: código da empresa — utilizar `03`.
-- `{{filial}}`: código da filial Lisalog (ver [item 19.5](#195-filiais-lisalog)).
+- `{empresa}`: código da empresa — utilizar `03`.
+- `{filial}`: código da filial Lisalog (ver [item 19.5](#195-filiais-lisalog)).
 
 ### 2.2 Variáveis usadas nos exemplos
 
 | Variável | Descrição |
 |---|---|
-| `{{empresa}}` | Código da empresa (utilizar `03`) |
-| `{{filial}}` | Código da filial Lisalog |
-| `{{host}}` | Endereço host do servidor |
-| `{{senha}}` | Senha de acesso ao endpoint |
-| `{{chave}}` | Chave de acesso ao endpoint |
-| `{{senhaAutenticacao}}` | Senha de autenticação da API |
-| `{{chaveDeAcesso}}` | Chave de acesso as Apis |
+| `{empresa}` | Código da empresa (utilizar `03`) |
+| `{filial}` | Código da filial Lisalog |
+| `{host}` | Endereço host do servidor |
+| `{senha}` | Senha de acesso ao endpoint |
+| `{chave}` | Chave de acesso ao endpoint |
+| `{senhaAutenticacao}` | Senha de autenticação da API |
+| `{chaveDeAcesso}` | Chave de acesso as Apis |
 
 ---
 
@@ -144,7 +143,7 @@ flowchart TD
 **Objetivo:** enviar pedidos e suas informações para separação nos armazéns da Lisalog.
 
 - **Método:** `POST`
-- **URL:** `{{host}}/rest/PEDIDOWMS`
+- **URL:** `{host}/rest/PEDIDOWMS`
 - **Header:** `Content-Type: application/json`
 
 ### 4.1 Exemplo de JSON
@@ -335,7 +334,7 @@ flowchart TD
 Atualiza dados de um pedido já enviado.
 
 - **Método:** `PUT`
-- **URL (homologação):** `{{host}}rest/PEDIDOWMS`
+- **URL (homologação):** `{host}rest/PEDIDOWMS`
 
 ### 5.1 Exemplo de JSON
 
@@ -401,7 +400,7 @@ Atualiza dados de um pedido já enviado.
 Envia uma solicitação de cancelamento de pedido.
 
 - **Método:** `PUT`
-- **URL (homologação):** `{{host}}/rest/PEDIDOWMS`
+- **URL (homologação):** `{host}/rest/PEDIDOWMS`
 
 ### 6.1 Exemplo de JSON
 
@@ -428,7 +427,7 @@ Envia uma solicitação de cancelamento de pedido.
 ## 7. Consulta de status do pedido
 
 - **Método:** `GET`
-- **URL:** `{{host}}/rest/WMSSTATUS`
+- **URL:** `{host}/rest/WMSSTATUS`
 - **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`
 
 ### 7.1 Parâmetros (todos obrigatórios)
@@ -444,7 +443,7 @@ Envia uma solicitação de cancelamento de pedido.
 ### 7.2 Exemplo de requisição
 
 ```http
-GET {{host}}/rest/WMSSTATUS?CHAVE=01719201&FILIALLISA=01&SENHA=1234&CGC=71586952000157&PEDIDO=19730380
+GET {host}/rest/WMSSTATUS?CHAVE=01719201&FILIALLISA=01&SENHA=1234&CGC=71586952000157&PEDIDO=19730380
 ```
 
 ### 7.3 Exemplo de resposta
@@ -534,7 +533,7 @@ GET {{host}}/rest/WMSSTATUS?CHAVE=01719201&FILIALLISA=01&SENHA=1234&CGC=71586952
 ## 8. Consulta de status de pedidos por data
 
 - **Método:** `GET`
-- **URL:** `{{host}}/rest/RSSTSPG`
+- **URL:** `{host}/rest/RSSTSPG`
 - Retorna **100 pedidos por página**. Se a data possuir mais de 100 pedidos, faça novas chamadas com o parâmetro `PAGINA` para obter as demais páginas.
 
 ### 8.1 Parâmetros
@@ -551,7 +550,7 @@ GET {{host}}/rest/WMSSTATUS?CHAVE=01719201&FILIALLISA=01&SENHA=1234&CGC=71586952
 ### 8.2 Exemplo de requisição
 
 ```http
-GET {{host}}/rest/RSSTSPG?CGC=86646128000142&CHAVE=123456&FILIALLISA=07&SENHA=123456&DATAPEDIDO=20190529&PAGINA=1
+GET {host}/rest/RSSTSPG?CGC=86646128000142&CHAVE=123456&FILIALLISA=07&SENHA=123456&DATAPEDIDO=20190529&PAGINA=1
 ```
 
 ### 8.3 Exemplo de resposta
@@ -646,9 +645,9 @@ Os demais campos (`CEMBALAGEM`, `CRASTREIO`, `CROMANEIO`, `CURLTRACKING`, `DATAE
 Consulta a quantidade de pedidos de um cliente, agrupados por status, para uma determinada data de pedido.
 
 - **Método:** `GET`
-- **URL:** `{{host}}/rest/wms/v2/pedidosPorStatus/query`
-- **Autenticação:** Basic — `Authorization: Basic {{senhaAutenticacao}}`
-- **Header:** `tenantId: {{empresa}}, {{filial}},`, `x-id-cliente: {{chaveDeAcesso}}`
+- **URL:** `{host}/rest/wms/v2/pedidosPorStatus/query`
+- **Autenticação:** Basic — `Authorization: Basic {senhaAutenticacao}`
+- **Header:** `tenantId: {empresa}, {filial},`, `x-id-cliente: {chaveDeAcesso}`
 
 ### 9.1 Parâmetros
 
@@ -661,9 +660,9 @@ Consulta a quantidade de pedidos de um cliente, agrupados por status, para uma d
 ### 9.2 Exemplo de requisição
 
 ```http
-GET {{host}}/rest/wms/v2/pedidosPorStatus/query?senha={{senha}}&chave={{chave}}&dataPedido=20260812
-Authorization: Basic {{senhaAutenticacao}}
-tenantId: {{empresa}}, {{filial}},  x-id-cliente: {{chaveDeAcesso}}
+GET {host}/rest/wms/v2/pedidosPorStatus/query?senha={senha}&chave={chave}&dataPedido=20260812
+Authorization: Basic {senhaAutenticacao}
+tenantId: {empresa}, {filial},  x-id-cliente: {chaveDeAcesso}
 ```
 
 ### 9.3 Exemplo de resposta
@@ -709,13 +708,13 @@ Interpretação: `{"status":"3","descricaoStatus":"A CONFERIR","quantidade":172}
 
 | Variável | Descrição |
 |---|---|
-| `{{empresa}}` | Código da empresa (utilizar `03`) |
-| `{{filial}}` | Código da filial Lisalog |
-| `{{host}}` | Endereço host do servidor |
-| `{{senha}}` | Senha de acesso ao endpoint |
-| `{{chave}}` | Chave de acesso ao endpoint |
-| `{{senhaAutenticacao}}` | Senha de autenticação da API |
-| `{{chaveDeAcesso}}` | Chave de acesso das Apis |
+| `{empresa}` | Código da empresa (utilizar `03`) |
+| `{filial}` | Código da filial Lisalog |
+| `{host}` | Endereço host do servidor |
+| `{senha}` | Senha de acesso ao endpoint |
+| `{chave}` | Chave de acesso ao endpoint |
+| `{senhaAutenticacao}` | Senha de autenticação da API |
+| `{chaveDeAcesso}` | Chave de acesso das Apis |
 
 ---
 
@@ -726,9 +725,9 @@ Permite consultar detalhes dos pedidos registrados no sistema do cliente, em uma
 | Item | Valor |
 |---|---|
 | **Método** | `GET` |
-| **URL** | `{{host}}/rest/wms/v2/pedidoWms/query` |
-| **Autenticação** | Basic — `Authorization: Basic {{senhaAutenticacao}}` |
-| **Header:** | `tenantId: {{empresa}}, {{filial}}, x-id-cliente: {{chaveDeAcesso}}` |
+| **URL** | `{host}/rest/wms/v2/pedidoWms/query` |
+| **Autenticação** | Basic — `Authorization: Basic {senhaAutenticacao}` |
+| **Header:** | `tenantId: {empresa}, {filial}, x-id-cliente: {chaveDeAcesso}` |
 
 ### 10.1 Parâmetros
 
@@ -746,9 +745,9 @@ Permite consultar detalhes dos pedidos registrados no sistema do cliente, em uma
 ### 10.2 Exemplo de requisição
 
 ```http
-GET {{host}}/rest/wms/v2/pedidoWms/query?senha={{senha}}&chave={{chave}}&dataDe=20260801&dataAte=20260821&status=&pedido=&page=1&pageSize=1000
-Authorization: Basic {{senhaAutenticacao}}
-tenantId: {{empresa}}, {{filial}}, x-id-cliente: {{chaveDeAcesso}}
+GET {host}/rest/wms/v2/pedidoWms/query?senha={senha}&chave={chave}&dataDe=20260801&dataAte=20260821&status=&pedido=&page=1&pageSize=1000
+Authorization: Basic {senhaAutenticacao}
+tenantId: {empresa}, {filial}, x-id-cliente: {chaveDeAcesso}
 ```
 
 ### 10.3 Exemplo de resposta
@@ -812,26 +811,26 @@ tenantId: {{empresa}}, {{filial}}, x-id-cliente: {{chaveDeAcesso}}
 Permite consultar e recuperar o **romaneio de saída em base64**, junto com os dados do romaneio e do pedido.
 
 - **Método:** `GET`
-- **URL:** `{{host}}/rest`
-- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `TenantId: 03,{FilialLisa}`, `x-id-cliente: {{chaveDeAcesso}}`
+- **URL:** `{host}/rest`
+- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `TenantId: 03,{FilialLisa}`, `x-id-cliente: {chaveDeAcesso}`
 
 ### 11.1 Formas de consulta
 
 | Forma | URL |
 |---|---|
-| **Query** | `{{host}}/rest/wms/v2/consultaRomaneioSaida/query?cnpj=...&chave=...&tipoRomaneio=2&...` |
+| **Query** | `{host}/rest/wms/v2/consultaRomaneioSaida/query?cnpj=...&chave=...&tipoRomaneio=2&...` |
 
 **Exemplos (forma query)**
 
 ```http
 # Por código do romaneio
-GET {{host}}/rest/wms/v2/consultaRomaneioSaida/query?cnpj=68993641000802&chave=86234601&tipoRomaneio=2&codigoRomaneio=075559&pageSize=1&page=1
+GET {host}/rest/wms/v2/consultaRomaneioSaida/query?cnpj=68993641000802&chave=86234601&tipoRomaneio=2&codigoRomaneio=075559&pageSize=1&page=1
 
 # Por pedido cliente
-GET {{host}}/rest/wms/v2/consultaRomaneioSaida/query?cnpj=68993641000802&chave=86234601&tipoRomaneio=2&pedidoCliente=4105765&pageSize=1&page=1
+GET {host}/rest/wms/v2/consultaRomaneioSaida/query?cnpj=68993641000802&chave=86234601&tipoRomaneio=2&pedidoCliente=4105765&pageSize=1&page=1
 
 # Por período
-GET {{host}}/rest/wms/v2/consultaRomaneioSaida/query?cnpj=68993641000802&chave=86234601&tipoRomaneio=2&dataInicial=20250909&dataFinal=20250909&pageSize=1&page=1
+GET {host}/rest/wms/v2/consultaRomaneioSaida/query?cnpj=68993641000802&chave=86234601&tipoRomaneio=2&dataInicial=20250909&dataFinal=20250909&pageSize=1&page=1
 ```
 
 ### 11.2 Campos da consulta
@@ -965,8 +964,8 @@ Formato: `{ "code": "400", "message": "...", "detailedMessage": "..." }` (e, em 
 Envia a nota fiscal de saída de um pedido (documento *API WMS Nota x Pedido*).
 
 - **Método:** `POST`
-- **URL:** `{{host}}/rest/NOTASAIDA`
-- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {{chaveDeAcesso}}`
+- **URL:** `{host}/rest/NOTASAIDA`
+- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {chaveDeAcesso}`
 
 ### 12.1 JSON de envio
 
@@ -1031,8 +1030,8 @@ Envia a nota fiscal de saída de um pedido (documento *API WMS Nota x Pedido*).
 Consulta os itens de uma nota de saída (documento *API WMS Nota de Saída*).
 
 - **Método:** `GET`
-- **URL:** `{{host}}/rest/WMSSF2`
-- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {{chaveDeAcesso}}`
+- **URL:** `{host}/rest/WMSSF2`
+- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {chaveDeAcesso}`
 
 ### 13.1 Parâmetros (todos obrigatórios)
 
@@ -1048,7 +1047,7 @@ Consulta os itens de uma nota de saída (documento *API WMS Nota de Saída*).
 ### 13.2 Exemplo de requisição
 
 ```http
-GET {{host}}/rest/WMSSF2?CHAVE=00000101&FILIALLISA=08&NOTA=123456&SERIE=2&CGC=71586952000157&SENHA=1234
+GET {host}/rest/WMSSF2?CHAVE=00000101&FILIALLISA=08&NOTA=123456&SERIE=2&CGC=71586952000157&SENHA=1234
 ```
 
 ### 13.3 Exemplo de resposta
@@ -1103,8 +1102,8 @@ O documento original não descreve os campos. Os significados abaixo foram **inf
 
 Envia (`POST`) ou exclui (`DELETE`) notas fiscais de entrada.
 
-- **URL:** `{{host}}/rest/NOTAENTRADA`
-- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {{chaveDeAcesso}}`
+- **URL:** `{host}/rest/NOTAENTRADA`
+- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {chaveDeAcesso}`
 
 ### 14.1 Exemplo de JSON
 
@@ -1219,8 +1218,8 @@ Envia (`POST`) ou exclui (`DELETE`) notas fiscais de entrada.
 Consulta o status de recebimento e endereçamento de uma nota de entrada.
 
 - **Método:** `GET`
-- **URL:** `{{host}}/rest/WMSSTSENT`
-- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {{chaveDeAcesso}}`
+- **URL:** `{host}/rest/WMSSTSENT`
+- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {chaveDeAcesso}`
 
 ### 15.1 Parâmetros (todos obrigatórios)
 
@@ -1237,7 +1236,7 @@ Consulta o status de recebimento e endereçamento de uma nota de entrada.
 ### 15.2 Exemplo de requisição
 
 ```http
-GET {{host}}/rest/WMSSTSENT?CHAVE=12345678&FILIALLISA=07&SENHA=1234&CGC=71586952000257&NOTA=001114828&CGCFORNECEDOR=71586952000257&SERIE=1
+GET {host}/rest/WMSSTSENT?CHAVE=12345678&FILIALLISA=07&SENHA=1234&CGC=71586952000257&NOTA=001114828&CGCFORNECEDOR=71586952000257&SERIE=1
 ```
 ### 15.3 Exemplo de resposta
 
@@ -1293,8 +1292,8 @@ GET {{host}}/rest/WMSSTSENT?CHAVE=12345678&FILIALLISA=07&SENHA=1234&CGC=71586952
 
 ### 16.1 Saldo por produto — `GET /WMSESTOQUE`
 
-- **URL:** `{{host}}/rest/WMSESTOQUE`
-- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {{chaveDeAcesso}}`
+- **URL:** `{host}/rest/WMSESTOQUE`
+- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {chaveDeAcesso}`
 
 | Parâmetro | Descrição |
 |---|---|
@@ -1305,7 +1304,7 @@ GET {{host}}/rest/WMSSTSENT?CHAVE=12345678&FILIALLISA=07&SENHA=1234&CGC=71586952
 | `PRODUTO` | Código do produto |
 
 ```http
-GET {{host}}/rest/WMSESTOQUE?CHAVE=00028801&FILIALLISA=01&SENHA=1234&CGC=71586952000157&PRODUTO=BY3328
+GET {host}/rest/WMSESTOQUE?CHAVE=00028801&FILIALLISA=01&SENHA=1234&CGC=71586952000157&PRODUTO=BY3328
 ```
 
 ```json
@@ -1345,7 +1344,7 @@ GET {{host}}/rest/WMSESTOQUE?CHAVE=00028801&FILIALLISA=01&SENHA=1234&CGC=7158695
 
 Permite consultar **vários produtos em uma única chamada**, de forma paginada.
 
-- **URL:** `{{host}}/rest/RSESTPG`
+- **URL:** `{host}/rest/RSESTPG`
 
 | Parâmetro | Descrição |
 |---|---|
@@ -1353,7 +1352,7 @@ Permite consultar **vários produtos em uma única chamada**, de forma paginada.
 | `PAGINA` | Número da página (`1` no exemplo) |
 
 ```http
-GET {{host}}/rest/RSESTPG?CHAVE=00028801&CGC=71586952000157&FILIALLISA=01&SENHA=1234&PAGINA=1
+GET {host}/rest/RSESTPG?CHAVE=00028801&CGC=71586952000157&FILIALLISA=01&SENHA=1234&PAGINA=1
 ```
 
 ```json
@@ -1413,8 +1412,8 @@ GET {{host}}/rest/RSESTPG?CHAVE=00028801&CGC=71586952000157&FILIALLISA=01&SENHA=
 Envia documentos diversos vinculados a um pedido (boleto, GNRE, guia ST, carta de correção, etiqueta etc.).
 
 - **Método:** `POST`
-- **URL:** `{{host}}/rest/DOCUMENTOS`
-- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {{chaveDeAcesso}}`
+- **URL:** `{host}/rest/DOCUMENTOS`
+- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {chaveDeAcesso}`
 
 ### 17.1 JSON de envio
 
@@ -1448,8 +1447,8 @@ Envia documentos diversos vinculados a um pedido (boleto, GNRE, guia ST, carta d
 
 ### 18.1 Envio de transferência — `POST /TRANSFERENCIA`
 
-- **URL:** `{{host}}/rest/TRANSFERENCIA`
-- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {{chaveDeAcesso}}`
+- **URL:** `{host}/rest/TRANSFERENCIA`
+- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `x-id-cliente: {chaveDeAcesso}`
 
 ```json
 {
@@ -1492,7 +1491,7 @@ Envia documentos diversos vinculados a um pedido (boleto, GNRE, guia ST, carta d
 O documento não informa quais parâmetros são obrigatórios; no exemplo, `PAGINA`, `PRODUTO`, `DATA` e `STATUS` seguem vazios. Pressupõe-se obrigatórios `CGC`, `CHAVE`, `FILIALLISA` e `SENHA`, como nas demais consultas.
 
 ```http
-GET {{host}}/rest/TRANSFERENCIA?CGC=71586952000157&CHAVE=00028801&FILIALLISA=07&SENHA=1234&PAGINA=&DOCUMENTO=28/0002&PRODUTO=&DATA=&STATUS=
+GET {host}/rest/TRANSFERENCIA?CGC=71586952000157&CHAVE=00028801&FILIALLISA=07&SENHA=1234&PAGINA=&DOCUMENTO=28/0002&PRODUTO=&DATA=&STATUS=
 ```
 
 ```json
