@@ -1,0 +1,1041 @@
+openapi: 3.0.3
+info:
+  title: API WMS Lisalog
+  description: |
+    APIs de integração com o WMS da **Lisa — Logística Integrada Sulamericana** (Protheus/TOTVS).
+
+    - Envio, atualização e cancelamento de pedidos (`/PEDIDOWMS`)
+    - Consulta de status de pedido (`/WMSSTATUS`) e de pedidos por data (`/RSSTSPG`)
+    - Consulta de quantidade de pedidos por status (`/wms/v2/pedidosPorStatus/query`)
+
+    Para o ambiente de produção, solicite à Lisalog o IP, porta, usuário e senha.
+    Para as APIs de consulta, solicite chave, senha e código da filial ao coordenador do WMS.
+  version: 1.0.0
+servers:
+  - url: '{host}/rest'
+    description: Servidor da API (padrão = homologação)
+    variables:
+      host:
+        default: https://li195956.protheus.cloudtotvs.com.br:11257
+        description: Protocolo, host e porta do servidor
+security:
+  - basicAuth: []
+tags:
+  - name: Pedidos
+    description: Envio, atualização e cancelamento de pedidos
+  - name: Status
+    description: Consultas de status de pedidos
+paths:
+  /PEDIDOWMS:
+    post:
+      tags: [Pedidos]
+      summary: Enviar pedido para separação
+      description: Envia pedidos e suas informações para separação nos armazéns da Lisalog.
+      operationId: enviarPedidoSeparacao
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeparacaoPedido'
+            example:
+              ccodfilial: '01'
+              ccgc: '71586952000157'
+              cpedido: '1234'
+              cenderecodestino: RUA COPPINI
+              cbairrodestino: CENTRO
+              ccidadedestino: SAO PAULO
+              cestadodestino: SP
+              ccomplementodestino: CASA 2
+              cnomedestino: JOAO
+              ccpfcnpjdestino: '35478258067'
+              ccepdestino: '09341340'
+              cnumerodestino: '79'
+              ccontatodestino: JOAO
+              cfonedestino: '5511996899999'
+              stringxmlnfe: ''
+              cnota: '1111'
+              cserie: '1'
+              ccgctransportadora: ''
+              ccodigoservicocorreios: ''
+              carmazem: ''
+              curldanfe: ''
+              ccampanha: ''
+              nvalordeclarado: 0
+              cdanfebase64: ''
+              cetiquetabase64: ''
+              campanhaObs: ''
+              cboletobase64: ''
+              ccartacorrecaobase64: ''
+              cguiast64: ''
+              ccomprovantepagamento64: ''
+              cpedidomarketplace: ''
+              cTransportadora: ''
+              nquantidadevolumes: 1
+              cemaildestino: ''
+              nProtocolo: 12341251234
+              cRastreio: ''
+              cPlp: ''
+              cNotaOriginal: ''
+              cSerieOriginal: ''
+              cCnpjFornecedor: ''
+              aitens:
+                - citempedido: '0001'
+                  cproduto: 10650X
+                  ccodbarras: ''
+                  cdescricao: TELEFONE FIXO
+                  nqtd: 1
+                  nvalorunitario: 10.10
+                  clote: ''
+                  npesokg: 0
+              volumes:
+                - codigoVolume: X1
+                  descricaoVolume: Descricao volume X1
+                  codigoBarras: '1234'
+                  embalagemDoProduto: false
+                  altura: 1
+                  peso: 1
+                  largura: 1
+                  comprimento: 1
+                  produtos:
+                    - produto: 10650X
+                      quantidade: 1
+                      altura: 1
+                      largura: 1
+                      comprimento: 1
+      responses:
+        '200':
+          description: Requisição processada (o corpo da resposta não é descrito na documentação original)
+        '401':
+          description: Não autorizado — credenciais inválidas
+    put:
+      tags: [Pedidos]
+      summary: Atualizar ou cancelar pedido
+      description: |
+        Atende duas operações no mesmo endpoint:
+
+        - **Atualização** de dados do pedido (NF, DANFE, transportadora, rastreio etc.)
+        - **Cancelamento** do pedido, enviando `cstatus = "C"`
+      operationId: atualizarOuCancelarPedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/AtualizaPedido'
+                - $ref: '#/components/schemas/CancelaPedido'
+            examples:
+              atualizaPedido:
+                summary: Atualização de dados do pedido
+                value:
+                  ccodfilial: '07'
+                  ccgc: '71586952000257'
+                  cpedido: '1234'
+                  cnota: '1111'
+                  cserie: '1'
+                  cdanfebase64: ''
+                  nvalordeclarado: 0
+                  stringxmlnfe: ''
+                  ccgctransportadora: ''
+                  curldanfe: ''
+                  cboletobase64: ''
+                  ccartacorrecaobase64: ''
+                  curlguiaST: ''
+                  ccomprovantepagamento64: ''
+                  cetiquetabase64: ''
+                  cRastreio: ''
+                  ccampanha: ''
+                  lalteraetiqueta: false
+                  cPlp: ''
+              cancelaPedido:
+                summary: Cancelamento de pedido
+                value:
+                  ccodfilial: '07'
+                  ccgc: '71586952000257'
+                  cpedido: '1234'
+                  cstatus: C
+      responses:
+        '200':
+          description: Requisição processada (o corpo da resposta não é descrito na documentação original)
+        '401':
+          description: Não autorizado — credenciais inválidas
+  /WMSSTATUS:
+    get:
+      tags: [Status]
+      summary: Consultar status de um pedido
+      operationId: consultarStatusPedido
+      parameters:
+        - $ref: '#/components/parameters/Chave'
+        - $ref: '#/components/parameters/FilialLisa'
+        - $ref: '#/components/parameters/SenhaConsulta'
+        - $ref: '#/components/parameters/Cgc'
+        - name: PEDIDO
+          in: query
+          required: true
+          description: Código do pedido
+          schema:
+            type: string
+            example: '19730380'
+      responses:
+        '200':
+          description: Status do pedido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusPedidoResponse'
+              example:
+                ASTATUS:
+                  - ASERIEMAI:
+                      - CIMEISERIE: WSBC565425895
+                        CPRODUTO: '123546'
+                        CPRODCLIENTE: '123456'
+                    AEMBALAGEM:
+                      - CCODIGO: '000008'
+                        CDESCRICAO: 10X10X10
+                        NALTURA: 10
+                        NCOMPRIMENTO: 10
+                        NLARGURA: 10
+                        NQUANTIDADE: 1
+                    CCAMPANHA: ITASH
+                    CPEDCLIENTE: '19730380'
+                    CEMBALAGEM: '19730380'
+                    CRASTREIO: ''
+                    CROMANEIO: ''
+                    DATAEXPEDIDO: '20220603'
+                    DATAROMANEIO: '20220603'
+                    HORAEXPEDIDO: '09:21'
+                    LETIQUETAINTEGRADA: false
+                    NCUBAGEM: 0
+                    NPESOBRU: 0
+                    NPESOLIQ: 0
+                    NQTDCAIXA: 0
+                    NQTDPALLET: 0
+                    CPEDLISA: SYBVRJ
+                    CSTATUS: FINALIZADO
+                CCGC: '71586952000157'
+                CCHAVE: '01719201'
+                CFILIALWMS: '01'
+                CPEDIDO: '19730380'
+        '401':
+          description: Não autorizado — credenciais inválidas
+  /RSSTSPG:
+    get:
+      tags: [Status]
+      summary: Consultar status dos pedidos de uma data
+      description: Retorna 100 pedidos por página. Para datas com mais de 100 pedidos, use `PAGINA` para obter as demais páginas.
+      operationId: consultarStatusPedidosPorData
+      parameters:
+        - $ref: '#/components/parameters/Chave'
+        - $ref: '#/components/parameters/FilialLisa'
+        - $ref: '#/components/parameters/SenhaConsulta'
+        - $ref: '#/components/parameters/Cgc'
+        - name: DATAPEDIDO
+          in: query
+          required: true
+          description: Data para consulta do pedido, no formato `AAAAMMDD`
+          schema:
+            type: string
+            pattern: '^\d{8}$'
+            example: '20260101'
+        - name: PAGINA
+          in: query
+          required: false
+          description: Número da página
+          schema:
+            type: integer
+            minimum: 1
+            example: 1
+      responses:
+        '200':
+          description: Pedidos da data informada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusPorDataResponse'
+              example:
+                CDATAPEDIDO: '20260101'
+                LISTAPEDIDOS:
+                  - ASTATUS:
+                      - AEMBALAGEM: []
+                        ASERIIMEI:
+                          - CIMEISERIE: ''
+                            CPRODCLIENTE: Y-YP1269
+                            CPRODUTO: YBEY-YP1269
+                        CCAMPANHA: LOJA INTERNA B2C
+                        CEMBALAGEM: ''
+                        CPEDCLIENTE: '3619731'
+                        CPEDLISA: TBTRZ2
+                        CRASTREIO: ''
+                        CROMANEIO: '314776'
+                        CSTATUS: FINALIZADO
+                        CURLTRACKING: ''
+                        DATAEXPEDIDO: '20260221'
+                        DATAROMANEIO: '20260221'
+                        HORAEXPEDIDO: '18:10'
+                        ITENS:
+                          - IDNOTAORIGEM: ''
+                            ITEMNOTAORIGEM: ''
+                            LOTE: AUTO130181
+                            NOTA: 9AH3CM
+                            NOTAORIGEM: ''
+                            PRODUTO: Y-YP1269
+                            QUANTIDADE: 1
+                            SERIE: W
+                            SERIEORIGEM: ''
+                        LETIQUETAINTEGRADA: true
+                        NCUBAGEM: 0
+                        NOTACLIENTE: '2845857'
+                        NPESOBRU: 1
+                        NPESOLIQ: 1
+                        NQTDCAIXA: 1
+                        NQTDPALLET: 0
+                    CCGC: '35689522000127'
+                    CCHAVE: '86280601'
+                    CFILIALWMS: '01'
+                    CPEDIDO: '3619731'
+                PAGCORRENTE: 1
+                PAGTOTAL: 1
+        '401':
+          description: Não autorizado — credenciais inválidas
+  /wms/v2/pedidosPorStatus/query:
+    get:
+      tags: [Status]
+      summary: Consultar quantidade de pedidos por status
+      description: |
+        Retorna a quantidade de pedidos de um cliente agrupados por status.
+        Sem `dataPedido`, apresenta a posição atual de todos os pedidos, independente da data.
+      operationId: consultarPedidosPorStatus
+      parameters:
+        - name: tenantId
+          in: header
+          required: true
+          description: 'Empresa e filial, no formato `empresa,filial` (ex.: `03,01`). Para a empresa, utilizar `03`; a filial é o código da filial Lisalog.'
+          schema:
+            type: string
+            example: '03,01'
+        - name: senha
+          in: query
+          required: true
+          description: Senha de acesso ao endpoint
+          schema:
+            type: string
+            example: XXXXXXXX
+        - name: chave
+          in: query
+          required: true
+          description: Chave de acesso ao endpoint
+          schema:
+            type: string
+            example: XXXXXXXX
+        - name: dataPedido
+          in: query
+          required: false
+          description: Data de consulta no formato `AAAAMMDD`
+          schema:
+            type: string
+            pattern: '^\d{8}$'
+            example: '20260812'
+      responses:
+        '200':
+          description: Quantidade de pedidos por status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PedidosPorStatusResponse'
+              example:
+                items:
+                  - status: '1'
+                    descricaoStatus: A SEPARAR
+                    quantidade: 1
+                  - status: '3'
+                    descricaoStatus: A CONFERIR
+                    quantidade: 172
+                  - status: '4'
+                    descricaoStatus: CONFERIDO
+                    quantidade: 106
+                  - status: '5'
+                    descricaoStatus: A EXPEDIR
+                    quantidade: 2433
+                  - status: '6'
+                    descricaoStatus: FINALIZADO
+                    quantidade: 561366
+                  - status: '7'
+                    descricaoStatus: CANCELADO
+                    quantidade: 199
+                cliente: XXXXXX
+                loja: XX
+                dataPedido: ''
+        '401':
+          description: Não autorizado — credenciais inválidas
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Basic Authorization (Authorization: Basic base64(usuario:senha)).'
+  parameters:
+    Chave:
+      name: CHAVE
+      in: query
+      required: true
+      description: Código identificador do cliente na Lisa
+      schema:
+        type: string
+        example: '01719201'
+    FilialLisa:
+      name: FILIALLISA
+      in: query
+      required: true
+      description: Filial da consulta
+      schema:
+        type: string
+        example: '01'
+    SenhaConsulta:
+      name: SENHA
+      in: query
+      required: true
+      description: Senha de acesso da consulta
+      schema:
+        type: string
+    Cgc:
+      name: CGC
+      in: query
+      required: true
+      description: CNPJ da empresa
+      schema:
+        type: string
+        example: '71586952000157'
+  schemas:
+    SeparacaoPedido:
+      type: object
+      description: |
+        Pedido para separação. Campos não obrigatórios no conteúdo mas obrigatórios na estrutura
+        não devem ser enviados como `null`: use `""` para texto e `0` para numérico.
+        "Cond." = obrigatório no conteúdo apenas se o cliente (código e loja) estiver habilitado no parâmetro `MV_XCVLDCV`.
+      required:
+        - ccodfilial
+        - ccgc
+        - cpedido
+        - cenderecodestino
+        - cbairrodestino
+        - ccidadedestino
+        - cestadodestino
+        - ccomplementodestino
+        - cnomedestino
+        - ccpfcnpjdestino
+        - ccepdestino
+        - cnumerodestino
+        - ccontatodestino
+        - cfonedestino
+        - stringxmlnfe
+        - cnota
+        - cserie
+        - ccgctransportadora
+        - ccodigoservicocorreios
+        - carmazem
+        - aitens
+      properties:
+        ccodfilial:
+          type: string
+          description: Filial Lisalog onde deve ser separado o pedido (conteúdo obrigatório)
+        ccgc:
+          type: string
+          description: CNPJ do emitente do pedido (conteúdo obrigatório)
+        cpedido:
+          type: string
+          description: Número do pedido (conteúdo obrigatório)
+        cenderecodestino:
+          type: string
+          description: Endereço de entrega do pedido
+        cbairrodestino:
+          type: string
+          description: Bairro de entrega do pedido
+        ccidadedestino:
+          type: string
+          description: Município de entrega do pedido
+        cestadodestino:
+          type: string
+          description: Estado (UF) de entrega do pedido
+        ccomplementodestino:
+          type: string
+          description: Complemento do endereço de entrega
+        cnomedestino:
+          type: string
+          description: Nome do cliente de entrega
+        ccpfcnpjdestino:
+          type: string
+          description: CPF ou CNPJ do cliente de entrega
+        ccepdestino:
+          type: string
+          description: CEP de entrega do pedido
+        cnumerodestino:
+          type: string
+          description: Número do endereço de entrega
+        ccontatodestino:
+          type: string
+          description: Nome do contato de entrega do pedido
+        cfonedestino:
+          type: string
+          description: Telefone de contato do destinatário
+        cemaildestino:
+          type: string
+          description: E-mail do destinatário do pedido
+        ccodigopedido:
+          type: string
+          description: Código ID do pedido nas plataformas de marketplace (consta na tabela da documentação, mas não no JSON de exemplo)
+        stringxmlnfe:
+          type: string
+          description: String com o XML da NF-e (conteúdo Cond.)
+        cnota:
+          type: string
+          description: Número da nota fiscal (conteúdo Cond.)
+        cserie:
+          type: string
+          description: Série da nota fiscal (conteúdo Cond.)
+        ccgctransportadora:
+          type: string
+          description: CNPJ da transportadora (conteúdo Cond.)
+        nquantidadevolumes:
+          type: number
+          description: Quantidade de volumes do pedido
+        ccodigoservicocorreios:
+          type: string
+          description: Código do serviço dos Correios
+        carmazem:
+          type: string
+          description: 'Armazém de retirada do pedido. Enviar preenchido apenas em casos específicos (ex.: produtos com avaria, enviar `AV`)'
+        curldanfe:
+          type: string
+          description: URL para download da DANFE
+        ccampanha:
+          type: string
+          description: Sigla da campanha (conteúdo e estrutura Cond.)
+        campanhaObs:
+          type: string
+          description: Sem descrição na documentação original
+        nvalordeclarado:
+          type: number
+          description: Valor declarado do pedido (para finalidade de seguro)
+        cdanfebase64:
+          type: string
+          description: Arquivo PDF da DANFE codificado em base64 (conteúdo e estrutura Cond.)
+        cetiquetabase64:
+          type: string
+          description: Etiqueta de transporte em ZPL (conteúdo e estrutura Cond.)
+        cboletobase64:
+          type: string
+          description: Boleto codificado em base64
+        ccartacorrecaobase64:
+          type: string
+          description: Carta de correção codificada em base64
+        cguiast64:
+          type: string
+          description: Guia de ST codificada em base64
+        ccomprovantepagamento64:
+          type: string
+          description: Comprovante de pagamento codificado em base64
+        cpedidomarketplace:
+          type: string
+          description: Número do pedido do marketplace
+        cTransportadora:
+          type: string
+          description: Identificação da transportadora
+        nProtocolo:
+          type: integer
+          format: int64
+          description: Número do protocolo de autorização da NF-e (conteúdo e estrutura Cond.)
+        cRastreio:
+          type: string
+          description: Código do rastreio na transportadora
+        cPlp:
+          type: string
+          description: Código da PLP da transportadora
+        cNotaOriginal:
+          type: string
+          description: Número da nota de entrada (saídas de devolução)
+        cSerieOriginal:
+          type: string
+          description: Série da nota de entrada (saídas de devolução)
+        cCnpjFornecedor:
+          type: string
+          description: CNPJ do emitente da nota de entrada (saídas de devolução)
+        aitens:
+          type: array
+          description: Produtos a serem separados (conteúdo obrigatório)
+          items:
+            $ref: '#/components/schemas/SeparacaoItem'
+        volumes:
+          type: array
+          description: Volumes a serem utilizados no pedido
+          items:
+            $ref: '#/components/schemas/SeparacaoVolume'
+    SeparacaoItem:
+      type: object
+      required:
+        - citempedido
+        - cproduto
+        - ccodbarras
+        - cdescricao
+        - nqtd
+        - nvalorunitario
+        - clote
+        - npesokg
+      properties:
+        citempedido:
+          type: string
+          description: Código do item do pedido
+        cproduto:
+          type: string
+          description: Código do produto (conteúdo obrigatório)
+        ccodbarras:
+          type: string
+          description: Código de barras do produto (EAN)
+        cdescricao:
+          type: string
+          description: Descrição do produto (conteúdo obrigatório)
+        nqtd:
+          type: number
+          description: Quantidade do produto (conteúdo obrigatório). A tabela original indica Texto, mas o exemplo envia número.
+        nvalorunitario:
+          type: number
+          description: Valor unitário do produto (conteúdo obrigatório)
+        clote:
+          type: string
+          description: Número do lote (conteúdo obrigatório)
+        npesokg:
+          type: number
+          description: Peso unitário do produto, em quilos
+        cNotaOriginal:
+          type: string
+          description: Número da nota de entrada (saídas de devolução)
+        cSerieOriginal:
+          type: string
+          description: Série da nota de entrada (saídas de devolução)
+        enderecoFisicoArmazem:
+          type: string
+          description: Sem descrição na documentação original
+    SeparacaoVolume:
+      type: object
+      required:
+        - codigoVolume
+        - descricaoVolume
+        - codigoBarras
+        - embalagemDoProduto
+        - altura
+        - largura
+        - comprimento
+        - peso
+      properties:
+        codigoVolume:
+          type: string
+          description: Código de identificação do volume. Cada embalagem diferente deve ter um código único.
+        descricaoVolume:
+          type: string
+          description: Descrição do volume
+        codigoBarras:
+          type: string
+          description: Código de barras da embalagem (se houver código impresso)
+        embalagemDoProduto:
+          type: boolean
+          description: Indica se deve ser usada a própria embalagem do produto na expedição, sem nova embalagem
+        altura:
+          type: number
+          description: Altura total da embalagem, em metros
+        largura:
+          type: number
+          description: Largura total da embalagem, em metros
+        comprimento:
+          type: number
+          description: Comprimento total da embalagem, em metros
+        peso:
+          type: number
+          description: Peso total do volume com os produtos, em quilogramas
+        produtos:
+          type: array
+          description: Produtos que devem ser alocados no volume
+          items:
+            $ref: '#/components/schemas/SeparacaoVolumeProduto'
+    SeparacaoVolumeProduto:
+      type: object
+      required:
+        - produto
+        - quantidade
+        - altura
+        - largura
+        - comprimento
+      properties:
+        produto:
+          type: string
+          description: Código do produto
+        quantidade:
+          type: number
+          description: Quantidade do produto
+        altura:
+          type: number
+          description: Altura do produto
+        largura:
+          type: number
+          description: Largura do produto
+        comprimento:
+          type: number
+          description: Comprimento do produto
+    AtualizaPedido:
+      type: object
+      description: Atualização de dados do pedido. Os campos além da identificação são os que serão atualizados.
+      required:
+        - ccodfilial
+        - ccgc
+        - cpedido
+      properties:
+        ccodfilial:
+          type: string
+          description: Filial Lisa que irá expedir o pedido
+        ccgc:
+          type: string
+          description: CNPJ do emitente do pedido
+        cpedido:
+          type: string
+          description: Número do pedido
+        cnota:
+          type: string
+          description: Número da nota fiscal
+        cserie:
+          type: string
+          description: Série da nota fiscal
+        cdanfebase64:
+          type: string
+          description: DANFE em PDF, codificada em base64
+        nvalordeclarado:
+          type: number
+          description: Valor declarado do pedido
+        stringxmlnfe:
+          type: string
+          description: XML da nota fiscal
+        ccgctransportadora:
+          type: string
+          description: CNPJ da transportadora que irá coletar o pedido
+        curldanfe:
+          type: string
+          description: URL para download da DANFE em PDF
+        cboletobase64:
+          type: string
+          description: Boleto em base64
+        ccartacorrecaobase64:
+          type: string
+          description: Carta de correção em base64
+        curlguiaST:
+          type: string
+          description: URL para download da guia de ST em PDF
+        ccomprovantepagamento64:
+          type: string
+          description: Comprovante de pagamento em base64
+        cetiquetabase64:
+          type: string
+          description: Etiqueta de transporte no padrão ZPL
+        cRastreio:
+          type: string
+          description: Código do rastreio na transportadora
+        ccampanha:
+          type: string
+          description: Campanha do pedido
+        lalteraetiqueta:
+          type: boolean
+          description: Inclui (`true`) ou não (`false`) uma etiqueta ao pedido
+        cPlp:
+          type: string
+          description: Código da PLP da transportadora
+    CancelaPedido:
+      type: object
+      description: Solicitação de cancelamento de pedido
+      required:
+        - ccodfilial
+        - ccgc
+        - cpedido
+        - cstatus
+      properties:
+        ccodfilial:
+          type: string
+          description: Filial Lisa que irá expedir o pedido
+        ccgc:
+          type: string
+          description: CNPJ do emitente do pedido
+        cpedido:
+          type: string
+          description: Número do pedido
+        cstatus:
+          type: string
+          enum: [C]
+          description: Status do pedido — enviar sempre a letra `C`
+    StatusTexto:
+      type: string
+      description: |
+        Status do pedido:
+        INTEGRADO (recebido, aguardando processamento); A SEPARAR (gerado, separação não iniciada);
+        SEPARANDO; A CONFERIR (separação finalizada, conferência não iniciada); CONFERINDO;
+        EM PESAGEM (listado apenas em WMSSTATUS); CONFERIDO; A EXPEDIR (pronto para retirada da transportadora);
+        FINALIZADO (expedido).
+      enum:
+        - INTEGRADO
+        - A SEPARAR
+        - SEPARANDO
+        - A CONFERIR
+        - CONFERINDO
+        - EM PESAGEM
+        - CONFERIDO
+        - A EXPEDIR
+        - FINALIZADO
+    Embalagem:
+      type: object
+      properties:
+        CCODIGO:
+          type: string
+          description: Código da embalagem
+        CDESCRICAO:
+          type: string
+          description: Descrição da embalagem
+        NALTURA:
+          type: number
+          description: Altura da embalagem, em centímetros
+        NLARGURA:
+          type: number
+          description: Largura da embalagem, em centímetros
+        NCOMPRIMENTO:
+          type: number
+          description: Comprimento da embalagem, em centímetros
+        NQUANTIDADE:
+          type: number
+          description: Quantidade da embalagem
+    SerieImei:
+      type: object
+      properties:
+        CIMEISERIE:
+          type: string
+          description: Número de série/IMEI
+        CPRODUTO:
+          type: string
+          description: Código do produto na Lisa
+        CPRODCLIENTE:
+          type: string
+          description: Código do produto no cliente
+    StatusPedido:
+      type: object
+      properties:
+        ASERIEMAI:
+          type: array
+          description: Séries/IMEIs do pedido
+          items:
+            $ref: '#/components/schemas/SerieImei'
+        AEMBALAGEM:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embalagem'
+        CCAMPANHA:
+          type: string
+          description: Campanha informada para o pedido
+        CPEDCLIENTE:
+          type: string
+          description: Código do pedido solicitado
+        CEMBALAGEM:
+          type: string
+          description: Embalagem utilizada no pedido
+        CRASTREIO:
+          type: string
+          description: Código do rastreio
+        CROMANEIO:
+          type: string
+          description: Código do romaneio
+        DATAEXPEDIDO:
+          type: string
+          description: Data de expedição do pedido (AAAAMMDD)
+        DATAROMANEIO:
+          type: string
+          description: Data da geração do romaneio (AAAAMMDD)
+        HORAEXPEDIDO:
+          type: string
+          description: Hora da expedição do pedido (HH:MM)
+        LETIQUETAINTEGRADA:
+          type: boolean
+          description: Indica se o pedido tem etiqueta integrada
+        NCUBAGEM:
+          type: number
+          description: Cubagem do pedido
+        NPESOBRU:
+          type: number
+          description: Peso bruto do pedido
+        NPESOLIQ:
+          type: number
+          description: Peso líquido do pedido
+        NQTDCAIXA:
+          type: number
+          description: Quantidade de caixas
+        NQTDPALLET:
+          type: number
+          description: Quantidade de pallets
+        CPEDLISA:
+          type: string
+          description: Código do pedido Lisa
+        CSTATUS:
+          $ref: '#/components/schemas/StatusTexto'
+    StatusPedidoResponse:
+      type: object
+      properties:
+        ASTATUS:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusPedido'
+        CCGC:
+          type: string
+          description: CNPJ da requisição
+        CCHAVE:
+          type: string
+          description: Chave de acesso utilizada
+        CFILIALWMS:
+          type: string
+          description: Filial do pedido
+        CPEDIDO:
+          type: string
+          description: Código do pedido
+    ItemPedidoPorData:
+      type: object
+      properties:
+        IDNOTAORIGEM:
+          type: string
+        ITEMNOTAORIGEM:
+          type: string
+        LOTE:
+          type: string
+        NOTA:
+          type: string
+        NOTAORIGEM:
+          type: string
+        PRODUTO:
+          type: string
+        QUANTIDADE:
+          type: number
+        SERIE:
+          type: string
+        SERIEORIGEM:
+          type: string
+    StatusPedidoPorData:
+      type: object
+      properties:
+        AEMBALAGEM:
+          type: array
+          items:
+            $ref: '#/components/schemas/Embalagem'
+        ASERIIMEI:
+          type: array
+          items:
+            $ref: '#/components/schemas/SerieImei'
+        CCAMPANHA:
+          type: string
+          description: Campanha informada para o pedido
+        CEMBALAGEM:
+          type: string
+        CPEDCLIENTE:
+          type: string
+          description: Código do pedido solicitado
+        CPEDLISA:
+          type: string
+          description: Código do pedido Lisa
+        CRASTREIO:
+          type: string
+        CROMANEIO:
+          type: string
+        CSTATUS:
+          $ref: '#/components/schemas/StatusTexto'
+        CURLTRACKING:
+          type: string
+        DATAEXPEDIDO:
+          type: string
+          description: Data de expedição (AAAAMMDD)
+        DATAROMANEIO:
+          type: string
+          description: Data de geração do romaneio (AAAAMMDD)
+        HORAEXPEDIDO:
+          type: string
+          description: Hora da expedição (HH:MM)
+        ITENS:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemPedidoPorData'
+        LETIQUETAINTEGRADA:
+          type: boolean
+          description: Indica se o pedido tem etiqueta integrada
+        NCUBAGEM:
+          type: number
+        NOTACLIENTE:
+          type: string
+        NPESOBRU:
+          type: number
+        NPESOLIQ:
+          type: number
+        NQTDCAIXA:
+          type: number
+        NQTDPALLET:
+          type: number
+    PedidoPorData:
+      type: object
+      properties:
+        ASTATUS:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusPedidoPorData'
+        CCGC:
+          type: string
+          description: CNPJ da requisição
+        CCHAVE:
+          type: string
+          description: Chave de acesso utilizada
+        CFILIALWMS:
+          type: string
+          description: Filial do pedido
+        CPEDIDO:
+          type: string
+          description: Código do pedido
+    StatusPorDataResponse:
+      type: object
+      properties:
+        CDATAPEDIDO:
+          type: string
+          description: Data dos pedidos (AAAAMMDD)
+        LISTAPEDIDOS:
+          type: array
+          items:
+            $ref: '#/components/schemas/PedidoPorData'
+        PAGCORRENTE:
+          type: integer
+          description: Página corrente
+        PAGTOTAL:
+          type: integer
+          description: Número total de páginas
+    PedidosPorStatusResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          description: Lista dos status encontrados na consulta
+          items:
+            $ref: '#/components/schemas/PedidosPorStatusItem'
+        cliente:
+          type: string
+          description: Código do cliente
+        loja:
+          type: string
+          description: Código da loja do cliente
+        dataPedido:
+          type: string
+          description: Data do pedido retornada pela API
+    PedidosPorStatusItem:
+      type: object
+      properties:
+        status:
+          type: string
+          description: 'Código do status. Valores observados: 1 A SEPARAR, 3 A CONFERIR, 4 CONFERIDO, 5 A EXPEDIR, 6 FINALIZADO, 7 CANCELADO.'
+        descricaoStatus:
+          type: string
+          description: Descrição do status
+        quantidade:
+          type: integer
+          description: Quantidade de pedidos naquele status

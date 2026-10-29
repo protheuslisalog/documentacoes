@@ -20,10 +20,7 @@ Informações gerais sobre o sistema e seus principais conceitos.
 
 Documentação dos endpoints disponibilizados pelo sistema.
 
-* [Visão geral das APIs](02-api/README.md)
-* [Consulta de pedidos](02-api/consulta-pedidos.md)
-* [Consulta de pedidos por status](02-api/consulta-pedidos-status.md)
-* [Autenticação](02-api/autenticacao.md)
+* [Visão geral das APIs](apis/geral/README.md)
 
 ---
 
