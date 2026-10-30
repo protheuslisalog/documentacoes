@@ -43,7 +43,7 @@ A integração convive com duas famílias de endpoints:
 
 | Família | Caminho | Características |
 |---|---|---|
-| **Clássica** | `/rest/<NOME>` (ex.: `/PEDIDOWMS`, `/WMSSTATUS`) | Credenciais de consulta (`CHAVE`, `SENHA`, `FILIALLISA`, `CGC`) em parâmetros de query em maiúsculas; header com a chave de acesso `x-id-cliente`; respostas com campos prefixados (`C…`, `N…`, `A…`) |
+| **Clássica** | `/rest/<NOME>` (ex.: `/PEDIDOWMS`, `/WMSSTATUS`) | Credenciais de consulta (`chave`, `senha`, `filiallisa`, `cgc`) em parâmetros de query em maiúsculas; header com a chave de acesso `x-id-cliente`; respostas com campos prefixados (`C…`, `N…`, `A…`) |
 | **v2** | `/rest/wms/v2/<recurso>/...` | Basic Auth + header `tenantId` e `x-id-cliente`; credenciais `chave`/`senha` em query; paginação por `page`/`pageSize`/`hasNext` |
 
 Para utilização das APIs, os dados de **chave**, **senha**, **x-id-cliente** e **código da filial** devem ser solicitados ao time de operações da Lisalog.
@@ -57,12 +57,12 @@ Authorization: Basic <base64(usuario:senha)>
 Content-Type: application/json
 x-id-cliente: {chaveDeAcesso}
 ```
-### 2.1 Header `tenantId` (APIs v2)
+### 2.1 Header `tenantid` (APIs v2)
 
 As APIs `/wms/v2/...` exigem o header com a empresa e a filial:
 
 ```http
-tenantId: {empresa},{filial}
+tenantid: {empresa},{filial}
 ```
 
 - `{empresa}`: código da empresa — utilizar `03`.
@@ -164,15 +164,15 @@ tenantId: {empresa},{filial}
   "cguiast64": "",
   "ccomprovantepagamento64": "",
   "cpedidomarketplace": "",
-  "cTransportadora": "",
+  "ctransportadora": "",
   "nquantidadevolumes": 1,
   "cemaildestino": "",
-  "nProtocolo": 12341251234,
-  "cRastreio": "",
-  "cPlp": "",
-  "cNotaOriginal": "",
-  "cSerieOriginal": "",
-  "cCnpjFornecedor": "",
+  "nprotocolo": 12341251234,
+  "crastreio": "",
+  "cplp": "",
+  "cnotaoriginal": "",
+  "cserieoriginal": "",
+  "ccnpjfornecedor": "",
   "aitens": [
     {
       "citempedido": "0001",
@@ -253,13 +253,13 @@ tenantId: {empresa},{filial}
 | `cguiast64` | Texto | Não | Não | Guia de ST codificada em base64 |
 | `ccomprovantepagamento64` | Texto | Não | Não | Comprovante de pagamento codificado em base64 |
 | `cpedidomarketplace` | Texto | Não | Não | Número do pedido do marketplace |
-| `cTransportadora` | Texto | Não | Não | Identificação da transportadora |
+| `ctransportadora` | Texto | Não | Não | Identificação da transportadora |
 | `nProtocolo` | Numérico | Cond. | Cond. (estrutura) | Número do protocolo de autorização da NF-e |
-| `cRastreio` | Texto | Não | Não | Código do rastreio na transportadora |
+| `crastreio` | Texto | Não | Não | Código do rastreio na transportadora |
 | `cPlp` | Texto | Não | Não | Código da PLP da transportadora |
-| `cNotaOriginal` | Texto | Não | Não | Número da nota de entrada (saídas de devolução) |
-| `cSerieOriginal` | Texto | Não | Não | Série da nota de entrada (saídas de devolução) |
-| `cCnpjFornecedor` | Texto | Não | Não | CNPJ do emitente da nota de entrada (saídas de devolução) |
+| `cnotaoriginal` | Texto | Não | Não | Número da nota de entrada (saídas de devolução) |
+| `cserieoriginal` | Texto | Não | Não | Série da nota de entrada (saídas de devolução) |
+| `ccnpjfornecedor` | Texto | Não | Não | CNPJ do emitente da nota de entrada (saídas de devolução) |
 | `aitens` | Array | Sim | Sim | Produtos a serem separados |
 | `volumes` | Array | Não | Não | Volumes a serem utilizados no pedido |
 
@@ -275,9 +275,9 @@ tenantId: {empresa},{filial}
 | `nvalorunitario` | Numérico | Sim | Sim | Valor unitário do produto |
 | `clote` | Texto | Sim | Sim | Número do lote |
 | `npesokg` | Numérico | Não | Sim | Peso unitário do produto, em quilos |
-| `cNotaOriginal` | Texto | Não | Não | Número da nota de entrada (saídas de devolução) |
-| `cSerieOriginal` | Texto | Não | Não | Série da nota de entrada (saídas de devolução) |
-| `enderecoFisicoArmazem` | Texto | Não | Não | *(sem descrição no documento original)* |
+| `cnotaoriginal` | Texto | Não | Não | Número da nota de entrada (saídas de devolução) |
+| `cserieoriginal` | Texto | Não | Não | Série da nota de entrada (saídas de devolução) |
+| `enderecofisicoarmazem` | Texto | Não | Não | *(sem descrição no documento original)* |
 
 \* A tabela original indica `Texto`, mas o exemplo envia número (`"nqtd": 1`). Veja o [item 20](#20-pontos-de-atenção-nos-documentos-originais).
 
@@ -285,10 +285,10 @@ tenantId: {empresa},{filial}
 
 | Campo | Tipo | Conteúdo | Estrutura | Descrição |
 |---|---|---|---|---|
-| `codigoVolume` | Texto | Sim | Sim | Código de identificação do volume. Cada embalagem diferente deve ter um código único, usado para identificar a embalagem a ser utilizada |
-| `descricaoVolume` | Texto | Sim | Sim | Descrição do volume |
+| `codigovolume` | Texto | Sim | Sim | Código de identificação do volume. Cada embalagem diferente deve ter um código único, usado para identificar a embalagem a ser utilizada |
+| `descricaovolume` | Texto | Sim | Sim | Descrição do volume |
 | `codigoBarras` | Texto | Não | Sim | Código de barras da embalagem (se houver código impresso na embalagem) |
-| `embalagemDoProduto` | Lógico | Sim | Sim | Indica se deve ser usada a própria embalagem do produto na expedição, sem nova embalagem |
+| `embalagemdoproduto` | Lógico | Sim | Sim | Indica se deve ser usada a própria embalagem do produto na expedição, sem nova embalagem |
 | `altura` | Numérico | Não | Sim | Altura total da embalagem, em **metros** |
 | `largura` | Numérico | Não | Sim | Largura total da embalagem, em **metros** |
 | `comprimento` | Numérico | Não | Sim | Comprimento total da embalagem, em **metros** |
@@ -317,7 +317,7 @@ tenantId: {empresa},{filial}
 Atualiza dados de um pedido já enviado.
 
 - **Método:** `PUT`
-- **URL (homologação):** `{host}rest/PEDIDOWMS`
+- **URL:** `{host}rest/PEDIDOWMS`
 
 ### 5.1 Exemplo de JSON
 
@@ -335,7 +335,7 @@ Atualiza dados de um pedido já enviado.
   "curldanfe": "",
   "cboletobase64": "",
   "ccartacorrecaobase64": "",
-  "curlguiaST": "",
+  "curlguiast": "",
   "ccomprovantepagamento64": "",
   "cetiquetabase64": "",
   "cRastreio": "",
@@ -368,10 +368,10 @@ Atualiza dados de um pedido já enviado.
 | `curldanfe` | URL para download da DANFE em PDF |
 | `cboletobase64` | Boleto em base64 |
 | `ccartacorrecaobase64` | Carta de correção em base64 |
-| `curlguiaST` | URL para download da guia de ST em PDF |
+| `curlguiast` | URL para download da guia de ST em PDF |
 | `ccomprovantepagamento64` | Comprovante de pagamento em base64 |
 | `cetiquetabase64` | Etiqueta de transporte no padrão ZPL |
-| `cRastreio` | Código do rastreio na transportadora |
+| `crastreio` | Código do rastreio na transportadora |
 | `ccampanha` | Campanha do pedido |
 | `lalteraetiqueta` | Inclui (`true`) ou não (`false`) uma etiqueta ao pedido |
 | `cPlp` | Código da PLP da transportadora |
@@ -383,7 +383,7 @@ Atualiza dados de um pedido já enviado.
 Envia uma solicitação de cancelamento de pedido.
 
 - **Método:** `PUT`
-- **URL (homologação):** `{host}/rest/PEDIDOWMS`
+- **URL:** `{host}/rest/PEDIDOWMS`
 
 ### 6.1 Exemplo de JSON
 
@@ -417,11 +417,11 @@ Envia uma solicitação de cancelamento de pedido.
 
 | Parâmetro | Descrição |
 |---|---|
-| `CHAVE` | Código identificador do cliente na Lisa |
-| `FILIALLISA` | Filial da consulta |
-| `SENHA` | Senha de acesso |
-| `CGC` | CNPJ da empresa |
-| `PEDIDO` | Código do pedido |
+| `chave` | Código identificador do cliente na Lisa |
+| `filiallisa` | Filial da consulta |
+| `senha` | Senha de acesso |
+| `cgc` | CNPJ da empresa |
+| `pedido` | Código do pedido |
 
 ### 7.2 Exemplo de requisição
 
@@ -523,17 +523,17 @@ GET {host}/rest/WMSSTATUS?CHAVE=01719201&FILIALLISA=01&SENHA=1234&CGC=7158695200
 
 | Parâmetro | Obrigatório | Descrição |
 |---|---|---|
-| `CHAVE` | Sim | Código identificador do cliente na Lisa |
-| `FILIALLISA` | Sim | Filial da consulta |
-| `SENHA` | Sim | Senha de acesso |
-| `CGC` | Sim | CNPJ da empresa |
-| `DATAPEDIDO` | Sim | Data para consulta do pedido (`AAAAMMDD`) |
-| `PAGINA` | Não | Número da página |
+| `chave` | Sim | Código identificador do cliente na Lisa |
+| `filiallisa` | Sim | Filial da consulta |
+| `senha` | Sim | Senha de acesso |
+| `cgc` | Sim | CNPJ da empresa |
+| `datapedido` | Sim | Data para consulta do pedido (`AAAAMMDD`) |
+| `pagina` | Não | Número da página |
 
 ### 8.2 Exemplo de requisição
 
 ```http
-GET {host}/rest/RSSTSPG?CGC=86646128000142&CHAVE=123456&FILIALLISA=07&SENHA=123456&DATAPEDIDO=20190529&PAGINA=1
+GET {host}/rest/RSSTSPG?CGC=86646128000142&chave=123456&filiallisa=07&senha=123456&datapedido=20190529&pagina=1
 ```
 
 ### 8.3 Exemplo de resposta
@@ -643,7 +643,7 @@ Consulta a quantidade de pedidos de um cliente, agrupados por status, para uma d
 ### 9.2 Exemplo de requisição
 
 ```http
-GET {host}/rest/wms/v2/pedidosPorStatus/query?senha={senha}&chave={chave}&dataPedido=20260812
+GET {host}/rest/wms/v2/pedidosPorStatus/query?senha={senha}&chave={chave}&datapedido=20260812
 Authorization: Basic {senhaAutenticacao}
 tenantId: {empresa}, {filial},  x-id-cliente: {chaveDeAcesso}
 ```
@@ -795,7 +795,7 @@ Permite consultar e recuperar o **romaneio de saída em base64**, junto com os d
 
 - **Método:** `GET`
 - **URL:** `{host}/rest`
-- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `TenantId: 03,{FilialLisa}`, `x-id-cliente: {chaveDeAcesso}`
+- **Headers:** `Content-Type: application/json`, `Authorization: Basic ...`, `tenantid: 03,{FilialLisa}`, `x-id-cliente: {chaveDeAcesso}`
 
 ### 11.1 Formas de consulta
 
@@ -954,26 +954,26 @@ Envia a nota fiscal de saída de um pedido (documento *API WMS Nota x Pedido*).
 
 ```json
 {
-  "ccodFilial": "01",
-  "cNumeroPedido": "1234",
-  "cNumeroNota": "5566",
-  "cSerieNota": "001",
-  "cDataNota": "20190827",
-  "cCNPJEmitente": "71586952000157",
-  "cCNPJCPFDestinatario": "71586952000157",
-  "cChaveNfe": "32190811838642000180550050000005511000047886",
-  "cDanfeBase64": "",
+  "ccodfilial": "01",
+  "cnumeropedido": "1234",
+  "cnumeronota": "5566",
+  "cserienota": "001",
+  "cdatanota": "20190827",
+  "ccnpjEmitente": "71586952000157",
+  "ccnpjcpfdestinatario": "71586952000157",
+  "cchavenfe": "32190811838642000180550050000005511000047886",
+  "cdanfebase64": "",
   "nvalornota": 10.00,
-  "cCNPJtransportadora": "",
-  "cTransportadora": "",
+  "ccnpjtransportadora": "",
+  "ctransportadora": "",
   "cxml": "",
-  "cRastreio": "",
+  "crastreio": "",
   "curldanfe": "",
   "curlboleto": "",
   "curlguiaST": "",
   "ccomprovantepagamento64": "",
   "cetiquetabase64": "",
-  "cARcorreiosbase64": "",
+  "carcorreiosbase64": "",
   "clistapostagembase64": "",
   "cgnrebase64": ""
 }
@@ -983,7 +983,7 @@ Envia a nota fiscal de saída de um pedido (documento *API WMS Nota x Pedido*).
 
 | Campo | Descrição |
 |---|---|
-| `ccodFilial` | Filial Lisa que irá expedir o pedido |
+| `ccodfilial` | Filial Lisa que irá expedir o pedido |
 | `cNumeroPedido` | Número do pedido |
 | `cNumeroNota` | Número da nota fiscal |
 | `cSerieNota` | Série da nota fiscal |
@@ -1020,17 +1020,17 @@ Consulta os itens de uma nota de saída (documento *API WMS Nota de Saída*).
 
 | Parâmetro | Descrição |
 |---|---|
-| `CHAVE` | Código identificador do cliente na Lisa |
-| `FILIALLISA` | Filial da consulta |
-| `SENHA` | Senha de acesso |
-| `CGC` | CNPJ da empresa |
-| `NOTA` | Número da nota fiscal |
-| `SERIE` | Série da nota fiscal |
+| `chave` | Código identificador do cliente na Lisa |
+| `filiallisa` | Filial da consulta |
+| `senha` | Senha de acesso |
+| `cgc` | CNPJ da empresa |
+| `nota` | Número da nota fiscal |
+| `serie` | Série da nota fiscal |
 
 ### 13.2 Exemplo de requisição
 
 ```http
-GET {host}/rest/WMSSF2?CHAVE=00000101&FILIALLISA=08&NOTA=123456&SERIE=2&CGC=71586952000157&SENHA=1234
+GET {host}/rest/WMSSF2?chave=00000101&filiallisa=08&nota=123456&serie=2&cgc=71586952000157&senha=1234
 ```
 
 ### 13.3 Exemplo de resposta
@@ -1126,14 +1126,14 @@ Envia (`POST`) ou exclui (`DELETE`) notas fiscais de entrada.
       "largura": 10,
       "comprimento": 10,
       "cubagem": 10,
-      "alturaCaixa": 10,
-      "larguraCaixa": 10,
-      "comprimentoCaixa": 10,
-      "cCltBar": "S",
-      "cCodClac": "",
-      "cDun14": "",
-      "cUpc": "",
-      "cubagemCaixa": 10
+      "alturacaixa": 10,
+      "larguracaixa": 10,
+      "comprimentocaixa": 10,
+      "ccltBar": "S",
+      "ccodclac": "",
+      "cdun14": "",
+      "cupc": "",
+      "cubagemcaixa": 10
     }
   ]
 }
@@ -1180,16 +1180,16 @@ Envia (`POST`) ou exclui (`DELETE`) notas fiscais de entrada.
 | `npesokg` | Peso unitário do produto |
 | `altura`, `largura`, `comprimento` | Dimensões do produto |
 | `cubagem` | Cubagem do produto *(o documento original repete "Comprimento do produto")* |
-| `alturaCaixa`, `larguraCaixa`, `comprimentoCaixa` | Dimensões da caixa master (segunda unidade de medida) |
-| `cubagemCaixa` | Cubagem da caixa master *(o documento original repete "Comprimento da caixa master")* |
-| `cCltBar` | `"N"` informa que o produto não tem código de barras alternativo (produtos sem EAN) |
-| `cCodClac` | Código de barras alternativo (para produtos sem EAN) |
-| `cDun14` | Código DUN14 |
-| `cUpc` | Código UPC |
+| `alturacaixa`, `larguracaixa`, `comprimentocaixa` | Dimensões da caixa master (segunda unidade de medida) |
+| `cubagemcaixa` | Cubagem da caixa master *(o documento original repete "Comprimento da caixa master")* |
+| `ccltBar` | `"N"` informa que o produto não tem código de barras alternativo (produtos sem EAN) |
+| `ccodclac` | Código de barras alternativo (para produtos sem EAN) |
+| `cdun14` | Código DUN14 |
+| `cupc` | Código UPC |
 | `composicao` | Composição do produto — *descrito, ausente do JSON de exemplo* |
-| `paisOrigem` | País de origem do produto — *idem* |
-| `regraLavagem` | Código da regra de lavagem — *idem* |
-| `largTecido` | Largura do tecido (caractere) — *idem* |
+| `paisorigem` | País de origem do produto — *idem* |
+| `regralavagem` | Código da regra de lavagem — *idem* |
+| `largtecido` | Largura do tecido (caractere) — *idem* |
 | `gramatura` | Gramatura do produto (numérico) — *idem* |
 
 **Regra geral:** todos os campos devem ser enviados; sem informação, envie em branco (texto) ou zero (numérico).
@@ -1208,18 +1208,18 @@ Consulta o status de recebimento e endereçamento de uma nota de entrada.
 
 | Parâmetro | Descrição |
 |---|---|
-| `CHAVE` | Código identificador do cliente na Lisa |
-| `FILIALLISA` | Filial da consulta |
-| `SENHA` | Senha de acesso |
-| `CGC` | CNPJ da empresa |
-| `NOTA` | Número da nota fiscal |
-| `CGCFORNECEDOR` | CNPJ do fornecedor |
-| `SERIE` | Série da nota fiscal |
+| `chave` | Código identificador do cliente na Lisa |
+| `filiallisa` | Filial da consulta |
+| `senha` | Senha de acesso |
+| `cgc` | CNPJ da empresa |
+| `nota` | Número da nota fiscal |
+| `cgcfornecedor` | CNPJ do fornecedor |
+| `serie` | Série da nota fiscal |
 
 ### 15.2 Exemplo de requisição
 
 ```http
-GET {host}/rest/WMSSTSENT?CHAVE=12345678&FILIALLISA=07&SENHA=1234&CGC=71586952000257&NOTA=001114828&CGCFORNECEDOR=71586952000257&SERIE=1
+GET {host}/rest/WMSSTSENT?chave=12345678&filiallisa=07&senha=1234&cgc=71586952000257&nota=001114828&cgcfornecedor=71586952000257&serie=1
 ```
 ### 15.3 Exemplo de resposta
 
@@ -1280,14 +1280,14 @@ GET {host}/rest/WMSSTSENT?CHAVE=12345678&FILIALLISA=07&SENHA=1234&CGC=7158695200
 
 | Parâmetro | Descrição |
 |---|---|
-| `CHAVE` | Código identificador do cliente na Lisa |
-| `FILIALLISA` | Filial da consulta de estoque |
-| `SENHA` | Senha de acesso da consulta de estoque |
-| `CGC` | CNPJ da empresa |
-| `PRODUTO` | Código do produto |
+| `chave` | Código identificador do cliente na Lisa |
+| `filiallisa` | Filial da consulta de estoque |
+| `senha` | Senha de acesso da consulta de estoque |
+| `cgc` | CNPJ da empresa |
+| `produto` | Código do produto |
 
 ```http
-GET {host}/rest/WMSESTOQUE?CHAVE=00028801&FILIALLISA=01&SENHA=1234&CGC=71586952000157&PRODUTO=BY3328
+GET {host}/rest/WMSESTOQUE?chave=00028801&filiallisa=01&senha=1234&cgc=71586952000157&produto=BY3328
 ```
 
 ```json
@@ -1331,11 +1331,11 @@ Permite consultar **vários produtos em uma única chamada**, de forma paginada.
 
 | Parâmetro | Descrição |
 |---|---|
-| `CHAVE`, `CGC`, `FILIALLISA`, `SENHA` | Credenciais e filial, como em `WMSESTOQUE` |
-| `PAGINA` | Número da página (`1` no exemplo) |
+| `chave`, `cgc`, `filiallisa`, `senha` | Credenciais e filial, como em `WMSESTOQUE` |
+| `pagina` | Número da página (`1` no exemplo) |
 
 ```http
-GET {host}/rest/RSESTPG?CHAVE=00028801&CGC=71586952000157&FILIALLISA=01&SENHA=1234&PAGINA=1
+GET {host}/rest/RSESTPG?chave=00028801&cgc=71586952000157&filiallisa=01&senha=1234&pagina=1
 ```
 
 ```json
@@ -1402,13 +1402,13 @@ Envia documentos diversos vinculados a um pedido (boleto, GNRE, guia ST, carta d
 
 ```json
 {
-  "ccodFilial": "01",
+  "ccodfilial": "01",
   "cpedido": "239085",
   "ccgc": "35689522000127",
   "ctipo": "etiqueta",
-  "cdocumentoPDFbase64": "",
-  "curldocumentoPDF": "",
-  "cEtiquetaZPL": ""
+  "cdocumentopdfbase64": "",
+  "curldocumentopdf": "",
+  "cetiquetazpl": ""
 }
 ```
 
@@ -1416,13 +1416,13 @@ Envia documentos diversos vinculados a um pedido (boleto, GNRE, guia ST, carta d
 
 | Campo | Descrição |
 |---|---|
-| `ccodFilial` | Filial Lisa onde foi enviado o pedido para separação |
+| `ccodfilial` | Filial Lisa onde foi enviado o pedido para separação |
 | `cpedido` | Número do pedido |
 | `ccgc` | CNPJ do cliente |
 | `ctipo` | Tipo do documento (ex.: Boleto, GNRE, Guia ST, Carta de correção ou Outros; o exemplo usa `etiqueta`) |
-| `cdocumentoPDFbase64` | Documento PDF codificado em base64 |
-| `curldocumentoPDF` | URL para download do documento em PDF |
-| `cEtiquetaZPL` | Etiqueta de transporte em base64, no formato TXT padrão Zebra |
+| `cdocumentopdfbase64` | Documento PDF codificado em base64 |
+| `curldocumentopdf` | URL para download do documento em PDF |
+| `cetiquetazpl` | Etiqueta de transporte em base64, no formato TXT padrão Zebra |
 
 ---
 
@@ -1436,45 +1436,43 @@ Envia documentos diversos vinculados a um pedido (boleto, GNRE, guia ST, carta d
 ```json
 {
   "ccodfilial": "07",
-  "cCNPJ": "71586952000187",
-  "cNumeroDocumento": "1234",
-  "cArmazemOrigem": "01",
-  "cArmazemDestino": "02",
-  "nQuantidade": 1,
-  "cProduto": "XP1234",
-  "cLote": "1234"
+  "ccnpj": "71586952000187",
+  "cnumerodocumento": "1234",
+  "carmazemorigem": "01",
+  "carmazemdestino": "02",
+  "nquantidade": 1,
+  "cproduto": "XP1234",
+  "clote": "1234"
 }
 ```
 
 | Campo | Descrição |
 |---|---|
 | `ccodfilial` | Código da filial da Lisalog |
-| `cCNPJ` | CNPJ do cliente (integrador) Lisalog |
-| `cNumeroDocumento` | Número do documento — pode ser sequencial ou qualquer número controlado pelo integrador |
-| `cArmazemOrigem` | Código do armazém de origem |
-| `cArmazemDestino` | Código do armazém de destino |
-| `nQuantidade` | Quantidade a ser transferida |
-| `cProduto` | Código do produto |
-| `cLote` | Código do lote |
+| `ccnpj` | CNPJ do cliente (integrador) Lisalog |
+| `cnumerodocumento` | Número do documento — pode ser sequencial ou qualquer número controlado pelo integrador |
+| `carmazemorigem` | Código do armazém de origem |
+| `carmazemdestino` | Código do armazém de destino |
+| `nquantidade` | Quantidade a ser transferida |
+| `cproduto` | Código do produto |
+| `clote` | Código do lote |
 
 ### 18.2 Consulta de transferências — `GET /TRANSFERENCIA`
 
 | Parâmetro | Descrição |
 |---|---|
-| `CGC` | CNPJ do cliente (integrador) Lisalog |
-| `CHAVE` | Chave de acesso às consultas |
-| `FILIALLISA` | Código da filial Lisalog |
-| `SENHA` | Senha de acesso às consultas |
-| `PAGINA` | Número da página consultada |
-| `DOCUMENTO` | Código do documento |
-| `PRODUTO` | Código do produto |
-| `DATA` | Data da transferência |
-| `STATUS` | Status da transferência |
-
-O documento não informa quais parâmetros são obrigatórios; no exemplo, `PAGINA`, `PRODUTO`, `DATA` e `STATUS` seguem vazios. Pressupõe-se obrigatórios `CGC`, `CHAVE`, `FILIALLISA` e `SENHA`, como nas demais consultas.
+| `cgc` | CNPJ do cliente (integrador) Lisalog |
+| `chave` | Chave de acesso às consultas |
+| `filiallisa` | Código da filial Lisalog |
+| `senha` | Senha de acesso às consultas |
+| `pagina` | Número da página consultada |
+| `documento` | Código do documento |
+| `produto` | Código do produto |
+| `datda` | Data da transferência |
+| `status` | Status da transferência |
 
 ```http
-GET {host}/rest/TRANSFERENCIA?CGC=71586952000157&CHAVE=00028801&FILIALLISA=07&SENHA=1234&PAGINA=&DOCUMENTO=28/0002&PRODUTO=&DATA=&STATUS=
+GET {host}/rest/TRANSFERENCIA?cgc=71586952000157&chave=00028801&filiallisa=07&senha=1234&pagina=&documento=280002&produto=&data=&status=
 ```
 
 ```json
