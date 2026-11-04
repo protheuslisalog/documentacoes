@@ -49,7 +49,7 @@ Ao abrir a rotina, o usuário escolhe o modo de impressão.
 
 ### Funcionamento
 
-Após imprimir, a tela de parâmetros do modo escolhido é reaberta para a próxima impressão. **Cancelar** volta para a escolha do modo; **Sair** encerra a rotina.
+Após imprimir, a tela de parâmetros do modo escolhido é reaberta para a próxima impressão. **Cancelar** volta para a escolha do modo; **Sair** encerra a rotina. 
 
 ```text
 Escolha do modo
@@ -71,7 +71,7 @@ Cancelar → volta para a escolha do modo
 ### 3.1 Modo Inventário
 
 **Finalidade:**  
-Imprimir a etiqueta de um palete informando o produto e a quantidade.
+Imprimir a etiqueta de um palete informando o produto e a quantidade. 
 
 ![Tela do modo Inventário](imagens/02-tela-modo-inventario.png)
 
