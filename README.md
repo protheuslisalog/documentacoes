@@ -33,7 +33,7 @@ Documentação das principais funcionalidades do WMS.
 * [Mestre de Inventario por Arquivo](estoque/mestreinv/README.md)
 * [Conferência de embarque](wms/conferenciaembarque/README.md)
 * [Pré separação](wms/preseparacao/README.md)
-* [Etiqueta QrCode](wms/EtiquetaQrCode/README.md)
+* [Etiqueta QrCode](wms/EtiquetaQRCode/README.md)
 
 ---
 
