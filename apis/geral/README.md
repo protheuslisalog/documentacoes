@@ -26,7 +26,8 @@ Documentação unificada das APIs de integração com o WMS Lisalog.
 16. [Consulta de saldo em estoque](#16-consulta-de-saldo-em-estoque) — `GET /WMSESTOQUE` e `GET /RSESTPG`
 17. [Envio de documentos](#17-envio-de-documentos) — `POST /DOCUMENTOS`
 18. [Transferência entre armazéns](#18-transferência-entre-armazéns) — `POST` / `GET /TRANSFERENCIA`
-19. [Glossário de status e códigos](#19-glossário-de-status-e-códigos)
+19. [Inclusão de pedido de venda — Lisa Distribuidora](#19-inclusão-de-pedido-de-venda--lisa-distribuidora) — `POST /wms/v2/pedidovendalisadistribuidora`
+20. [Glossário de status e códigos](#20-glossário-de-status-e-códigos)
 
 ---
 
@@ -66,7 +67,7 @@ tenantid: {empresa},{filial}
 ```
 
 - `{empresa}`: código da empresa — utilizar `03`.
-- `{filial}`: código da filial Lisalog (ver [item 19.5](#195-filiais-lisalog)).
+- `{filial}`: código da filial Lisalog (ver [item 20.5](#205-filiais-lisalog)).
 
 ### 2.2 Variáveis usadas nos exemplos
 
@@ -103,6 +104,7 @@ tenantid: {empresa},{filial}
 | 16 | Saldo em estoque | `GET` | `/WMSESTOQUE`, `/RSESTPG` | Saldo por produto / por páginas |
 | 17 | Envio de documentos | `POST` | `/DOCUMENTOS` | Enviar boleto, GNRE, guia ST, etiqueta etc. |
 | 18 | Transferência | `POST` / `GET` | `/TRANSFERENCIA` | Transferir entre armazéns e consultar transferências |
+| 19 | Pedido de venda Lisa Distribuidora | `POST` | `/wms/v2/pedidovendalisadistribuidora` | Incluir pedido de venda pelo vendedor autenticado (cliente e transportadora por CNPJ) |
 
 > `PUT /PEDIDOWMS` atende duas operações (atualização e cancelamento); a API distingue pelo conteúdo: no cancelamento envia-se `"cstatus": "C"`.
 
@@ -488,7 +490,7 @@ GET {host}/rest/WMSSTATUS?CHAVE=01719201&FILIALLISA=01&SENHA=1234&CGC=7158695200
 | `CPEDCLIENTE` | Código do pedido solicitado |
 | `CCAMPANHA` | Campanha informada para o pedido |
 | `CPEDLISA` | Código do pedido Lisa |
-| `CSTATUS` | Status do pedido (ver [glossário](#19-glossário-de-status-e-códigos)) |
+| `CSTATUS` | Status do pedido (ver [glossário](#20-glossário-de-status-e-códigos)) |
 | `CPRODUTO` | Código do produto na Lisa |
 | `CIMEISERIE` | Número de série/IMEI |
 | `CPRODCLIENTE` | Código do produto no cliente |
@@ -611,7 +613,7 @@ GET {host}/rest/RSSTSPG?CGC=86646128000142&chave=123456&filiallisa=07&senha=1234
 | `ASTATUS[]` | Status/dados de expedição do pedido |
 | `CPEDCLIENTE` | Código do pedido solicitado |
 | `CPEDLISA` | Código do pedido Lisa |
-| `CSTATUS` | Status do pedido (ver [glossário](#19-glossário-de-status-e-códigos)) |
+| `CSTATUS` | Status do pedido (ver [glossário](#20-glossário-de-status-e-códigos)) |
 | `CCAMPANHA` | Campanha informada para o pedido |
 | `CPRODUTO` | Código do produto na Lisa |
 | `CIMEISERIE` | Número de série/IMEI |
@@ -720,7 +722,7 @@ Permite consultar detalhes dos pedidos registrados no sistema do cliente, em uma
 | `chave` | Sim | `XXXXXXXX` | Chave utilizada na requisição |
 | `dataDe` | Não | `20260812` | Data inicial (`AAAAMMDD`) para busca por período |
 | `dataAte` | Não | `20260812` | Data final (`AAAAMMDD`) para busca por período |
-| `status` | Não | `1` | Código do status para filtro (ver [item 19.2](#192-status-numérico-dos-pedidos)) |
+| `status` | Não | `1` | Código do status para filtro (ver [item 20.2](#202-status-numérico-dos-pedidos)) |
 | `pedido` | Não | `3254698` | Número do pedido, para retornar apenas um pedido específico |
 | `page` | Sim | `1` | Número da página |
 | `pageSize` | Sim | `1000` | Registros por página — **máximo de 3000** |
@@ -1143,7 +1145,7 @@ Envia (`POST`) ou exclui (`DELETE`) notas fiscais de entrada.
 
 | Campo | Descrição |
 |---|---|
-| `ccodfilial` | Filial Lisa para a qual será enviada (ver [item 19.5](#195-filiais-lisalog)) |
+| `ccodfilial` | Filial Lisa para a qual será enviada (ver [item 20.5](#205-filiais-lisalog)) |
 | `cnota` | Número da nota fiscal |
 | `cserie` | Série da nota fiscal |
 | `cemissaonf` | Data de emissão da nota (`AAAAMMDD`) |
@@ -1262,7 +1264,7 @@ GET {host}/rest/WMSSTSENT?chave=12345678&filiallisa=07&senha=1234&cgc=7158695200
 | `CCLIENTE` | Nome do cliente |
 | `CNOTA` | Número da nota fiscal |
 | `CSERIE` | Série da nota fiscal |
-| `CSTATUS` | Status da nota de entrada (ver [item 19.3](#193-status-da-nota-de-entrada)) |
+| `CSTATUS` | Status da nota de entrada (ver [item 20.3](#203-status-da-nota-de-entrada)) |
 | `PRODUTO` | Código do produto |
 | `PRODUTOLISA` | Código do produto na Lisa |
 | `QUANTIDADE` | Quantidade do item |
@@ -1497,9 +1499,141 @@ GET {host}/rest/TRANSFERENCIA?cgc=71586952000157&chave=00028801&filiallisa=07&se
 ```
 --
 
-## 19. Glossário de status e códigos
+## 19. Inclusão de pedido de venda — Lisa Distribuidora
 
-### 19.1 Status textual do pedido (`CSTATUS`) — `WMSSTATUS` e `RSSTSPG`
+**Objetivo:** incluir um pedido de venda na Lisa Distribuidora a partir do vendedor autenticado. O cliente e a transportadora são identificados pelo **CNPJ**, e o vendedor é identificado pelo usuário da autenticação.
+
+- **Método:** `POST`
+- **URL:** `{host}/rest/wms/v2/pedidovendalisadistribuidora`
+- **Autenticação:** Basic — `Authorization: Basic {senhaAutenticacao}`
+- **Headers:** `Content-Type: application/json`, `tenantid: {empresa},{filial}`, `x-id-cliente: {chaveDeAcesso}`
+
+> O usuário da autenticação precisa estar cadastrado como **vendedor**.
+
+### 19.1 Exemplo de JSON
+
+```json
+{
+  "dadosCliente": {
+    "cnpj": "71586952000157"
+  },
+  "dadosTransportadora": {
+    "cnpj": "11838642000180"
+  },
+  "condicaoPagamento": "001",
+  "tipoFrete": "C",
+  "pedidoCliente": "PED-12345",
+  "mensagemNota": "Entregar no periodo da manha",
+  "frete": 0,
+  "despesa": 0,
+  "seguro": 0,
+  "comissao": 0,
+  "comentario": "Pedido gerado pelo aplicativo",
+  "enivaPorEmail": "S",
+  "itens": [
+    {
+      "produto": "XP1234",
+      "quantidade": 10,
+      "valorUnitario": 25.90
+    }
+  ]
+}
+```
+
+### 19.2 Campos do pedido
+
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| `dadosCliente.cnpj` | Caractere | Sim | CNPJ do cliente. O cliente deve estar cadastrado e ter como vendedor o usuário autenticado |
+| `dadosTransportadora.cnpj` | Caractere | Sim (pode ser vazio) | CNPJ da transportadora. Se informado, deve estar cadastrada; enviar `""` quando não houver transportadora |
+| `condicaoPagamento` | Caractere | Sim | Código da condição de pagamento cadastrada |
+| `tipoFrete` | Caractere | Sim | Tipo de frete: `C` = CIF, `F` = FOB, `T` = por conta de terceiros, `S` = sem frete |
+| `pedidoCliente` | Caractere | Não | Número do pedido no sistema do cliente |
+| `mensagemNota` | Caractere | Não | Mensagem para a nota fiscal. É gravada como `<número do pedido> APP PEDIDO - <mensagemNota>` (até 250 caracteres, sem acentos) |
+| `frete` | Numérico | Não | Valor do frete |
+| `despesa` | Numérico | Não | Valor de despesas acessórias |
+| `seguro` | Numérico | Não | Valor do seguro |
+| `comissao` | Numérico | Não | Percentual de comissão do vendedor |
+| `comentario` | Caractere | Não | Comentário do pedido |
+| `enivaPorEmail` | Caractere | Não | `S` envia o pedido por e-mail para o endereço do usuário autenticado. **Atenção:** o nome do campo é `enivaPorEmail` (grafia exata exigida pela API) |
+| `itens` | Array | Sim | Itens do pedido — deve conter ao menos um item |
+
+> Os campos `cliente`, `transportadora` e `codigoVendedor` **não** precisam ser enviados: a API os preenche a partir do CNPJ do cliente, do CNPJ da transportadora e do usuário autenticado (valores enviados são sobrescritos).
+
+### 19.3 Campos de `itens[]`
+
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| `produto` | Caractere | Sim | Código do produto. O grupo do produto deve estar liberado para venda pelo vendedor |
+| `quantidade` | Numérico | Sim | Quantidade vendida — deve ser maior ou igual a 1 |
+| `valorUnitario` | Numérico | Sim | Preço unitário de venda — deve ser maior que zero |
+
+### 19.4 Regras gerais
+
+- O vendedor é localizado pelo usuário da autenticação; o cliente precisa ter esse vendedor como vendedor responsável.
+- Cada produto precisa pertencer a um grupo de produtos liberado para o vendedor.
+- O TES do item é o TES padrão de saída do produto (ou `50W`, quando o produto não tiver TES padrão).
+- Os pesos líquido e bruto do pedido são calculados a partir do cadastro dos produtos; a espécie do volume é gravada como `VOLUME`.
+
+### 19.5 Exemplo de resposta 200 OK
+
+Em caso de sucesso, a API devolve o JSON enviado acrescido dos campos preenchidos pela integração e do número do pedido gerado:
+
+```json
+{
+  "dadosCliente": { "cnpj": "71586952000157" },
+  "dadosTransportadora": { "cnpj": "11838642000180" },
+  "condicaoPagamento": "001",
+  "tipoFrete": "C",
+  "pedidoCliente": "PED-12345",
+  "mensagemNota": "Entregar no periodo da manha",
+  "frete": 0,
+  "despesa": 0,
+  "seguro": 0,
+  "comissao": 0,
+  "comentario": "Pedido gerado pelo aplicativo",
+  "enivaPorEmail": "S",
+  "itens": [
+    { "produto": "XP1234", "quantidade": 10, "valorUnitario": 25.90 }
+  ],
+  "codigoVendedor": "000123",
+  "cliente": "00045601",
+  "transportadora": "000010",
+  "pedido": "254871"
+}
+```
+
+| Campo | Descrição |
+|---|---|
+| `codigoVendedor` | Código do vendedor (usuário autenticado) |
+| `cliente` | Código + loja do cliente localizado pelo CNPJ |
+| `transportadora` | Código da transportadora localizada pelo CNPJ (vazio quando não informada) |
+| `pedido` | Número do pedido de venda gerado |
+
+### 19.6 Erros
+
+Formato: `{ "code": "...", "message": "...", "detailedMessage": "..." }`.
+
+| HTTP | Situação | `message` | `detailedMessage` |
+|---|---|---|---|
+| 403 | Usuário/chave sem acesso ao endpoint | `Acesso negado` | Motivo retornado pelo controle de acesso |
+| 400 | Usuário autenticado não é vendedor | `Erro na integracao do pedido` | `Usuario não é vendedor` |
+| 400 | CNPJ do cliente não cadastrado | `Erro na integracao do pedido` | `Cliente não encontrado` |
+| 400 | Cliente não pertence ao vendedor | `Erro na integracao do pedido` | `Vendedor não autorizado para este cliente` |
+| 400 | CNPJ da transportadora não cadastrado | `Erro na integracao do pedido` | `Transportadora não encontrada` |
+| 400 | Produto não cadastrado | `Erro na integracao do pedido` | `Produto não encontrado: XP1234` |
+| 400 | Grupo do produto não liberado para o vendedor | `Erro na integracao do pedido` | `Produto não autorizado para venda: XP1234` |
+| 400 | Condição de pagamento não cadastrada | `Erro na integracao do pedido` | `Condição de pagamento 001 não cadastrada` |
+| 400 | Lista de itens vazia | `Erro na integracao do pedido` | `Itens em branco` |
+| 400 | Quantidade menor que 1 | `Erro na integracao do pedido` | `Produto XP1234 quatidade invalida` |
+| 400 | Valor unitário menor ou igual a zero | `Erro na integracao do pedido` | `Produto XP1234 valor unitario invalido` |
+| 400 | Erro na gravação do pedido no ERP | `Erro na integracao do pedido` | Log de erro detalhado da rotina de inclusão do pedido |
+
+---
+
+## 20. Glossário de status e códigos
+
+### 20.1 Status textual do pedido (`CSTATUS`) — `WMSSTATUS` e `RSSTSPG`
 
 | Status | Significado |
 |---|---|
@@ -1513,7 +1647,7 @@ GET {host}/rest/TRANSFERENCIA?cgc=71586952000157&chave=00028801&filiallisa=07&se
 | `A EXPEDIR` | Pedido pronto para retirada da transportadora |
 | `FINALIZADO` | Pedido expedido |
 
-### 19.2 Status numérico dos pedidos
+### 20.2 Status numérico dos pedidos
 
 Usado em `pedidosPorStatus` (retorno) e `pedidoWms` (filtro e retorno).
 
@@ -1526,7 +1660,7 @@ Usado em `pedidosPorStatus` (retorno) e `pedidoWms` (filtro e retorno).
 | `6` | FINALIZADO |
 | `7` | CANCELADO |
 
-### 19.3 Status da nota de entrada
+### 20.3 Status da nota de entrada
 
 | Status | Significado |
 |---|---|
@@ -1537,13 +1671,13 @@ Usado em `pedidosPorStatus` (retorno) e `pedidoWms` (filtro e retorno).
 | `FINALIZADO SEM ENDERECAMENTO` | Nota recebida sem endereçamento |
 | `NAO INTEGRADA` | Não foram encontrados registros da nota fiscal |
 
-### 19.4 Status da transferência
+### 20.4 Status da transferência
 
 | Status | Significado |
 |---|---|
 | `P` | Processada |
 
-### 19.5 Filiais Lisalog
+### 20.5 Filiais Lisalog
 
 Confirme com a Lisalog antes de usar.
 

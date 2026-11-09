@@ -10,6 +10,7 @@ info:
     - Romaneio de saída (`/wms/v2/consultaRomaneioSaida`)
     - Notas de saída (`/NOTASAIDA`, `/WMSSF2`) e de entrada (`/NOTAENTRADA`, `/WMSSTSENT`)
     - Saldo em estoque (`/WMSESTOQUE`, `/RSESTPG`), documentos (`/DOCUMENTOS`) e transferências (`/TRANSFERENCIA`)
+    - Inclusão de pedido de venda da Lisa Distribuidora (`/wms/v2/pedidovendalisadistribuidora`)
 
     Para o ambiente de produção, solicite à Lisalog o IP, porta, usuário e senha.
     Para as APIs de consulta, solicite chave, senha e código da filial ao coordenador do WMS.
@@ -40,6 +41,8 @@ tags:
     description: Envio de documentos do pedido
   - name: Transferência
     description: Transferência entre armazéns
+  - name: Pedido de venda
+    description: Inclusão de pedido de venda da Lisa Distribuidora
 paths:
   /PEDIDOWMS:
     parameters:
@@ -1086,6 +1089,116 @@ paths:
                     STATUS: P
         '401':
           description: Não autorizado — credenciais inválidas
+  /wms/v2/pedidovendalisadistribuidora:
+    parameters:
+      - $ref: '#/components/parameters/XIdCliente'
+      - $ref: '#/components/parameters/TenantId'
+    post:
+      tags: [Pedido de venda]
+      summary: Incluir pedido de venda (Lisa Distribuidora)
+      description: |
+        Inclui um pedido de venda na Lisa Distribuidora a partir do vendedor autenticado.
+
+        - O usuário da autenticação (Basic) precisa estar cadastrado como **vendedor**.
+        - O cliente é localizado pelo CNPJ (`dadosCliente.cnpj`) e precisa ter o usuário autenticado como vendedor responsável.
+        - A transportadora é localizada pelo CNPJ (`dadosTransportadora.cnpj`), quando informado.
+        - O grupo de cada produto precisa estar liberado para venda pelo vendedor.
+        - Os campos `cliente`, `transportadora` e `codigoVendedor` são preenchidos pela API (valores enviados são sobrescritos).
+        - O TES do item é o TES padrão de saída do produto (ou `50W`, quando o produto não tiver TES padrão).
+        - O header `x-id-cliente` só pode ser omitido quando o usuário estiver liberado no controle de acesso da Lisalog.
+      operationId: incluirPedidoVendaLisaDistribuidora
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PedidoVendaDistribuidora'
+            example:
+              dadosCliente:
+                cnpj: '71586952000157'
+              dadosTransportadora:
+                cnpj: '11838642000180'
+              condicaoPagamento: '001'
+              tipoFrete: C
+              pedidoCliente: PED-12345
+              mensagemNota: Entregar no periodo da manha
+              frete: 0
+              despesa: 0
+              seguro: 0
+              comissao: 0
+              comentario: Pedido gerado pelo aplicativo
+              enivaPorEmail: S
+              itens:
+                - produto: XP1234
+                  quantidade: 10
+                  valorUnitario: 25.90
+      responses:
+        '200':
+          description: Pedido incluído — devolve o JSON enviado acrescido de `codigoVendedor`, `cliente`, `transportadora` e `pedido`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PedidoVendaDistribuidoraResponse'
+              example:
+                dadosCliente:
+                  cnpj: '71586952000157'
+                dadosTransportadora:
+                  cnpj: '11838642000180'
+                condicaoPagamento: '001'
+                tipoFrete: C
+                pedidoCliente: PED-12345
+                mensagemNota: Entregar no periodo da manha
+                frete: 0
+                despesa: 0
+                seguro: 0
+                comissao: 0
+                comentario: Pedido gerado pelo aplicativo
+                enivaPorEmail: S
+                itens:
+                  - produto: XP1234
+                    quantidade: 10
+                    valorUnitario: 25.90
+                codigoVendedor: '000123'
+                cliente: '00045601'
+                transportadora: '000010'
+                pedido: '254871'
+        '400':
+          description: |
+            Erro de validação ou de gravação do pedido. Valores possíveis de `detailedMessage`:
+
+            | Situação | `detailedMessage` |
+            |---|---|
+            | Usuário autenticado não é vendedor | `Usuario não é vendedor` |
+            | CNPJ do cliente não cadastrado | `Cliente não encontrado` |
+            | Cliente não pertence ao vendedor | `Vendedor não autorizado para este cliente` |
+            | CNPJ da transportadora não cadastrado | `Transportadora não encontrada` |
+            | Produto não cadastrado | `Produto não encontrado: <produto>` |
+            | Grupo do produto não liberado para o vendedor | `Produto não autorizado para venda: <produto>` |
+            | Condição de pagamento não cadastrada | `Condição de pagamento <codigo> não cadastrada` |
+            | Lista de itens vazia | `Itens em branco` |
+            | Quantidade menor que 1 | `Produto <produto> quatidade invalida` |
+            | Valor unitário menor ou igual a zero | `Produto <produto> valor unitario invalido` |
+            | Erro na gravação do pedido no ERP | Log de erro detalhado da rotina de inclusão do pedido |
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PedidoVendaDistribuidoraErro'
+              example:
+                code: '400'
+                message: Erro na integracao do pedido
+                detailedMessage: Vendedor não autorizado para este cliente
+        '401':
+          description: Não autorizado — credenciais inválidas
+        '403':
+          description: Acesso negado pelo controle de acesso da API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PedidoVendaDistribuidoraErro'
+              example:
+                code: '403'
+                message: Acesso negado
+                detailedMessage: Usuário sem permissão para o endpoint
 components:
   securitySchemes:
     basicAuth:
@@ -2515,3 +2628,109 @@ components:
           description: Transferências encontradas
           items:
             $ref: '#/components/schemas/TransferenciaItem'
+    PedidoVendaDistribuidora:
+      type: object
+      required: [dadosCliente, dadosTransportadora, condicaoPagamento, tipoFrete, itens]
+      properties:
+        dadosCliente:
+          type: object
+          required: [cnpj]
+          properties:
+            cnpj:
+              type: string
+              description: CNPJ do cliente. Deve estar cadastrado e ter o usuário autenticado como vendedor
+              example: '71586952000157'
+        dadosTransportadora:
+          type: object
+          required: [cnpj]
+          properties:
+            cnpj:
+              type: string
+              description: CNPJ da transportadora. Enviar vazio quando não houver transportadora
+              example: '11838642000180'
+        condicaoPagamento:
+          type: string
+          description: Código da condição de pagamento cadastrada
+          example: '001'
+        tipoFrete:
+          type: string
+          description: 'Tipo de frete: C = CIF, F = FOB, T = por conta de terceiros, S = sem frete'
+          enum: [C, F, T, S]
+        pedidoCliente:
+          type: string
+          description: Número do pedido no sistema do cliente
+        mensagemNota:
+          type: string
+          description: 'Mensagem para a nota fiscal. Gravada como "<número do pedido> APP PEDIDO - <mensagemNota>" (até 250 caracteres, sem acentos)'
+        frete:
+          type: number
+          description: Valor do frete
+        despesa:
+          type: number
+          description: Valor de despesas acessórias
+        seguro:
+          type: number
+          description: Valor do seguro
+        comissao:
+          type: number
+          description: Percentual de comissão do vendedor
+        comentario:
+          type: string
+          description: Comentário do pedido
+        enivaPorEmail:
+          type: string
+          description: '"S" envia o pedido por e-mail para o endereço do usuário autenticado. Atenção: o nome do campo é enivaPorEmail (grafia exata exigida pela API)'
+          enum: [S, N]
+        itens:
+          type: array
+          minItems: 1
+          description: Itens do pedido
+          items:
+            $ref: '#/components/schemas/PedidoVendaDistribuidoraItem'
+    PedidoVendaDistribuidoraItem:
+      type: object
+      required: [produto, quantidade, valorUnitario]
+      properties:
+        produto:
+          type: string
+          description: Código do produto. O grupo do produto deve estar liberado para venda pelo vendedor
+          example: XP1234
+        quantidade:
+          type: number
+          minimum: 1
+          description: Quantidade vendida
+          example: 10
+        valorUnitario:
+          type: number
+          exclusiveMinimum: true
+          minimum: 0
+          description: Preço unitário de venda (maior que zero)
+          example: 25.90
+    PedidoVendaDistribuidoraResponse:
+      allOf:
+        - $ref: '#/components/schemas/PedidoVendaDistribuidora'
+        - type: object
+          properties:
+            codigoVendedor:
+              type: string
+              description: Código do vendedor (usuário autenticado)
+            cliente:
+              type: string
+              description: Código + loja do cliente localizado pelo CNPJ
+            transportadora:
+              type: string
+              description: Código da transportadora localizada pelo CNPJ (vazio quando não informada)
+            pedido:
+              type: string
+              description: Número do pedido de venda gerado
+    PedidoVendaDistribuidoraErro:
+      type: object
+      properties:
+        code:
+          type: string
+          example: '400'
+        message:
+          type: string
+          example: Erro na integracao do pedido
+        detailedMessage:
+          type: string
