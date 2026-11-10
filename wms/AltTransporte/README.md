@@ -174,4 +174,3 @@ Ao final, a rotina volta para a tela do pedido, para a próxima alteração.
 6. Para transportadora Correios com cliente com credenciais VIPP, uma nova postagem é gerada e o rastreio é regravado.
 7. Erro na postagem VIPP não desfaz a troca da transportadora.
 8. A transportadora do monitor do AnnaLISA (`ZAH_TRANSP`) é atualizada na troca.
-9. Cada alteração fica registrada no log do console com o usuário.
