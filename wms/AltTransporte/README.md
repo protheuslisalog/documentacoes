@@ -118,7 +118,7 @@ Ao confirmar, o sistema:
 3. Limpa a PLP (`C5_XPLP`) e o rastreio (`C5_XRASTRE`).
 4. Se a nova transportadora estiver no parâmetro `ES_TRCORRE` e o cliente tiver as credenciais VIPP cadastradas (`A1_XUSRCOR`, `A1_XSNHCOR`, `A1_XCODADM`), gera uma nova postagem no VIPP e grava o novo rastreio em `C5_XRASTRE`.
 5. Atualiza a transportadora do pedido nos monitores do AnnaLISA (`ZAH_TRANSP`), pela função `U_LISRT003`.
-6. Registra no log do console o pedido, a transportadora anterior, a nova e o usuário.
+
 
 Ao final, a rotina volta para a tela do pedido, para a próxima alteração.
 

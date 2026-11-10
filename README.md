@@ -2,7 +2,7 @@
 
 Bem-vindo à documentação do sistema.
 
-Utilize o índice abaixo para navegar entre os módulos, processos, APIs e configurações do sistema.
+Utilize o índice abaixo para navegar entre os módulos, processos, APIs e configurações do sistema. 
 
 ---
 
