@@ -567,6 +567,13 @@ paths:
           schema:
             type: string
             example: '1'
+        - name: arquivo
+          in: query
+          required: false
+          description: 'Indica se o arquivo do Romaneio em base64 deve ser retornado na resposta.'
+          schema:
+            type: string
+            example: 'false'
       responses:
         '200':
           description: Romaneio de saída
@@ -1106,6 +1113,8 @@ paths:
         - Os campos `cliente`, `transportadora` e `codigoVendedor` são preenchidos pela API (valores enviados são sobrescritos).
         - O TES do item é o TES padrão de saída do produto (ou `50W`, quando o produto não tiver TES padrão).
         - O header `x-id-cliente` só pode ser omitido quando o usuário estiver liberado no controle de acesso da Lisalog.
+        - `redespacho` recebe o **código** (não o CNPJ) da transportadora de redespacho.
+        - O JSON segue o formato que a API devolve na consulta do pedido. Por isso, aceita campos **informativos** (nomes, descrições, totais, status), que **não** são usados na inclusão. Eles estão marcados como "(informativo)" nos schemas.
       operationId: incluirPedidoVendaLisaDistribuidora
       requestBody:
         required: true
@@ -1114,53 +1123,92 @@ paths:
             schema:
               $ref: '#/components/schemas/PedidoVendaDistribuidora'
             example:
-              dadosCliente:
-                cnpj: '71586952000157'
-              dadosTransportadora:
-                cnpj: '11838642000180'
-              condicaoPagamento: '001'
+              emissao: 30/11/2022
+              valor: 600
+              status: EM ABERTO
+              cliente: '00470002'
               tipoFrete: C
-              pedidoCliente: PED-12345
-              mensagemNota: Entregar no periodo da manha
-              frete: 0
-              despesa: 0
-              seguro: 0
-              comissao: 0
-              comentario: Pedido gerado pelo aplicativo
-              enivaPorEmail: S
+              frete: 100
+              seguro: 100
+              despesa: 100
+              codigoVendedor: ''
+              dadosCliente:
+                cnpj: '00845661000380'
+                nome: OFFICE TOTAL
+                codigo: '00470002'
+              dadosCondicaoPagamento:
+                condicaoPagamento: '02,18,30,40'
+                codigo: '001'
+                descricao: 02/18/30/40 DIA
+              transportadora: UNE132
+              redespacho: UNE132
+              dadosTransportadora:
+                cnpj: '24217653000195'
+                nome: LOGGI EXPRESS
+                codigo: UNE132
               itens:
-                - produto: XP1234
-                  quantidade: 10
-                  valorUnitario: 25.90
+                - descricao: MONITOR DELL-LCD
+                  quantidade: 1
+                  valorUnitario: 10
+                  dadosProduto:
+                    descricao: MONITOR DELL-LCD
+                    saldo: 0
+                    codigo: 0106-1268-8
+                  produto: LM10000
+                  ipi: 0
+              quantidadeItens: 1
+              pedidoCliente: ''
+              condicaoPagamento: '001'
+              mensagemNota: teste de mensagem nota
+              enivaPorEmail: S
       responses:
         '200':
-          description: Pedido incluído — devolve o JSON enviado acrescido de `codigoVendedor`, `cliente`, `transportadora` e `pedido`
+          description: |
+            Pedido incluído. A API devolve o JSON enviado, com `codigoVendedor`, `cliente` e `transportadora` preenchidos por ela e o número do `pedido` gerado.
+            Os campos informativos voltam como foram enviados e **não** refletem os valores gravados no pedido.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PedidoVendaDistribuidoraResponse'
               example:
-                dadosCliente:
-                  cnpj: '71586952000157'
-                dadosTransportadora:
-                  cnpj: '11838642000180'
-                condicaoPagamento: '001'
+                emissao: 30/11/2022
+                valor: 600
+                status: EM ABERTO
+                cliente: '00470002'
                 tipoFrete: C
-                pedidoCliente: PED-12345
-                mensagemNota: Entregar no periodo da manha
-                frete: 0
-                despesa: 0
-                seguro: 0
-                comissao: 0
-                comentario: Pedido gerado pelo aplicativo
-                enivaPorEmail: S
-                itens:
-                  - produto: XP1234
-                    quantidade: 10
-                    valorUnitario: 25.90
+                frete: 100
+                seguro: 100
+                despesa: 100
                 codigoVendedor: '000123'
-                cliente: '00045601'
-                transportadora: '000010'
+                dadosCliente:
+                  cnpj: '00845661000380'
+                  nome: OFFICE TOTAL
+                  codigo: '00470002'
+                dadosCondicaoPagamento:
+                  condicaoPagamento: '02,18,30,40'
+                  codigo: '001'
+                  descricao: 02/18/30/40 DIA
+                transportadora: UNE132
+                redespacho: UNE132
+                dadosTransportadora:
+                  cnpj: '24217653000195'
+                  nome: LOGGI EXPRESS
+                  codigo: UNE132
+                itens:
+                  - descricao: MONITOR DELL-LCD
+                    quantidade: 1
+                    valorUnitario: 10
+                    dadosProduto:
+                      descricao: MONITOR DELL-LCD
+                      saldo: 0
+                      codigo: 0106-1268-8
+                    produto: LM10000
+                    ipi: 0
+                quantidadeItens: 1
+                pedidoCliente: ''
+                condicaoPagamento: '001'
+                mensagemNota: teste de mensagem nota
+                enivaPorEmail: S
                 pedido: '254871'
         '400':
           description: |
@@ -1172,6 +1220,7 @@ paths:
             | CNPJ do cliente não cadastrado | `Cliente não encontrado` |
             | Cliente não pertence ao vendedor | `Vendedor não autorizado para este cliente` |
             | CNPJ da transportadora não cadastrado | `Transportadora não encontrada` |
+            | Código do redespacho não cadastrado | `Transportadora do redespacho<codigo> não cadastrada` (sem espaço antes do código) |
             | Produto não cadastrado | `Produto não encontrado: <produto>` |
             | Grupo do produto não liberado para o vendedor | `Produto não autorizado para venda: <produto>` |
             | Condição de pagamento não cadastrada | `Condição de pagamento <codigo> não cadastrada` |
@@ -2639,7 +2688,15 @@ components:
             cnpj:
               type: string
               description: CNPJ do cliente. Deve estar cadastrado e ter o usuário autenticado como vendedor
-              example: '71586952000157'
+              example: '00845661000380'
+            nome:
+              type: string
+              description: Razão social do cliente (informativo)
+              example: OFFICE TOTAL
+            codigo:
+              type: string
+              description: Código + loja do cliente (informativo)
+              example: '00470002'
         dadosTransportadora:
           type: object
           required: [cnpj]
@@ -2647,15 +2704,70 @@ components:
             cnpj:
               type: string
               description: CNPJ da transportadora. Enviar vazio quando não houver transportadora
-              example: '11838642000180'
+              example: '24217653000195'
+            nome:
+              type: string
+              description: Nome da transportadora (informativo)
+              example: LOGGI EXPRESS
+            codigo:
+              type: string
+              description: Código da transportadora (informativo)
+              example: UNE132
         condicaoPagamento:
           type: string
           description: Código da condição de pagamento cadastrada
           example: '001'
+        dadosCondicaoPagamento:
+          type: object
+          description: Dados da condição de pagamento (informativo)
+          properties:
+            codigo:
+              type: string
+              description: Código da condição de pagamento (informativo)
+              example: '001'
+            condicaoPagamento:
+              type: string
+              description: Prazos da condição de pagamento, em dias (informativo)
+              example: '02,18,30,40'
+            descricao:
+              type: string
+              description: Descrição da condição de pagamento (informativo)
+              example: 02/18/30/40 DIA
         tipoFrete:
           type: string
           description: 'Tipo de frete: C = CIF, F = FOB, T = por conta de terceiros, S = sem frete'
           enum: [C, F, T, S]
+        redespacho:
+          type: string
+          description: Código (não CNPJ) da transportadora de redespacho. Se informado, deve estar cadastrada
+          example: UNE132
+        cliente:
+          type: string
+          description: Código + loja do cliente. Preenchido pela API a partir de dadosCliente.cnpj (valor enviado é sobrescrito)
+          example: '00470002'
+        transportadora:
+          type: string
+          description: Código da transportadora. Preenchido pela API a partir de dadosTransportadora.cnpj (valor enviado é sobrescrito)
+          example: UNE132
+        codigoVendedor:
+          type: string
+          description: Código do vendedor. Preenchido pela API a partir do usuário autenticado (valor enviado é sobrescrito)
+        emissao:
+          type: string
+          description: Data de emissão (DD/MM/AAAA). Na inclusão, vale a data do servidor (informativo)
+          example: 30/11/2022
+        valor:
+          type: number
+          description: Valor total do pedido. Na inclusão, é calculado pelo ERP (informativo)
+          example: 600
+        status:
+          type: string
+          description: Status do pedido (informativo)
+          example: EM ABERTO
+        quantidadeItens:
+          type: number
+          description: Quantidade de itens do pedido (informativo)
+          example: 1
         pedidoCliente:
           type: string
           description: Número do pedido no sistema do cliente
@@ -2694,32 +2806,47 @@ components:
         produto:
           type: string
           description: Código do produto. O grupo do produto deve estar liberado para venda pelo vendedor
-          example: XP1234
+          example: LM10000
         quantidade:
           type: number
           minimum: 1
           description: Quantidade vendida
-          example: 10
+          example: 1
         valorUnitario:
           type: number
           exclusiveMinimum: true
           minimum: 0
           description: Preço unitário de venda (maior que zero)
-          example: 25.90
+          example: 10
+        descricao:
+          type: string
+          description: Descrição do produto (informativo)
+          example: MONITOR DELL-LCD
+        ipi:
+          type: number
+          description: Alíquota de IPI. Na inclusão, vale a alíquota do cadastro do produto (informativo)
+          example: 0
+        dadosProduto:
+          type: object
+          description: Dados do produto (informativo)
+          properties:
+            codigo:
+              type: string
+              description: Código do produto no cadastro (informativo)
+              example: 0106-1268-8
+            descricao:
+              type: string
+              description: Descrição do produto no cadastro (informativo)
+              example: MONITOR DELL-LCD
+            saldo:
+              type: number
+              description: Saldo do produto (informativo)
+              example: 0
     PedidoVendaDistribuidoraResponse:
       allOf:
         - $ref: '#/components/schemas/PedidoVendaDistribuidora'
         - type: object
           properties:
-            codigoVendedor:
-              type: string
-              description: Código do vendedor (usuário autenticado)
-            cliente:
-              type: string
-              description: Código + loja do cliente localizado pelo CNPJ
-            transportadora:
-              type: string
-              description: Código da transportadora localizada pelo CNPJ (vazio quando não informada)
             pedido:
               type: string
               description: Número do pedido de venda gerado

@@ -829,6 +829,7 @@ GET {host}/rest/wms/v2/consultaRomaneioSaida/query?cnpj=68993641000802&chave=862
 | `pedidoCliente` | Condicional | Código do pedido cliente (consulta por pedido) |
 | `dataInicial` | Condicional | Data inicial do romaneio, `AAAAMMDD` (consulta por período) |
 | `dataFinal` | Condicional | Data final do romaneio, `AAAAMMDD` (consulta por período) |
+| `arquivo` | Nao | Indica se deve retornar com o campo do arquivo do Romaneio em base64 preenchido |
 | `pageSize` | Sim | Tamanho da página. Padrão `"1"` — a consulta sempre retorna 1 romaneio por página |
 | `page` | Sim | Número da página. Nas consultas por romaneio e por pedido é sempre `"1"`; na consulta por período, informe a página desejada |
 
@@ -846,6 +847,7 @@ Pontos de atenção:
 - **Limite de até 30 dias** para consultas por período.
 - Consultas por período e automatizadas devem rodar **fora do horário de funcionamento dos armazéns** — sugestão: entre 00:00 e 05:00.
 - Para paginar, use `page` (página atual) e `hasNext` (existe próxima página) da resposta.
+- Apenas se o campo `arquivo` estiver marcado como `false` serão retornados mais de um registro por página.
 
 ### 11.4 Exemplo de resposta 200 OK
 
@@ -1514,59 +1516,103 @@ GET {host}/rest/TRANSFERENCIA?cgc=71586952000157&chave=00028801&filiallisa=07&se
 
 ```json
 {
-  "dadosCliente": {
-    "cnpj": "71586952000157"
-  },
-  "dadosTransportadora": {
-    "cnpj": "11838642000180"
-  },
-  "condicaoPagamento": "001",
+  "emissao": "30/11/2022",
+  "valor": 600,
+  "status": "EM ABERTO",
+  "cliente": "00470002",
   "tipoFrete": "C",
-  "pedidoCliente": "PED-12345",
-  "mensagemNota": "Entregar no periodo da manha",
-  "frete": 0,
-  "despesa": 0,
-  "seguro": 0,
-  "comissao": 0,
-  "comentario": "Pedido gerado pelo aplicativo",
-  "enivaPorEmail": "S",
+  "frete": 100,
+  "seguro": 100,
+  "despesa": 100,
+  "codigoVendedor": "",
+  "dadosCliente": {
+    "cnpj": "00845661000380",
+    "nome": "OFFICE TOTAL",
+    "codigo": "00470002"
+  },
+  "dadosCondicaoPagamento": {
+    "condicaoPagamento": "02,18,30,40",
+    "codigo": "001",
+    "descricao": "02/18/30/40 DIA"
+  },
+  "transportadora": "UNE132",
+  "redespacho": "UNE132",
+  "dadosTransportadora": {
+    "cnpj": "24217653000195",
+    "nome": "LOGGI EXPRESS",
+    "codigo": "UNE132"
+  },
   "itens": [
     {
-      "produto": "XP1234",
-      "quantidade": 10,
-      "valorUnitario": 25.90
+      "descricao": "MONITOR DELL-LCD",
+      "quantidade": 1,
+      "valorUnitario": 10,
+      "dadosProduto": {
+        "descricao": "MONITOR DELL-LCD",
+        "saldo": 0,
+        "codigo": "0106-1268-8"
+      },
+      "produto": "LM10000",
+      "ipi": 0
     }
-  ]
+  ],
+  "quantidadeItens": 1,
+  "pedidoCliente": "",
+  "condicaoPagamento": "001",
+  "mensagemNota": "teste de mensagem nota",
+  "enivaPorEmail": "S"
 }
 ```
 
+> O JSON segue o mesmo formato que a API devolve na consulta do pedido. Por isso, inclui campos **informativos** (nomes, descrições, totais, status), que a inclusão aceita mas **não utiliza**. Os campos que de fato definem o pedido estão marcados como "Usado na inclusão" nas tabelas abaixo.
+
 ### 19.2 Campos do pedido
 
-| Campo | Tipo | Obrigatório | Descrição |
-|---|---|---|---|
-| `dadosCliente.cnpj` | Caractere | Sim | CNPJ do cliente. O cliente deve estar cadastrado e ter como vendedor o usuário autenticado |
-| `dadosTransportadora.cnpj` | Caractere | Sim (pode ser vazio) | CNPJ da transportadora. Se informado, deve estar cadastrada; enviar `""` quando não houver transportadora |
-| `condicaoPagamento` | Caractere | Sim | Código da condição de pagamento cadastrada |
-| `tipoFrete` | Caractere | Sim | Tipo de frete: `C` = CIF, `F` = FOB, `T` = por conta de terceiros, `S` = sem frete |
-| `pedidoCliente` | Caractere | Não | Número do pedido no sistema do cliente |
-| `mensagemNota` | Caractere | Não | Mensagem para a nota fiscal. É gravada como `<número do pedido> APP PEDIDO - <mensagemNota>` (até 250 caracteres, sem acentos) |
-| `frete` | Numérico | Não | Valor do frete |
-| `despesa` | Numérico | Não | Valor de despesas acessórias |
-| `seguro` | Numérico | Não | Valor do seguro |
-| `comissao` | Numérico | Não | Percentual de comissão do vendedor |
-| `comentario` | Caractere | Não | Comentário do pedido |
-| `enivaPorEmail` | Caractere | Não | `S` envia o pedido por e-mail para o endereço do usuário autenticado. **Atenção:** o nome do campo é `enivaPorEmail` (grafia exata exigida pela API) |
-| `itens` | Array | Sim | Itens do pedido — deve conter ao menos um item |
+| Campo | Tipo | Obrigatório | Usado na inclusão | Descrição |
+|---|---|---|---|---|
+| `dadosCliente.cnpj` | Caractere | Sim | Sim | CNPJ do cliente. O cliente deve estar cadastrado e ter como vendedor o usuário autenticado |
+| `dadosCliente.nome` | Caractere | Não | Não | Razão social do cliente (informativo) |
+| `dadosCliente.codigo` | Caractere | Não | Não | Código + loja do cliente (informativo) |
+| `dadosTransportadora.cnpj` | Caractere | Sim | Sim | CNPJ da transportadora. Se informado, deve estar cadastrada; enviar `""` quando não houver transportadora |
+| `dadosTransportadora.nome` | Caractere | Não | Não | Nome da transportadora (informativo) |
+| `dadosTransportadora.codigo` | Caractere | Não | Não | Código da transportadora (informativo) |
+| `condicaoPagamento` | Caractere | Sim | Sim | Código da condição de pagamento cadastrada |
+| `dadosCondicaoPagamento.codigo` | Caractere | Não | Não | Código da condição de pagamento (informativo) |
+| `dadosCondicaoPagamento.condicaoPagamento` | Caractere | Não | Não | Prazos da condição de pagamento, em dias (ex.: `02,18,30,40`) (informativo) |
+| `dadosCondicaoPagamento.descricao` | Caractere | Não | Não | Descrição da condição de pagamento (informativo) |
+| `tipoFrete` | Caractere | Sim | Sim | Tipo de frete: `C` = CIF, `F` = FOB, `T` = por conta de terceiros, `S` = sem frete |
+| `redespacho` | Caractere | Não | Sim | **Código** da transportadora de redespacho (não é CNPJ). Se informado, deve estar cadastrada |
+| `pedidoCliente` | Caractere | Não | Sim | Número do pedido no sistema do cliente |
+| `mensagemNota` | Caractere | Não | Sim | Mensagem para a nota fiscal. É gravada como `<número do pedido> APP PEDIDO - <mensagemNota>` (até 250 caracteres, sem acentos) |
+| `frete` | Numérico | Não | Sim | Valor do frete |
+| `despesa` | Numérico | Não | Sim | Valor de despesas acessórias |
+| `seguro` | Numérico | Não | Sim | Valor do seguro |
+| `comissao` | Numérico | Não | Sim | Percentual de comissão do vendedor |
+| `comentario` | Caractere | Não | Sim | Comentário do pedido |
+| `enivaPorEmail` | Caractere | Não | Sim | `S` envia o pedido por e-mail para o endereço do usuário autenticado. **Atenção:** o nome do campo é `enivaPorEmail` (grafia exata exigida pela API) |
+| `itens` | Array | Sim | Sim | Itens do pedido — deve conter ao menos um item |
+| `cliente` | Caractere | Não | Não (sobrescrito) | Código + loja do cliente. A API preenche a partir de `dadosCliente.cnpj` |
+| `transportadora` | Caractere | Não | Não (sobrescrito) | Código da transportadora. A API preenche a partir de `dadosTransportadora.cnpj` |
+| `codigoVendedor` | Caractere | Não | Não (sobrescrito) | Código do vendedor. A API preenche a partir do usuário autenticado |
+| `emissao` | Caractere | Não | Não | Data de emissão do pedido (`DD/MM/AAAA`). Na inclusão, vale a data do servidor (informativo) |
+| `valor` | Numérico | Não | Não | Valor total do pedido. Na inclusão, é calculado pelo ERP (informativo) |
+| `status` | Caractere | Não | Não | Status do pedido (ex.: `EM ABERTO`) (informativo) |
+| `quantidadeItens` | Numérico | Não | Não | Quantidade de itens do pedido (informativo) |
 
 > Os campos `cliente`, `transportadora` e `codigoVendedor` **não** precisam ser enviados: a API os preenche a partir do CNPJ do cliente, do CNPJ da transportadora e do usuário autenticado (valores enviados são sobrescritos).
 
 ### 19.3 Campos de `itens[]`
 
-| Campo | Tipo | Obrigatório | Descrição |
-|---|---|---|---|
-| `produto` | Caractere | Sim | Código do produto. O grupo do produto deve estar liberado para venda pelo vendedor |
-| `quantidade` | Numérico | Sim | Quantidade vendida — deve ser maior ou igual a 1 |
-| `valorUnitario` | Numérico | Sim | Preço unitário de venda — deve ser maior que zero |
+| Campo | Tipo | Obrigatório | Usado na inclusão | Descrição |
+|---|---|---|---|---|
+| `produto` | Caractere | Sim | Sim | Código do produto. O grupo do produto deve estar liberado para venda pelo vendedor |
+| `quantidade` | Numérico | Sim | Sim | Quantidade vendida — deve ser maior ou igual a 1 |
+| `valorUnitario` | Numérico | Sim | Sim | Preço unitário de venda — deve ser maior que zero |
+| `descricao` | Caractere | Não | Não | Descrição do produto (informativo) |
+| `ipi` | Numérico | Não | Não | Alíquota de IPI do produto. Na inclusão, vale a alíquota do cadastro do produto (informativo) |
+| `dadosProduto.codigo` | Caractere | Não | Não | Código do produto no cadastro (informativo) |
+| `dadosProduto.descricao` | Caractere | Não | Não | Descrição do produto no cadastro (informativo) |
+| `dadosProduto.saldo` | Numérico | Não | Não | Saldo do produto (informativo) |
 
 ### 19.4 Regras gerais
 
@@ -1581,27 +1627,56 @@ Em caso de sucesso, a API devolve o JSON enviado acrescido dos campos preenchido
 
 ```json
 {
-  "dadosCliente": { "cnpj": "71586952000157" },
-  "dadosTransportadora": { "cnpj": "11838642000180" },
-  "condicaoPagamento": "001",
+  "emissao": "30/11/2022",
+  "valor": 600,
+  "status": "EM ABERTO",
+  "cliente": "00470002",
   "tipoFrete": "C",
-  "pedidoCliente": "PED-12345",
-  "mensagemNota": "Entregar no periodo da manha",
-  "frete": 0,
-  "despesa": 0,
-  "seguro": 0,
-  "comissao": 0,
-  "comentario": "Pedido gerado pelo aplicativo",
-  "enivaPorEmail": "S",
-  "itens": [
-    { "produto": "XP1234", "quantidade": 10, "valorUnitario": 25.90 }
-  ],
+  "frete": 100,
+  "seguro": 100,
+  "despesa": 100,
   "codigoVendedor": "000123",
-  "cliente": "00045601",
-  "transportadora": "000010",
+  "dadosCliente": {
+    "cnpj": "00845661000380",
+    "nome": "OFFICE TOTAL",
+    "codigo": "00470002"
+  },
+  "dadosCondicaoPagamento": {
+    "condicaoPagamento": "02,18,30,40",
+    "codigo": "001",
+    "descricao": "02/18/30/40 DIA"
+  },
+  "transportadora": "UNE132",
+  "redespacho": "UNE132",
+  "dadosTransportadora": {
+    "cnpj": "24217653000195",
+    "nome": "LOGGI EXPRESS",
+    "codigo": "UNE132"
+  },
+  "itens": [
+    {
+      "descricao": "MONITOR DELL-LCD",
+      "quantidade": 1,
+      "valorUnitario": 10,
+      "dadosProduto": {
+        "descricao": "MONITOR DELL-LCD",
+        "saldo": 0,
+        "codigo": "0106-1268-8"
+      },
+      "produto": "LM10000",
+      "ipi": 0
+    }
+  ],
+  "quantidadeItens": 1,
+  "pedidoCliente": "",
+  "condicaoPagamento": "001",
+  "mensagemNota": "teste de mensagem nota",
+  "enivaPorEmail": "S",
   "pedido": "254871"
 }
 ```
+
+> Os campos informativos (`emissao`, `valor`, `status`, `quantidadeItens` etc.) voltam exatamente como foram enviados, e **não** refletem os valores gravados no pedido.
 
 | Campo | Descrição |
 |---|---|
@@ -1621,6 +1696,7 @@ Formato: `{ "code": "...", "message": "...", "detailedMessage": "..." }`.
 | 400 | CNPJ do cliente não cadastrado | `Erro na integracao do pedido` | `Cliente não encontrado` |
 | 400 | Cliente não pertence ao vendedor | `Erro na integracao do pedido` | `Vendedor não autorizado para este cliente` |
 | 400 | CNPJ da transportadora não cadastrado | `Erro na integracao do pedido` | `Transportadora não encontrada` |
+| 400 | Código do redespacho não cadastrado | `Erro na integracao do pedido` | `Transportadora do redespachoUNE132 não cadastrada` (sem espaço antes do código) |
 | 400 | Produto não cadastrado | `Erro na integracao do pedido` | `Produto não encontrado: XP1234` |
 | 400 | Grupo do produto não liberado para o vendedor | `Erro na integracao do pedido` | `Produto não autorizado para venda: XP1234` |
 | 400 | Condição de pagamento não cadastrada | `Erro na integracao do pedido` | `Condição de pagamento 001 não cadastrada` |
