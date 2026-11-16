@@ -425,6 +425,22 @@ paths:
             type: string
             pattern: '^\d{8}$'
             example: '20260821'
+        - name: datahorade
+          in: query
+          required: false
+          description: 'Data inicial no formato Timestamp, para busca por período.'
+          schema:
+            type: string
+            pattern: '^\d{8}$'
+            example: '20260801T00:30:00'
+        - name: datahoraate
+          in: query
+          required: false
+          description: 'Data final no formato Timestamp, para busca por período.'
+          schema:
+            type: string
+            pattern: '^\d{8}$'
+            example: '20260826T01:00:00'
         - name: status
           in: query
           required: false
