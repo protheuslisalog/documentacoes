@@ -6,6 +6,8 @@ Esta rotina **compara os saldos de estoque de um produto em um armazém** entre 
 
 Ao final do processamento a tela mostra o status **OK** ou **DIVERGÊNCIA**, quais comparações não bateram e a diferença de cada uma. A análise inclui o controle de **poder de terceiros** (`SB6`).
 
+A rotina se encontra no Modulo WMS Personalizados > Analise Saldos
+
 O acesso depende do perfil do usuário:
 
 | Perfil | O que acessa |
