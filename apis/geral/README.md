@@ -726,6 +726,10 @@ Permite consultar detalhes dos pedidos registrados no sistema do cliente, em uma
 | `pedido` | Não | `3254698` | Número do pedido, para retornar apenas um pedido específico |
 | `page` | Sim | `1` | Número da página |
 | `pageSize` | Sim | `1000` | Registros por página — **máximo de 3000** |
+| `datahorade` | Não | `20261116T00:30:00` | Data/hora (`TimeStamp`) para busca por período |
+| `datahoraate` | Não | `20261116T23:59:00` | Data/hora (`TimeStamp`) para busca por período |
+
+Observação: Caso seja informado os parâmetros `datahorade/datahoraate` os parâmetros `dataDe/dataAte` não serão considerados.
 
 ### 10.2 Exemplo de requisição
 
