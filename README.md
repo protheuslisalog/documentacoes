@@ -63,6 +63,8 @@ Parâmetros e configurações necessárias para o funcionamento do sistema.
 Informações sobre atendimento da área de T.I.
 
 * [Manual](atendimento/README.md)
+* [Manual Tickets](atendimento/ManualTickets/README.md)
+
 
 ---
 
