@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-Este manual mostra como **abrir, acompanhar e responder tickets da T.I.**, pela plataforma **Tickets** do AnnaLisa ou por e-mail.
+Este manual mostra como **abrir, acompanhar e responder tickets da T.I.**, pelo **Portal de Tickets**, pela plataforma **Tickets** do AnnaLisa ou por e-mail.
 
 Cada pedido de ajuda é um **ticket**, com número próprio (por exemplo, `#004873`). As duas formas gravam tudo no mesmo lugar, no Protheus: o ticket aberto por e-mail aparece no AnnaLisa, e o contrário também vale.
 
@@ -18,7 +18,9 @@ Este documento descreve o perfil **Usuário**.
 
 **Fonte:** `LISWS004.tlpp` e classes `LISA.Tickets.*` (API) e `LISJB006.tlpp` (tickets por e-mail).
 
-**Acesso:** AnnaLisa (`https://annalisadashboard.netlify.app`) › **LISA · PLATAFORMA** › **Tickets – Atendimento de T.I.** Por e-mail: `ticket@lisalogsistema.com.br`.
+**Acesso:** Portal de Tickets (`https://lisatickets.netlify.app`) ou AnnaLisa (`https://annalisadashboard.netlify.app`) › **LISA · PLATAFORMA** › **Tickets – Atendimento de T.I.** Por e-mail: `ticket@lisalogsistema.com.br`.
+
+**Login:** o mesmo usuário e senha do Protheus.
 
 ---
 
@@ -44,11 +46,10 @@ O cadastro de acessos fica no **AnnaLisa**. O tamanho máximo de anexo também v
 ### Fluxo
 
 ```text
-Entrar no AnnaLisa
-       ↓
-LISA · PLATAFORMA › Tickets
-       ↓
-Painel de Tickets
+Portal de Tickets (lisatickets.netlify.app)      AnnaLisa › LISA · PLATAFORMA › Tickets
+                      └──────────────┬──────────────┘
+                                     ↓
+                             Painel de Tickets
        ↓
 Abrir um ticket novo ou abrir um ticket da lista
        ↓
@@ -66,13 +67,29 @@ T.I. finaliza → ticket sai da lista e o usuário recebe o e-mail "Ticket final
 
 ---
 
-### 3.1 Entrar no AnnaLisa
+### 3.1 Entrar pelo Portal de Tickets (endereço direto)
 
-Acesse `https://annalisadashboard.netlify.app` e entre com o usuário e a senha do AnnaLisa.
+Acesse `https://lisatickets.netlify.app` e entre com o **mesmo usuário e senha do Protheus**. Abre direto o **Painel de Tickets**, sem passar pelo AnnaLisa.
 
-![Tela de entrada do AnnaLisa](imagens/01-login.png)
+![Tela de entrada do Portal de Tickets](imagens/01-portal-tickets.png)
 
 Os números em vermelho identificam cada item da tela. Nas tabelas a seguir, a coluna **Nº** indica o número correspondente.
+
+| Nº | Campo | Descrição |
+|---|---|---|
+| 1 | **Usuário** | Mesmo login do Protheus. |
+| 2 | **Senha** | Mesma senha do Protheus. |
+| 3 | **Olho** | Mostra a senha digitada, para conferir. |
+| 4 | **Entrar** | Abre o Painel de Tickets. |
+| 5 | **Lembrete** | Usar o usuário e a senha do Protheus; sem acesso, procurar a T.I. |
+
+---
+
+### 3.2 Entrar pelo AnnaLisa
+
+Acesse `https://annalisadashboard.netlify.app` e entre com o usuário e a senha.
+
+![Tela de entrada do AnnaLisa](imagens/02-login.png)
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -83,11 +100,11 @@ Os números em vermelho identificam cada item da tela. Nas tabelas a seguir, a c
 
 ---
 
-### 3.2 Abrir a plataforma Tickets
+### 3.3 Abrir a plataforma Tickets
 
 Clique no quadro **LISA · PLATAFORMA**, no canto de cima à esquerda, e escolha **Tickets – Atendimento de T.I.**
 
-![Escolhendo a plataforma Tickets](imagens/02-plataforma.png)
+![Escolhendo a plataforma Tickets](imagens/03-plataforma.png)
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -100,24 +117,24 @@ Clique no quadro **LISA · PLATAFORMA**, no canto de cima à esquerda, e escolha
 | Situação | O que fazer |
 |---|---|
 | Usuário ou senha incorretos | Conferir os dados. Esqueceu a senha: pedir a troca à T.I. |
-| Não aparece a plataforma **Tickets** | O usuário não tem acesso. Pedir à T.I. pelo e-mail `ticket@lisalogsistema.com.br`. |
+| Não aparece a plataforma **Tickets**, ou o portal diz que não há acesso | O usuário não tem acesso. Pedir à T.I. pelo e-mail `ticket@lisalogsistema.com.br`. |
 | Mensagem de acesso negado | Avisar a T.I. com o print da mensagem. |
 | Sessão bloqueada | A sessão anterior foi fechada sem **Encerrar sessão**. Aguardar 5 minutos. |
 
 ---
 
-### 3.3 Menu da plataforma
+### 3.4 Menu da plataforma
 
 O menu fica na lateral esquerda. A seta **«** recolhe o menu (só ícones) e a **»** abre de novo.
 
-![Menu da plataforma Tickets](imagens/03-menu.png)
+![Menu da plataforma Tickets](imagens/04-menu.png)
 
 | Nº | Item | Descrição |
 |---|---|---|
 | 1 | **LISA · PLATAFORMA** | Troca de plataforma. |
 | 2 | **Modo escuro** | Liga ou desliga o fundo escuro. |
 | 3 | **Painel de Tickets** | Tela principal, com indicadores e lista. |
-| 4 | **Novo Ticket** | Abre um ticket para a T.I. (item 3.5). |
+| 4 | **Novo Ticket** | Abre um ticket para a T.I. (item 3.6). |
 | 5 | **Meus Tickets** | Lista só os tickets que o usuário abriu. |
 | 6 | **Aviso da sessão** | Fechar o navegador sem sair bloqueia a sessão por 5 minutos. |
 | 7 | **Encerrar sessão** | Sai do AnnaLisa. |
@@ -128,11 +145,11 @@ O menu fica na lateral esquerda. A seta **«** recolhe o menu (só ícones) e a 
 
 ---
 
-### 3.4 Painel de Tickets
+### 3.5 Painel de Tickets
 
 Mostra os tickets **em aberto** do usuário: indicadores no alto e lista embaixo.
 
-![Painel de Tickets](imagens/04-painel.png)
+![Painel de Tickets](imagens/05-painel.png)
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -166,11 +183,11 @@ Embaixo da lista ficam a quantidade por página (15, 25 ou 50) e a troca de pág
 
 ---
 
-### 3.5 Abrir um novo ticket
+### 3.6 Abrir um novo ticket
 
 Clique em **Novo Ticket** (menu) ou **Novo ticket** (acima da lista), preencha e clique em **Abrir ticket**.
 
-![Janela Abrir ticket](imagens/05-abrir-ticket.png)
+![Janela Abrir ticket](imagens/06-abrir-ticket.png)
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -187,7 +204,7 @@ Clique em **Novo Ticket** (menu) ou **Novo ticket** (acima da lista), preencha e
 
 O sistema mostra **Ticket #número aberto.** e o ticket entra na lista como **Sem interação**.
 
-![Ticket aberto](imagens/06-ticket-aberto.png)
+![Ticket aberto](imagens/07-ticket-aberto.png)
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -205,11 +222,11 @@ O sistema mostra **Ticket #número aberto.** e o ticket entra na lista como **Se
 
 ---
 
-### 3.6 Ver um ticket
+### 3.7 Ver um ticket
 
 Na lista, clique no **olho** do ticket.
 
-![Ticket aberto na tela](imagens/07-ticket.png)
+![Ticket aberto na tela](imagens/08-ticket.png)
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -218,7 +235,7 @@ Na lista, clique no **olho** do ticket.
 | 3 | **Resumo** | Solicitante, analista, tipo, departamento e dias em aberto. |
 | 4 | **Histórico** | Conversa, da mensagem mais antiga para a mais nova. |
 | 5 | **Anexos** | Clique no arquivo para baixar. |
-| 6 | **Responder** | Campo da resposta (item 3.7). |
+| 6 | **Responder** | Campo da resposta (item 3.8). |
 | 7 | **Anexar** | Escolhe arquivos para a resposta. |
 | 8 | **Enviar resposta** | Grava a resposta no ticket. |
 | 9 | **X** | Fecha o ticket. |
@@ -227,11 +244,11 @@ Na lista, clique no **olho** do ticket.
 
 ---
 
-### 3.7 Responder e enviar arquivos
+### 3.8 Responder e enviar arquivos
 
 Escreva a mensagem, anexe os arquivos se precisar e clique em **Enviar resposta**.
 
-![Quadro Responder](imagens/08-responder.png)
+![Quadro Responder](imagens/09-responder.png)
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -242,7 +259,7 @@ Escreva a mensagem, anexe os arquivos se precisar e clique em **Enviar resposta*
 
 Depois de enviar aparece **Resposta enviada.**, a mensagem entra no histórico e o arquivo aparece em **Anexos**.
 
-![Resposta gravada](imagens/09-resposta-enviada.png)
+![Resposta gravada](imagens/10-resposta-enviada.png)
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -253,7 +270,7 @@ Depois de enviar aparece **Resposta enviada.**, a mensagem entra no histórico e
 
 ---
 
-### 3.8 Tickets finalizados
+### 3.9 Tickets finalizados
 
 Quando a T.I. finaliza o ticket, ele sai da lista (que mostra só tickets em aberto) e o usuário recebe o e-mail **Ticket finalizado** com a descrição do atendimento.
 
@@ -291,7 +308,7 @@ A T.I. finaliza → aviso "Ticket finalizado"
 
 Envie um e-mail para `ticket@lisalogsistema.com.br`. O assunto vira o título e o corpo vira a descrição.
 
-![E-mail novo](imagens/10-email-novo.png)
+![E-mail novo](imagens/11-email-novo.png)
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -306,7 +323,7 @@ Envie um e-mail para `ticket@lisalogsistema.com.br`. O assunto vira o título e 
 
 Em poucos minutos chega a confirmação **Ticket registrado**, com o número, a descrição gravada e os anexos registrados.
 
-![Confirmação de ticket registrado](imagens/11-email-confirmacao.png)
+![Confirmação de ticket registrado](imagens/12-email-confirmacao.png)
 
 ---
 
@@ -314,7 +331,7 @@ Em poucos minutos chega a confirmação **Ticket registrado**, com o número, a 
 
 Todo e-mail de ticket tem no assunto o número e um código como `###004873|Filial:14###`. É esse código que liga o e-mail ao ticket certo.
 
-![Respondendo um ticket por e-mail](imagens/12-email-responder.png)
+![Respondendo um ticket por e-mail](imagens/13-email-responder.png)
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -338,9 +355,9 @@ Todo e-mail de ticket tem no assunto o número e um código como `###004873|Fili
 
 O que o usuário faz pelo AnnaLisa não gera e-mail para ele mesmo: a tela já mostra na hora.
 
-![Aviso de interação registrada](imagens/13-email-interacao.png)
+![Aviso de interação registrada](imagens/14-email-interacao.png)
 
-![Aviso de ticket finalizado](imagens/14-email-finalizado.png)
+![Aviso de ticket finalizado](imagens/15-email-finalizado.png)
 
 O botão **Acompanhar no Painel de Tickets** abre o painel (`https://lisatickets.netlify.app/`).
 
@@ -367,7 +384,7 @@ O botão **Acompanhar no Painel de Tickets** abre o painel (`https://lisatickets
 
 | Função / Campo | Finalidade |
 |---|---|
-| AnnaLisa › plataforma **Tickets** | Tela do usuário: painel, abertura, histórico e respostas. |
+| Portal de Tickets / AnnaLisa › **Tickets** | Tela do usuário: painel, abertura, histórico e respostas. |
 | `LISWS004` / `LISA.Tickets.*` | API: lista, abertura, interações, anexos e finalização. |
 | `LISJB006` | Job que lê a caixa `ticket@`, abre tickets, grava interações e envia as confirmações. |
 | `ZA5` | Cabeçalho do ticket. `ZA5_USRABE` = quem abriu; `ZA5_USRAT` = analista. |
@@ -380,7 +397,7 @@ O botão **Acompanhar no Painel de Tickets** abre o painel (`https://lisatickets
 
 ## 7. Regras de Negócio – Resumo
 
-1. O acesso é pelo AnnaLisa, plataforma **Tickets**, com o perfil cadastrado lá.
+1. O acesso é pelo Portal de Tickets (`lisatickets.netlify.app`) ou pelo AnnaLisa, plataforma **Tickets**, com o usuário e a senha do Protheus e o perfil cadastrado no AnnaLisa.
 2. O usuário vê os tickets em aberto que pode acessar; **Meus** mostra só os que ele abriu.
 3. Ticket aberto pelo AnnaLisa ou por e-mail fica gravado no Protheus e aparece nos dois lugares.
 4. Todo ticket novo começa como **Sem interação** até um analista responder.
