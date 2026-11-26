@@ -20,6 +20,7 @@ Use o sumário para ir direto à área desejada.
 - [📱 4. Aplicativo Lisalog](#4-aplicativo-lisalog)
 - [🏢 5. Portal do Cliente](#5-portal-do-cliente)
 - [🎧 6. Atendimento T.I.](#6-atendimento-ti)
+- [📊 7. AnnaLisa](#7-annalisa)
 - [🔎 Como encontrar uma informação](#como-encontrar-uma-informação)
 
 ---
@@ -83,6 +84,16 @@ Rotinas de armazenagem, separação, conferência e expedição.
 
 ---
 
+## 7. AnnaLisa
+
+Portal operacional de monitoramento integrado ao Protheus.
+
+| Manual | Descrição |
+|---|---|
+| [Manual do AnnaLisa](ManualAnnaLisa/README.md) | Monitores de separação, entrada, saída e estoque, consulta de pedidos, integrações e administração. |
+
+---
+
 ## Como encontrar uma informação
 
 | Procurando… | Vá para |
@@ -92,6 +103,7 @@ Rotinas de armazenagem, separação, conferência e expedição.
 | Integração por API com clientes | [APIs de Integração](#3-apis-de-integração) |
 | Uso do aplicativo no celular | [Aplicativo Lisalog](#4-aplicativo-lisalog) |
 | Como abrir um chamado | [Atendimento T.I.](#6-atendimento-ti) |
+| Acompanhar a operação no AnnaLisa | [AnnaLisa](#7-annalisa) |
 
 ---
 
