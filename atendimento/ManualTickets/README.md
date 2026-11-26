@@ -428,6 +428,8 @@ Todo e-mail de ticket tem no assunto o número e um código como `###004873|Fili
 
 O que o usuário faz pelo AnnaLisa não gera e-mail para ele mesmo: a tela já mostra na hora.
 
+> ⚠️ **Não recebeu o aviso?** Se em até **2 horas** não chegar a confirmação **Ticket registrado** (abertura) ou **Interação registrada** (resposta), confira primeiro a caixa de **Spam / Lixo eletrônico**. Se não estiver lá, envie um e-mail para `helpdesk@lisalog.com.br` informando o problema, com o **assunto** do e-mail enviado e a **data e hora** do envio.
+
 <p align="center">
   <img src="imagens/14-email-interacao.png" alt="Aviso de interação registrada"><br>
   <sub><b>Figura 14</b> — Aviso de interação registrada</sub>
@@ -456,6 +458,7 @@ O botão **Acompanhar no Painel de Tickets** abre o painel (`https://lisatickets
 | Ticket registrado (e-mail) | Ticket aberto por e-mail. |
 | Interação registrada (e-mail) | Resposta gravada no ticket. |
 | Ticket finalizado (e-mail) | Ticket encerrado pela T.I. |
+| Nenhum aviso em até 2 horas | Confirmação não chegou: conferir Spam e, se não estiver lá, avisar `helpdesk@lisalog.com.br`. |
 
 ---
 
@@ -488,6 +491,7 @@ O botão **Acompanhar no Painel de Tickets** abre o painel (`https://lisatickets
 10. Imagens da assinatura do e-mail são ignoradas. Uma única imagem colada no corpo é tratada como assinatura: mande o print como anexo.
 11. Respostas automáticas (férias, não entrega) são ignoradas e não abrem ticket.
 12. Use o e-mail da empresa cadastrado no usuário do Protheus, para o ticket ficar no seu nome.
+13. Se a confirmação **Ticket registrado** ou **Interação registrada** não chegar em até 2 horas (conferido o Spam), avise `helpdesk@lisalog.com.br` com o assunto, a data e a hora do e-mail enviado.
 
 ---
 

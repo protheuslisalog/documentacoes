@@ -31,14 +31,16 @@ $lisa-cinza: #bdbfc1;
 /* ===== Fundo e cartão de conteúdo ===== */
 body {
   background-color: #eef1f7;
-  background-image: url("../../imagens/fundo-lisa.svg");
-  background-repeat: repeat;
+  background-image: url("../../imagens/fundo-lisa.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
   background-attachment: fixed;
 }
 /* o banner de cada manual já faz o papel de cabeçalho */
 .page-header { display: none; }
 .main-content {
-  background: rgba(255,255,255,.96);
+  background: #ffffff;
   max-width: 1000px;
   margin: 2rem auto;
   border-radius: 10px;
