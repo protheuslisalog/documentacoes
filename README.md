@@ -47,6 +47,7 @@ Rotinas de armazenagem, separação, conferência e expedição.
 |---|---|
 | [Mestre de Inventário por Arquivo](estoque/mestreinv/README.md) | Criação dos mestres de inventário a partir de um arquivo CSV. |
 | [Análise de Saldos](wms/AnaliseSaldos/README.md) | Comparação dos saldos de estoque com as movimentações. |
+
 ---
 
 ## 3. APIs de Integração
