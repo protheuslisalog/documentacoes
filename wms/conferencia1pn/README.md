@@ -1,8 +1,27 @@
-# Confência 1PN
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
+
+<h1 align="center">Conferência 1PN</h1>
+<p align="center"><b>WMS</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../../README.md)
+
+---
+
+## Sumário
+
+- [1. Objetivo](#1-objetivo)
+- [2. Parâmetros de Configuração](#2-parâmetros-de-configuração)
+- [3. Processo de conferência](#3-processo-de-conferência)
+- [4. Informações adicionais](#4-informações-adicionais)
+
+---
 
 ## 1. Objetivo
 
-Realizar a confência dos pedidos que possuem mais de uma unidade ou produto.
+Realizar a conferência dos pedidos que possuem mais de uma unidade ou produto.
 
 ---
 
@@ -37,7 +56,7 @@ Realizar a confência dos pedidos que possuem mais de uma unidade ou produto.
 
 ---
 
-# 3. Processo de conferência
+## 3. Processo de conferência
 
 ### Fluxo
 
@@ -51,11 +70,17 @@ Informar quantidade total de volumes
 
 Acesse a rotina **conf1pn** para iniciar a conferência do pedido:
 
-![01acessandorotina](01acessandorotina.png)
+<p align="center">
+  <img src="imagens/01acessandorotina.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 1</b></sub>
+</p>
 
 Preencher os campos conforme necessidade:
 
-![02parametrosiniciais](02parametrosiniciais.png)
+<p align="center">
+  <img src="imagens/02parametrosiniciais.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 2</b></sub>
+</p>
 
 - `Local DANFE` — Código da fila de impressão da DANFE;
 - `lOCAL ETIQUETA` — Código da fila de impressão da etiqueta;
@@ -65,25 +90,40 @@ Preencher os campos conforme necessidade:
 
 Informar o pedido a ser conferido:
 
-![03informarpedido](03informarpedido.png)
+<p align="center">
+  <img src="imagens/03informarpedido.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 3</b></sub>
+</p>
 
 Informar o código de barras do produto a ser conferido:
 
-![04informarproduto](04informarproduto.png)
+<p align="center">
+  <img src="imagens/04informarproduto.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 4</b></sub>
+</p>
 
 Para consultar os produtos já conferidos pressione `Ctrl + C`
 
-![05ctrlc](05ctrlc.png)
+<p align="center">
+  <img src="imagens/05ctrlc.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 5</b></sub>
+</p>
 
 Após a conferência realizada com sucesso informar a quantidade de volumes:
 
-![06informandovolume](06informandovolume.png)
+<p align="center">
+  <img src="imagens/06informandovolume.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 6</b></sub>
+</p>
 
 #### Conferência por composição/onda
 
 Ao acessear a rotina de conferência 1pn e informar o campo `Composicao` igual a S, será solicitado a onda ou o pedido base:
 
-![07informarondacompisicao](07informarondacompisicao.png)
+<p align="center">
+  <img src="imagens/07informarondacompisicao.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 7</b></sub>
+</p>
 
 Se localizado um pedido para a onda ou com a composição do pedido base informado, o sistema irá atribuir o pedido ao usuário logado e apresentá-lo para conferência na tela do usuário.
 
@@ -93,17 +133,34 @@ Se localizado um pedido para a onda ou com a composição do pedido base informa
 
 Pedidos de mesma composição são pedidos com os mesmos produtos e quantidades.
 
-![10monitropedidosimilares](10monitropedidosimilares.png)
+<p align="center">
+  <img src="imagens/10monitropedidosimilares.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 8</b></sub>
+</p>
 
 ---
 
-# 4. Informações adicionais
+## 4. Informações adicionais
 
 Todos os erros e mensagens apresentadas ao usuário no momento da conferência do pedido ficam registradas e estão disponíveis para consulta no Protheus através do cadastro `Log de conferencia`:
 
-![08logdeconferencia](08logdeconferencia.png)
+<p align="center">
+  <img src="imagens/08logdeconferencia.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 9</b></sub>
+</p>
 
 As conferências registradas no momento da conferência ficam disponíveis para consulta no Protheus através do cadastro `Registro de conferencia`:
 
-![09registroconferencia](09registroconferencia.png)
+<p align="center">
+  <img src="imagens/09registroconferencia.png" alt="Conferência 1PN"><br>
+  <sub><b>Figura 10</b></sub>
+</p>
 
+---
+
+[⬅ Voltar ao índice](../../README.md)
+
+<p align="center">
+  <img src="../../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>

@@ -1,4 +1,34 @@
-# Etiqueta de Palete (QR Code) – Impressão e Leitura no Inventário
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
+
+<h1 align="center">Etiqueta de Palete (QR Code) – Impressão e Leitura no Inventário</h1>
+<p align="center"><b>WMS</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../../README.md)
+
+---
+
+## Sumário
+
+- [1. Objetivo](#1-objetivo)
+- [2. Modelo do QR Code](#2-modelo-do-qr-code)
+- [3. Modos de Impressão](#3-modos-de-impressão)
+  - [3.1 Modo Inventário](#31-modo-inventário)
+  - [3.2 Modo Recebimento](#32-modo-recebimento)
+- [4. Layout da Etiqueta](#4-layout-da-etiqueta)
+  - [4.1 Etiqueta do modo Inventário](#41-etiqueta-do-modo-inventário)
+  - [4.2 Etiqueta do modo Recebimento](#42-etiqueta-do-modo-recebimento)
+- [5. Leitura no Inventário (ACDV035)](#5-leitura-no-inventário-acdv035)
+  - [5.1 CBINV01 – conversão do QR Code em EAN](#51-cbinv01--conversão-do-qr-code-em-ean)
+  - [5.2 V035ALTQTD – quantidade do palete](#52-v035altqtd--quantidade-do-palete)
+- [6. Pré-requisitos](#6-pré-requisitos)
+- [7. Mensagens](#7-mensagens)
+- [8. Resumo das Regras](#8-resumo-das-regras)
+- [9. Regras de Negócio – Resumo](#9-regras-de-negócio--resumo)
+
+---
 
 ## 1. Objetivo
 
@@ -45,7 +75,10 @@ PLT|7891234567895|120
 
 Ao abrir a rotina, o usuário escolhe o modo de impressão.
 
-![Tela de escolha do modo de impressão](imagens/01-tela-escolha-modo.png)
+<p align="center">
+  <img src="imagens/01-tela-escolha-modo.png" alt="Tela de escolha do modo de impressão"><br>
+  <sub><b>Figura 1</b> — Tela de escolha do modo de impressão</sub>
+</p>
 
 ### Funcionamento
 
@@ -73,7 +106,10 @@ Cancelar → volta para a escolha do modo
 **Finalidade:**  
 Imprimir a etiqueta de um palete informando o produto e a quantidade. 
 
-![Tela do modo Inventário](imagens/02-tela-modo-inventario.png)
+<p align="center">
+  <img src="imagens/02-tela-modo-inventario.png" alt="Tela do modo Inventário"><br>
+  <sub><b>Figura 2</b> — Tela do modo Inventário</sub>
+</p>
 
 ### Parâmetros
 
@@ -101,7 +137,10 @@ Na reabertura da tela, **produto e quantidade são limpos**; **nº de etiquetas 
 **Finalidade:**  
 Imprimir as etiquetas de todos os paletes de uma nota fiscal de entrada já endereçada, com o endereço impresso.
 
-![Tela do modo Recebimento](imagens/03-tela-modo-recebimento.png)
+<p align="center">
+  <img src="imagens/03-tela-modo-recebimento.png" alt="Tela do modo Recebimento"><br>
+  <sub><b>Figura 3</b> — Tela do modo Recebimento</sub>
+</p>
 
 ### Parâmetros
 
@@ -174,7 +213,10 @@ Uma etiqueta por endereçamento
 
 ### 4.1 Etiqueta do modo Inventário
 
-![Etiqueta do modo Inventário](imagens/04-etiqueta-inventario.png)
+<p align="center">
+  <img src="imagens/04-etiqueta-inventario.png" alt="Etiqueta do modo Inventário"><br>
+  <sub><b>Figura 4</b> — Etiqueta do modo Inventário</sub>
+</p>
 
 | N. | Informação | Origem |
 |---:|---|---|
@@ -187,7 +229,10 @@ Uma etiqueta por endereçamento
 
 ### 4.2 Etiqueta do modo Recebimento
 
-![Etiqueta do modo Recebimento](imagens/05-etiqueta-recebimento.png)
+<p align="center">
+  <img src="imagens/05-etiqueta-recebimento.png" alt="Etiqueta do modo Recebimento"><br>
+  <sub><b>Figura 5</b> — Etiqueta do modo Recebimento</sub>
+</p>
 
 | N. | Informação | Origem |
 |---:|---|---|
@@ -319,3 +364,12 @@ Quantidade zerada para a próxima leitura
 11. A `V035ALTQTD` assume a quantidade do palete e a zera após o uso.
 12. QR Code fora do formato é devolvido como lido e a ACDV035 exibe "Leitura invalida".
 13. O EAN bipado diretamente continua funcionando no fluxo padrão.
+
+---
+
+[⬅ Voltar ao índice](../../README.md)
+
+<p align="center">
+  <img src="../../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>

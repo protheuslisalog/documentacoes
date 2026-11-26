@@ -1,4 +1,38 @@
-# Painel de Tickets – Atendimento de T.I.
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
+
+<h1 align="center">Painel de Tickets – Atendimento de T.I.</h1>
+<p align="center"><b>Atendimento T.I.</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../../README.md)
+
+---
+
+## Sumário
+
+- [1. Objetivo](#1-objetivo)
+- [2. Parâmetros de Configuração](#2-parâmetros-de-configuração)
+- [3. Processo de atendimento pelo AnnaLisa](#3-processo-de-atendimento-pelo-annalisa)
+  - [3.1 Entrar pelo Portal de Tickets (endereço direto)](#31-entrar-pelo-portal-de-tickets-endereço-direto)
+  - [3.2 Entrar pelo AnnaLisa](#32-entrar-pelo-annalisa)
+  - [3.3 Abrir a plataforma Tickets](#33-abrir-a-plataforma-tickets)
+  - [3.4 Menu da plataforma](#34-menu-da-plataforma)
+  - [3.5 Painel de Tickets](#35-painel-de-tickets)
+  - [3.6 Abrir um novo ticket](#36-abrir-um-novo-ticket)
+  - [3.7 Ver um ticket](#37-ver-um-ticket)
+  - [3.8 Responder e enviar arquivos](#38-responder-e-enviar-arquivos)
+  - [3.9 Tickets finalizados](#39-tickets-finalizados)
+- [4. Processo de atendimento por e-mail](#4-processo-de-atendimento-por-e-mail)
+  - [4.1 Abrir um ticket por e-mail](#41-abrir-um-ticket-por-e-mail)
+  - [4.2 Responder um ticket por e-mail](#42-responder-um-ticket-por-e-mail)
+  - [4.3 Avisos por e-mail](#43-avisos-por-e-mail)
+- [5. Mensagens](#5-mensagens)
+- [6. Resumo das Regras](#6-resumo-das-regras)
+- [7. Regras de Negócio – Resumo](#7-regras-de-negócio--resumo)
+
+---
 
 ## 1. Objetivo
 
@@ -71,7 +105,10 @@ T.I. finaliza → ticket sai da lista e o usuário recebe o e-mail "Ticket final
 
 Acesse `https://lisatickets.netlify.app` e entre com o **mesmo usuário e senha do Protheus**. Abre direto o **Painel de Tickets**, sem passar pelo AnnaLisa.
 
-![Tela de entrada do Portal de Tickets](imagens/01-portal-tickets.png)
+<p align="center">
+  <img src="imagens/01-portal-tickets.png" alt="Tela de entrada do Portal de Tickets"><br>
+  <sub><b>Figura 1</b> — Tela de entrada do Portal de Tickets</sub>
+</p>
 
 Os números em vermelho identificam cada item da tela. Nas tabelas a seguir, a coluna **Nº** indica o número correspondente.
 
@@ -89,7 +126,10 @@ Os números em vermelho identificam cada item da tela. Nas tabelas a seguir, a c
 
 Acesse `https://annalisadashboard.netlify.app` e entre com o usuário e a senha.
 
-![Tela de entrada do AnnaLisa](imagens/02-login.png)
+<p align="center">
+  <img src="imagens/02-login.png" alt="Tela de entrada do AnnaLisa"><br>
+  <sub><b>Figura 2</b> — Tela de entrada do AnnaLisa</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -104,7 +144,10 @@ Acesse `https://annalisadashboard.netlify.app` e entre com o usuário e a senha.
 
 Clique no quadro **LISA · PLATAFORMA**, no canto de cima à esquerda, e escolha **Tickets – Atendimento de T.I.**
 
-![Escolhendo a plataforma Tickets](imagens/03-plataforma.png)
+<p align="center">
+  <img src="imagens/03-plataforma.png" alt="Escolhendo a plataforma Tickets"><br>
+  <sub><b>Figura 3</b> — Escolhendo a plataforma Tickets</sub>
+</p>
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -127,7 +170,10 @@ Clique no quadro **LISA · PLATAFORMA**, no canto de cima à esquerda, e escolha
 
 O menu fica na lateral esquerda. A seta **«** recolhe o menu (só ícones) e a **»** abre de novo.
 
-![Menu da plataforma Tickets](imagens/04-menu.png)
+<p align="center">
+  <img src="imagens/04-menu.png" alt="Menu da plataforma Tickets"><br>
+  <sub><b>Figura 4</b> — Menu da plataforma Tickets</sub>
+</p>
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -149,7 +195,10 @@ O menu fica na lateral esquerda. A seta **«** recolhe o menu (só ícones) e a 
 
 Mostra os tickets **em aberto** do usuário: indicadores no alto e lista embaixo.
 
-![Painel de Tickets](imagens/05-painel.png)
+<p align="center">
+  <img src="imagens/05-painel.png" alt="Painel de Tickets"><br>
+  <sub><b>Figura 5</b> — Painel de Tickets</sub>
+</p>
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -187,7 +236,10 @@ Embaixo da lista ficam a quantidade por página (15, 25 ou 50) e a troca de pág
 
 Clique em **Novo Ticket** (menu) ou **Novo ticket** (acima da lista), preencha e clique em **Abrir ticket**.
 
-![Janela Abrir ticket](imagens/06-abrir-ticket.png)
+<p align="center">
+  <img src="imagens/06-abrir-ticket.png" alt="Janela Abrir ticket"><br>
+  <sub><b>Figura 6</b> — Janela Abrir ticket</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -204,7 +256,10 @@ Clique em **Novo Ticket** (menu) ou **Novo ticket** (acima da lista), preencha e
 
 O sistema mostra **Ticket #número aberto.** e o ticket entra na lista como **Sem interação**.
 
-![Ticket aberto](imagens/07-ticket-aberto.png)
+<p align="center">
+  <img src="imagens/07-ticket-aberto.png" alt="Ticket aberto"><br>
+  <sub><b>Figura 7</b> — Ticket aberto</sub>
+</p>
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -226,7 +281,10 @@ O sistema mostra **Ticket #número aberto.** e o ticket entra na lista como **Se
 
 Na lista, clique no **olho** do ticket.
 
-![Ticket aberto na tela](imagens/08-ticket.png)
+<p align="center">
+  <img src="imagens/08-ticket.png" alt="Ticket aberto na tela"><br>
+  <sub><b>Figura 8</b> — Ticket aberto na tela</sub>
+</p>
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -248,7 +306,10 @@ Na lista, clique no **olho** do ticket.
 
 Escreva a mensagem, anexe os arquivos se precisar e clique em **Enviar resposta**.
 
-![Quadro Responder](imagens/09-responder.png)
+<p align="center">
+  <img src="imagens/09-responder.png" alt="Quadro Responder"><br>
+  <sub><b>Figura 9</b> — Quadro Responder</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -259,7 +320,10 @@ Escreva a mensagem, anexe os arquivos se precisar e clique em **Enviar resposta*
 
 Depois de enviar aparece **Resposta enviada.**, a mensagem entra no histórico e o arquivo aparece em **Anexos**.
 
-![Resposta gravada](imagens/10-resposta-enviada.png)
+<p align="center">
+  <img src="imagens/10-resposta-enviada.png" alt="Resposta gravada"><br>
+  <sub><b>Figura 10</b> — Resposta gravada</sub>
+</p>
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -308,7 +372,10 @@ A T.I. finaliza → aviso "Ticket finalizado"
 
 Envie um e-mail para `ticket@lisalogsistema.com.br`. O assunto vira o título e o corpo vira a descrição.
 
-![E-mail novo](imagens/11-email-novo.png)
+<p align="center">
+  <img src="imagens/11-email-novo.png" alt="E-mail novo"><br>
+  <sub><b>Figura 11</b> — E-mail novo</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -323,7 +390,10 @@ Envie um e-mail para `ticket@lisalogsistema.com.br`. O assunto vira o título e 
 
 Em poucos minutos chega a confirmação **Ticket registrado**, com o número, a descrição gravada e os anexos registrados.
 
-![Confirmação de ticket registrado](imagens/12-email-confirmacao.png)
+<p align="center">
+  <img src="imagens/12-email-confirmacao.png" alt="Confirmação de ticket registrado"><br>
+  <sub><b>Figura 12</b> — Confirmação de ticket registrado</sub>
+</p>
 
 ---
 
@@ -331,7 +401,10 @@ Em poucos minutos chega a confirmação **Ticket registrado**, com o número, a 
 
 Todo e-mail de ticket tem no assunto o número e um código como `###004873|Filial:14###`. É esse código que liga o e-mail ao ticket certo.
 
-![Respondendo um ticket por e-mail](imagens/13-email-responder.png)
+<p align="center">
+  <img src="imagens/13-email-responder.png" alt="Respondendo um ticket por e-mail"><br>
+  <sub><b>Figura 13</b> — Respondendo um ticket por e-mail</sub>
+</p>
 
 | Nº | Item | Descrição |
 |---|---|---|
@@ -355,9 +428,15 @@ Todo e-mail de ticket tem no assunto o número e um código como `###004873|Fili
 
 O que o usuário faz pelo AnnaLisa não gera e-mail para ele mesmo: a tela já mostra na hora.
 
-![Aviso de interação registrada](imagens/14-email-interacao.png)
+<p align="center">
+  <img src="imagens/14-email-interacao.png" alt="Aviso de interação registrada"><br>
+  <sub><b>Figura 14</b> — Aviso de interação registrada</sub>
+</p>
 
-![Aviso de ticket finalizado](imagens/15-email-finalizado.png)
+<p align="center">
+  <img src="imagens/15-email-finalizado.png" alt="Aviso de ticket finalizado"><br>
+  <sub><b>Figura 15</b> — Aviso de ticket finalizado</sub>
+</p>
 
 O botão **Acompanhar no Painel de Tickets** abre o painel (`https://lisatickets.netlify.app/`).
 
@@ -409,3 +488,12 @@ O botão **Acompanhar no Painel de Tickets** abre o painel (`https://lisatickets
 10. Imagens da assinatura do e-mail são ignoradas. Uma única imagem colada no corpo é tratada como assinatura: mande o print como anexo.
 11. Respostas automáticas (férias, não entrega) são ignoradas e não abrem ticket.
 12. Use o e-mail da empresa cadastrado no usuário do Protheus, para o ticket ficar no seu nome.
+
+---
+
+[⬅ Voltar ao índice](../../README.md)
+
+<p align="center">
+  <img src="../../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>

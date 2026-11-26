@@ -1,4 +1,34 @@
-# Spool de Etiquetas por Filial – LISASPOOL
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
+
+<h1 align="center">Spool de Etiquetas por Filial – LISASPOOL</h1>
+<p align="center"><b>WMS</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../../README.md)
+
+---
+
+## Sumário
+
+- [1. Objetivo](#1-objetivo)
+- [2. Parâmetros de Configuração](#2-parâmetros-de-configuração)
+- [3. Processo de uso](#3-processo-de-uso)
+  - [3.1 Abrir o programa](#31-abrir-o-programa)
+  - [3.2 Login](#32-login)
+  - [3.3 Escolher a filial (primeiro acesso)](#33-escolher-a-filial-primeiro-acesso)
+  - [3.4 Fila e Impressora](#34-fila-e-impressora)
+  - [3.5 Confirmação](#35-confirmação)
+  - [3.6 Monitor aberto e ativado](#36-monitor-aberto-e-ativado)
+  - [3.7 Configuração desta Estação (próximos acessos)](#37-configuração-desta-estação-próximos-acessos)
+  - [3.8 Arquivos gravados na estação](#38-arquivos-gravados-na-estação)
+  - [3.9 Limpar a fila](#39-limpar-a-fila)
+- [4. Mensagens](#4-mensagens)
+- [5. Resumo das Regras](#5-resumo-das-regras)
+- [6. Regras de Negócio – Resumo](#6-regras-de-negócio--resumo)
+
+---
 
 ## 1. Objetivo
 
@@ -83,7 +113,10 @@ MSCBSPOOL abre ativado na fila escolhida
 
 No WebApp, informe o programa inicial e o ambiente de produção.
 
-![Programa inicial](imagens/01-programa-inicial.png)
+<p align="center">
+  <img src="imagens/01-programa-inicial.png" alt="Programa inicial"><br>
+  <sub><b>Figura 1</b> — Programa inicial</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -95,7 +128,10 @@ No WebApp, informe o programa inicial e o ambiente de produção.
 
 ### 3.2 Login
 
-![Login](imagens/02-login.png)
+<p align="center">
+  <img src="imagens/02-login.png" alt="Spool de Etiquetas por Filial – LISASPOOL"><br>
+  <sub><b>Figura 2</b></sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -119,7 +155,10 @@ No WebApp, informe o programa inicial e o ambiente de produção.
 
 Só aparece na primeira vez que a máquina é usada. A filial escolhida fica **salva na estação**.
 
-![Filial](imagens/03-filial.png)
+<p align="center">
+  <img src="imagens/03-filial.png" alt="Spool de Etiquetas por Filial – LISASPOOL"><br>
+  <sub><b>Figura 3</b></sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -138,7 +177,10 @@ Só aparece na primeira vez que a máquina é usada. A filial escolhida fica **s
 
 Lista **todas as filas da filial**. Ao trocar a fila, o tipo e o local são atualizados.
 
-![Fila e Impressora](imagens/04-fila-impressora.png)
+<p align="center">
+  <img src="imagens/04-fila-impressora.png" alt="Fila e Impressora"><br>
+  <sub><b>Figura 4</b> — Fila e Impressora</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -152,9 +194,15 @@ Lista **todas as filas da filial**. Ao trocar a fila, o tipo e o local são atua
 
 Fila de impressora portátil e fila de testes da T.I.:
 
-![Fila portátil](imagens/05-fila-portatil.png)
+<p align="center">
+  <img src="imagens/05-fila-portatil.png" alt="Fila portátil"><br>
+  <sub><b>Figura 5</b> — Fila portátil</sub>
+</p>
 
-![Fila da T.I.](imagens/06-fila-ti.png)
+<p align="center">
+  <img src="imagens/06-fila-ti.png" alt="Fila da T.I."><br>
+  <sub><b>Figura 6</b> — Fila da T.I.</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -170,7 +218,10 @@ Fila de impressora portátil e fila de testes da T.I.:
 
 Ao clicar em **Abrir**, é exibido o resumo para conferência.
 
-![Confirmação](imagens/07-confirmacao.png)
+<p align="center">
+  <img src="imagens/07-confirmacao.png" alt="Spool de Etiquetas por Filial – LISASPOOL"><br>
+  <sub><b>Figura 7</b></sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -180,9 +231,15 @@ Ao clicar em **Abrir**, é exibido o resumo para conferência.
 
 Para fila **portátil** ou da **T.I.**, o resumo começa com um alerta:
 
-![Confirmação portátil](imagens/08-confirmacao-portatil.png)
+<p align="center">
+  <img src="imagens/08-confirmacao-portatil.png" alt="Confirmação portátil"><br>
+  <sub><b>Figura 8</b> — Confirmação portátil</sub>
+</p>
 
-![Confirmação T.I.](imagens/09-confirmacao-ti.png)
+<p align="center">
+  <img src="imagens/09-confirmacao-ti.png" alt="Confirmação T.I."><br>
+  <sub><b>Figura 9</b> — Confirmação T.I.</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -202,7 +259,10 @@ Para fila **portátil** ou da **T.I.**, o resumo começa com um alerta:
 
 O `MSCBSPOOL` abre **já ativado** na fila e impressora gravadas. Não é preciso entrar em Parâmetros nem clicar em Ativar.
 
-![Monitor ativado](imagens/10-monitor-ativado.png)
+<p align="center">
+  <img src="imagens/10-monitor-ativado.png" alt="Monitor ativado"><br>
+  <sub><b>Figura 10</b> — Monitor ativado</sub>
+</p>
 
 | Nº | Opção | Descrição |
 |---|---|---|
@@ -222,7 +282,10 @@ O `MSCBSPOOL` abre **já ativado** na fila e impressora gravadas. Não é precis
 
 Depois do primeiro acesso, logo após o login aparece o resumo da estação.
 
-![Configuração desta Estação](imagens/11-configuracao-estacao.png)
+<p align="center">
+  <img src="imagens/11-configuracao-estacao.png" alt="Configuração desta Estação"><br>
+  <sub><b>Figura 11</b> — Configuração desta Estação</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -259,7 +322,10 @@ Cada fila guarda no servidor o **histórico** (etiquetas já impressas, na pasta
 
 **Fila sem etiquetas** – a tela confirma a verificação e os botões ficam desabilitados:
 
-![Limpar fila vazia](imagens/12-limpar-fila-vazia.png)
+<p align="center">
+  <img src="imagens/12-limpar-fila-vazia.png" alt="Limpar fila vazia"><br>
+  <sub><b>Figura 12</b> — Limpar fila vazia</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -273,7 +339,10 @@ Cada fila guarda no servidor o **histórico** (etiquetas já impressas, na pasta
 
 **Fila com etiquetas travadas:**
 
-![Limpar fila com travadas](imagens/13-limpar-fila-travadas.png)
+<p align="center">
+  <img src="imagens/13-limpar-fila-travadas.png" alt="Limpar fila com travadas"><br>
+  <sub><b>Figura 13</b> — Limpar fila com travadas</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -285,7 +354,10 @@ Cada fila guarda no servidor o **histórico** (etiquetas já impressas, na pasta
 
 **Ao abrir a fila** – se houver histórico ou travadas, a pergunta aparece antes do monitor:
 
-![Limpar ao abrir](imagens/14-limpar-ao-abrir.png)
+<p align="center">
+  <img src="imagens/14-limpar-ao-abrir.png" alt="Limpar ao abrir"><br>
+  <sub><b>Figura 14</b> — Limpar ao abrir</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -296,7 +368,10 @@ Cada fila guarda no servidor o **histórico** (etiquetas já impressas, na pasta
 
 **Confirmação das travadas:**
 
-![Confirmar limpeza](imagens/15-confirmar-limpeza.png)
+<p align="center">
+  <img src="imagens/15-confirmar-limpeza.png" alt="Confirmar limpeza"><br>
+  <sub><b>Figura 15</b> — Confirmar limpeza</sub>
+</p>
 
 | Nº | Campo | Descrição |
 |---|---|---|
@@ -369,3 +444,12 @@ Cada fila guarda no servidor o **histórico** (etiquetas já impressas, na pasta
 12. A limpeza apaga só arquivos de etiqueta; `ctrl.seq` e a pasta `impresso` são preservados.
 13. **Limpar tudo** com etiquetas travadas pede confirmação extra, pois elas não serão impressas.
 14. Ao abrir, a pergunta de limpeza só aparece quando há histórico ou etiquetas travadas.
+
+---
+
+[⬅ Voltar ao índice](../../README.md)
+
+<p align="center">
+  <img src="../../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>

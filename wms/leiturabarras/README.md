@@ -1,4 +1,36 @@
-# Configuração do Sistema – Tratamento de Leitura de Código de Barras e Identificação de Produto
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
+
+<h1 align="center">Configuração do Sistema – Tratamento de Leitura de Código de Barras e Identificação de Produto</h1>
+<p align="center"><b>WMS</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../../README.md)
+
+---
+
+## Sumário
+
+- [1. Objetivo](#1-objetivo)
+- [2. Parâmetros de Configuração](#2-parâmetros-de-configuração)
+  - [2.1 MV_XFILGRU (código da filial)](#21-mv_xfilgru-código-da-filial)
+  - [2.2 MV_XFILBAR (código da filial)](#22-mv_xfilbar-código-da-filial)
+  - [2.3 MV_XWMSCOL (código da filial)](#23-mv_xwmscol-código-da-filial)
+  - [2.4 MV_XCF1REC (código da filial)](#24-mv_xcf1rec-código-da-filial)
+- [3. Tratamento do EAN-14](#3-tratamento-do-ean-14)
+  - [3.1 Conversão automática EAN-14 para EAN-13](#31-conversão-automática-ean-14-para-ean-13)
+- [4. Ordem de Pesquisa do Produto](#4-ordem-de-pesquisa-do-produto)
+  - [4.1 Ordem das pesquisas](#41-ordem-das-pesquisas)
+- [5. Identificação pelo Código de Barras](#5-identificação-pelo-código-de-barras)
+- [6. Identificação pelo Código CLAC](#6-identificação-pelo-código-clac)
+- [7. Identificação pelo UPC / DUN14](#7-identificação-pelo-upc--dun14)
+- [8. Conversão de Unidade de Medida](#8-conversão-de-unidade-de-medida)
+- [9. Fluxo Completo de Identificação](#9-fluxo-completo-de-identificação)
+- [10. Resumo das Regras](#10-resumo-das-regras)
+- [11. Regras de Negócio – Resumo](#11-regras-de-negócio--resumo)
+
+---
 
 ## 1. Objetivo
 
@@ -72,15 +104,15 @@ Durante a conferência do recebimento, a quantidade não é apresentada/informad
 
 ---
 
-# 3. Tratamento do EAN-14
+## 3. Tratamento do EAN-14
 
-## 3.1 Conversão automática EAN-14 para EAN-13
+### 3.1 Conversão automática EAN-14 para EAN-13
 
 Quando o usuário realiza a leitura de um **EAN-14**, o sistema identifica o código e realiza automaticamente a conversão para **EAN-13**.
 
 Após a conversão, a busca do produto é realizada utilizando o **EAN-13 convertido**.
 
-### Fluxo
+#### Fluxo
 
 ```text
 EAN-14 informado
@@ -92,19 +124,19 @@ Busca do produto pelo EAN-13
 Produto identificado
 ```
 
-### Regra
+#### Regra
 
 > EAN-14 → conversão automática → EAN-13 → pesquisa do produto.
 
 ---
 
-# 4. Ordem de Pesquisa do Produto
+## 4. Ordem de Pesquisa do Produto
 
 A identificação do produto através do código informado segue uma ordem específica de pesquisa.
 
 O sistema realiza as pesquisas sequencialmente até localizar o produto.
 
-## 4.1 Ordem das pesquisas
+### 4.1 Ordem das pesquisas
 
 | Ordem | Campo | Descrição |
 |---:|---|---|
@@ -113,7 +145,7 @@ O sistema realiza as pesquisas sequencialmente até localizar o produto.
 | 3 | `B1_XUPC` | Código UPC |
 | 4 | `B1_XDUN14` | Código DUN14 |
 
-### Fluxo de identificação
+#### Fluxo de identificação
 
 ```text
 Código informado
@@ -141,7 +173,7 @@ Produto    Pesquisa B1_CODCLAC
 
 ---
 
-# 5. Identificação pelo Código de Barras
+## 5. Identificação pelo Código de Barras
 
 A primeira tentativa de identificação do produto é realizada pelo campo:
 
@@ -163,7 +195,7 @@ Caso não seja localizado, o sistema continua para a próxima forma de identific
 
 ---
 
-# 6. Identificação pelo Código CLAC
+## 6. Identificação pelo Código CLAC
 
 Caso o produto não seja localizado pelo código de barras, o sistema realiza uma nova pesquisa utilizando o campo:
 
@@ -183,7 +215,7 @@ Se o produto for localizado pelo código CLAC, a identificação é concluída.
 
 ---
 
-# 7. Identificação pelo UPC / DUN14
+## 7. Identificação pelo UPC / DUN14
 
 Caso o produto também não seja localizado pelo código CLAC, o sistema realiza a pesquisa utilizando:
 
@@ -202,7 +234,7 @@ B1_XUPC / B1_XDUN14
 
 ---
 
-# 8. Conversão de Unidade de Medida
+## 8. Conversão de Unidade de Medida
 
 Quando o produto é localizado através do **UPC ou DUN14**, o sistema realiza uma validação adicional relacionada ao lote do produto.
 
@@ -238,7 +270,7 @@ Nesse cenário, o campo `B8_XQTPCX` determina a quantidade utilizada para realiz
 
 ---
 
-# 9. Fluxo Completo de Identificação
+## 9. Fluxo Completo de Identificação
 
 O processo completo pode ser representado da seguinte forma:
 
@@ -290,7 +322,7 @@ Pesquisa B1_CODBAR
 
 ---
 
-# 10. Resumo das Regras
+## 10. Resumo das Regras
 
 | Configuração / Campo | Finalidade |
 |---|---|
@@ -307,7 +339,7 @@ Pesquisa B1_CODBAR
 
 ---
 
-# 11. Regras de Negócio – Resumo
+## 11. Regras de Negócio – Resumo
 
 1. O sistema pode identificar produtos através de diferentes códigos.
 2. A primeira pesquisa é realizada em `B1_CODBAR`.
@@ -323,3 +355,12 @@ Pesquisa B1_CODBAR
 12. `MV_XWMSCOL` atribui a quantidade total no apanhe.
 13. `MV_XCF1REC` impede que a quantidade seja informada na conferência do recebimento.
 """
+
+---
+
+[⬅ Voltar ao índice](../../README.md)
+
+<p align="center">
+  <img src="../../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>

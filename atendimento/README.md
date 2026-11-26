@@ -1,11 +1,21 @@
-# Manual de Atendimento -- T.I.
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
 
-**Padrão de suporte corporativo \| LISA Logística Integrada
-Sul-americana**\
-**Versão:** 1.0\
-**Emissão:** Fevereiro/2026\
-**Próxima revisão:** Fevereiro/2027\
-**Data de geração:** 25/09/2026
+<h1 align="center">Manual de Atendimento -- T.I.</h1>
+<p align="center"><b>Atendimento T.I.</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../README.md)
+
+---
+
+| Documento | Padrão de suporte corporativo |
+|---|---|
+| **Versão** | 1.0 |
+| **Emissão** | Fevereiro/2026 |
+| **Próxima revisão** | Fevereiro/2027 |
+| **Data de geração** | 25/09/2026 |
 
 ## Sumário
 
@@ -419,3 +429,12 @@ Dúvidas sobre o atendimento? Abra um ticket ou contate a coordenação de
 T.I.
 
 **Obrigado pela colaboração.**
+
+---
+
+[⬅ Voltar ao índice](../README.md)
+
+<p align="center">
+  <img src="../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>

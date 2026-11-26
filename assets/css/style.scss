@@ -1,0 +1,48 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* ===== Identidade visual Lisa Logística ===== */
+$lisa-azul:  #273e74;
+$lisa-azul2: #495c8a;
+$lisa-cinza: #bdbfc1;
+
+.page-header {
+  background-color: $lisa-azul;
+  background-image: linear-gradient(120deg, $lisa-azul, $lisa-azul2);
+  padding: 2.5rem 2rem;
+}
+.page-header .btn { border-color: rgba(255,255,255,.35); }
+
+.main-content {
+  h1, h2, h3, h4 { color: $lisa-azul; }
+  h2 { border-bottom: 2px solid $lisa-cinza; padding-bottom: .3rem; margin-top: 2.2rem; }
+  a { color: $lisa-azul2; }
+  table th { background: $lisa-azul; color: #fff; }
+  table tr:nth-child(even) { background: #f4f5f8; }
+  blockquote { border-left-color: $lisa-azul; background: #f4f6fb; padding: .6rem 1rem; }
+  img { border-radius: 4px; }
+  p[align="center"] img:not([width]) { box-shadow: 0 2px 8px rgba(0,0,0,.15); margin-top: .5rem; }
+  sub { color: #555; }
+  .site-footer { border-top-color: $lisa-cinza; }
+}
+
+/* ===== Fundo e cartão de conteúdo ===== */
+body {
+  background-color: #eef1f7;
+  background-image: url("../../imagens/fundo-lisa.svg");
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+/* o banner de cada manual já faz o papel de cabeçalho */
+.page-header { display: none; }
+.main-content {
+  background: rgba(255,255,255,.96);
+  max-width: 1000px;
+  margin: 2rem auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(22,38,75,.12);
+  border-top: 5px solid #273e74;
+}
+.site-footer { color: #5b6b7a; }

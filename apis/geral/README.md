@@ -1,6 +1,14 @@
-# Documentação das APIs WMS — Lisalog
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
 
-**Lisa — Logística Integrada Sulamericana**
+<h1 align="center">Documentação das APIs WMS — Lisalog</h1>
+<p align="center"><b>APIs de Integração</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../../README.md)
+
+---
 
 Documentação unificada das APIs de integração com o WMS Lisalog.
 
@@ -110,13 +118,19 @@ tenantid: {empresa},{filial}
 
 ### 3.2 Fluxo de entrada (recebimento)
 
-![Fluxo de entrada (recebimento): POST /NOTAENTRADA, depois GET /WMSSTSENT repetido até o status FINALIZADO; então o saldo fica disponível para pedidos](img/fluxo-recebimento.svg)
+<p align="center">
+  <img src="imagens/fluxo-recebimento.svg" alt="Fluxo de entrada (recebimento): POST /NOTAENTRADA, depois GET /WMSSTSENT repetido até o status FINALIZADO; então o saldo fica disponível para pedidos"><br>
+  <sub><b>Figura 1</b> — Fluxo de entrada (recebimento): POST /NOTAENTRADA, depois GET /WMSSTSENT repetido até o status FINALIZADO; então o saldo fica disponível para pedidos</sub>
+</p>
 
 É possível indicar o armazém de entrada dos produtos, ou recuperar, pela consulta de status, os armazéns onde os produtos foram alocados.
 
 ### 3.3 Fluxo de expedição
 
-![Fluxo de expedição: POST /PEDIDOWMS; se o pedido foi enviado faturado, fim; senão, GET /WMSSTATUS repetido até o status CONFERIDO e então POST /NOTASAIDA](img/fluxo-expedicao.svg)
+<p align="center">
+  <img src="imagens/fluxo-expedicao.svg" alt="Fluxo de expedição: POST /PEDIDOWMS; se o pedido foi enviado faturado, fim; senão, GET /WMSSTATUS repetido até o status CONFERIDO e então POST /NOTASAIDA"><br>
+  <sub><b>Figura 2</b> — Fluxo de expedição: POST /PEDIDOWMS; se o pedido foi enviado faturado, fim; senão, GET /WMSSTATUS repetido até o status CONFERIDO e então POST /NOTASAIDA</sub>
+</p>
 
 - Quando o pedido **não** é enviado faturado, é possível recuperar a quantidade de volumes pela consulta de status (`GET /WMSSTATUS`).
 - Se o pedido não for enviado faturado **e** o integrador não precisar da quantidade de volumes, a nota fiscal pode ser enviada a qualquer momento.
@@ -1779,3 +1793,10 @@ Confirme com a Lisalog antes de usar.
 | `18` | Extrema - MG |
 
 ---
+
+[⬅ Voltar ao índice](../../README.md)
+
+<p align="center">
+  <img src="../../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>

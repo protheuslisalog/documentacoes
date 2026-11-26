@@ -1,4 +1,33 @@
-# Análise de Saldos – Estoque
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
+
+<h1 align="center">Análise de Saldos – Estoque</h1>
+<p align="center"><b>WMS</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../../README.md)
+
+---
+
+## Sumário
+
+- [1. Objetivo](#1-objetivo)
+- [2. Parâmetros de Configuração](#2-parâmetros-de-configuração)
+- [3. Processo de consulta](#3-processo-de-consulta)
+  - [3.1 Tela de consulta](#31-tela-de-consulta)
+  - [3.2 Informar o produto](#32-informar-o-produto)
+  - [3.3 Período](#33-período)
+  - [3.4 Processar](#34-processar)
+  - [3.5 Saldos apresentados](#35-saldos-apresentados)
+  - [3.6 Status do Saldo](#36-status-do-saldo)
+  - [3.7 Divergências](#37-divergências)
+  - [3.8 Diagnóstico](#38-diagnóstico)
+- [4. Mensagens](#4-mensagens)
+- [5. Resumo das Regras](#5-resumo-das-regras)
+- [6. Regras de Negócio – Resumo](#6-regras-de-negócio--resumo)
+
+---
 
 ## 1. Objetivo
 
@@ -74,7 +103,10 @@ Status OK
 
 Ao abrir a rotina com um usuário comum é apresentada a tela abaixo, somente com a pasta **Saldo**.
 
-![Tela de consulta](imagens/01-tela-consulta.png)
+<p align="center">
+  <img src="imagens/01-tela-consulta.png" alt="Tela de consulta"><br>
+  <sub><b>Figura 1</b> — Tela de consulta</sub>
+</p>
 
 Os números em vermelho identificam cada item da tela. Nas tabelas a seguir, a coluna **Nº** indica o número correspondente.
 
@@ -273,3 +305,12 @@ No rodapé, à direita, é exibido **Modo consulta** (item **19**).
 8. A manutenção na base só existe para o administrador, sempre inicia desligada e pede confirmação ao ser ativada.
 9. Os ajustes do administrador são gravados em transação e registrados no `ANALISE.LOG`.
 10. A pasta de poder de terceiros é somente consulta, inclusive para o administrador.
+
+---
+
+[⬅ Voltar ao índice](../../README.md)
+
+<p align="center">
+  <img src="../../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>

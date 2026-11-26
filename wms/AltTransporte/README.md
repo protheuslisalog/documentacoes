@@ -1,4 +1,30 @@
-# Alteração de Transportadora – Coletor (ACD)
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
+
+<h1 align="center">Alteração de Transportadora – Coletor (ACD)</h1>
+<p align="center"><b>WMS</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../../README.md)
+
+---
+
+## Sumário
+
+- [1. Objetivo](#1-objetivo)
+- [2. Parâmetros de Configuração](#2-parâmetros-de-configuração)
+- [3. Processo de alteração](#3-processo-de-alteração)
+  - [3.1 Acessar a rotina](#31-acessar-a-rotina)
+  - [3.2 Informar o pedido](#32-informar-o-pedido)
+  - [3.3 Informar a nova transportadora](#33-informar-a-nova-transportadora)
+  - [3.4 Confirmar a alteração](#34-confirmar-a-alteração)
+  - [3.5 Gravação](#35-gravação)
+- [4. Mensagens](#4-mensagens)
+- [5. Resumo das Regras](#5-resumo-das-regras)
+- [6. Regras de Negócio – Resumo](#6-regras-de-negócio--resumo)
+
+---
 
 ## 1. Objetivo
 
@@ -56,7 +82,10 @@ Mensagem de sucesso e volta para o pedido
 
 No menu **Expedição** do coletor, selecione **Alt.transportadora**.
 
-![Menu Expedição](imagens/01-menu-expedicao.png)
+<p align="center">
+  <img src="imagens/01-menu-expedicao.png" alt="Menu Expedição"><br>
+  <sub><b>Figura 1</b> — Menu Expedição</sub>
+</p>
 
 ---
 
@@ -64,7 +93,10 @@ No menu **Expedição** do coletor, selecione **Alt.transportadora**.
 
 Informe o número do pedido de venda (`C5_NUM`).
 
-![Informar o pedido](imagens/02-informar-pedido.png)
+<p align="center">
+  <img src="imagens/02-informar-pedido.png" alt="Informar o pedido"><br>
+  <sub><b>Figura 2</b> — Informar o pedido</sub>
+</p>
 
 ### Validações
 
@@ -82,7 +114,10 @@ Informe o número do pedido de venda (`C5_NUM`).
 
 A tela mostra o pedido, o código da transportadora atual e o nome reduzido dela (`A4_NREDUZ`). Informe o código da nova transportadora (`A4_COD`).
 
-![Informar a nova transportadora](imagens/03-nova-transportadora.png)
+<p align="center">
+  <img src="imagens/03-nova-transportadora.png" alt="Informar a nova transportadora"><br>
+  <sub><b>Figura 3</b> — Informar a nova transportadora</sub>
+</p>
 
 Se o cadastro de transportadoras tiver o campo `A4_LOJA`, a tela também pede a **Loja**.
 
@@ -102,7 +137,10 @@ Se o cadastro de transportadoras tiver o campo `A4_LOJA`, a tela também pede a 
 
 O sistema mostra a transportadora atual e a nova e avisa que o rastreio e a PLP serão perdidos.
 
-![Confirmação da alteração](imagens/04-confirmacao.png)
+<p align="center">
+  <img src="imagens/04-confirmacao.png" alt="Confirmação da alteração"><br>
+  <sub><b>Figura 4</b> — Confirmação da alteração</sub>
+</p>
 
 - **SIM** — grava a alteração.
 - **NAO** — não altera nada e exibe `NADA FOI ALTERADO`.
@@ -122,7 +160,10 @@ Ao confirmar, o sistema:
 
 Ao final, a rotina volta para a tela do pedido, para a próxima alteração.
 
-![Transportadora alterada com sucesso](imagens/05-sucesso.png)
+<p align="center">
+  <img src="imagens/05-sucesso.png" alt="Transportadora alterada com sucesso"><br>
+  <sub><b>Figura 5</b> — Transportadora alterada com sucesso</sub>
+</p>
 
 ### Regra
 
@@ -174,3 +215,12 @@ Ao final, a rotina volta para a tela do pedido, para a próxima alteração.
 6. Para transportadora Correios com cliente com credenciais VIPP, uma nova postagem é gerada e o rastreio é regravado.
 7. Erro na postagem VIPP não desfaz a troca da transportadora.
 8. A transportadora do monitor do AnnaLISA (`ZAH_TRANSP`) é atualizada na troca.
+
+---
+
+[⬅ Voltar ao índice](../../README.md)
+
+<p align="center">
+  <img src="../../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>

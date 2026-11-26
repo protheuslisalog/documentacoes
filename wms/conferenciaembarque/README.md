@@ -1,4 +1,23 @@
-# Conferência de embarque
+<!-- PADRAO-LISA -->
+<p align="center">
+  <img src="../../imagens/banner-lisa.png" alt="Lisa Logística Integrada Sulamericana — Documentação de Sistemas" width="100%">
+</p>
+
+<h1 align="center">Conferência de embarque</h1>
+<p align="center"><b>WMS</b> · Lisa Logística Integrada Sulamericana</p>
+
+[⬅ Voltar ao índice](../../README.md)
+
+---
+
+## Sumário
+
+- [1. Objetivo](#1-objetivo)
+- [2. Configuração](#2-configuração)
+- [3. Processo de conferência](#3-processo-de-conferência)
+- [4. Informações adicionais](#4-informações-adicionais)
+
+---
 
 ## 1. Objetivo
 
@@ -14,7 +33,7 @@ Realizar a conferência dos produtos embarcados do veículo no momento da expedi
 
 ---
 
-# 3. Processo de conferência
+## 3. Processo de conferência
 
 ### Fluxo
 
@@ -42,67 +61,118 @@ Envia e-mail para faturamento
 
 Acesse a rotina **Conf Embarque** para iniciar a conferência do pedido:
 
-![01acessomenucoletor](01acessomenucoletor.png)
+<p align="center">
+  <img src="imagens/01acessomenucoletor.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 1</b></sub>
+</p>
 
 Informe o número do pedido:
 
-![02informandopedido](02informandopedido.png)
+<p align="center">
+  <img src="imagens/02informandopedido.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 2</b></sub>
+</p>
 
 Informar o código de barras do produto a ser conferido:
 
-![03coletandoprodutos](03coletandoprodutos.png)
+<p align="center">
+  <img src="imagens/03coletandoprodutos.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 3</b></sub>
+</p>
 
 Para consultar os produtos já conferidos pressione `Ctrl + Q`
 
-![04consultactlrq](04consultactlrq.png)
+<p align="center">
+  <img src="imagens/04consultactlrq.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 4</b></sub>
+</p>
 
 Após realizar a conferência de todos os produtos precione `Esc` para sair ou fechar a conferência:
 
-![04.1fecharconferenciacoletor](04.1fecharconferenciacoletor.png)
+<p align="center">
+  <img src="imagens/04.1fecharconferenciacoletor.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 5</b></sub>
+</p>
 
 #### Registros de conferência do embarque
 
 Acessar a opção `Conferencia Embarquei` no Protheus WMS:
 
-![05registrosconferencia](05registrosconferencia.png)
+<p align="center">
+  <img src="imagens/05registrosconferencia.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 6</b></sub>
+</p>
 
 Acione a opcão visualisar para ter acesso ao registros de conferência.
 
-![06conferenciaregistrada](06conferenciaregistrada.png)
+<p align="center">
+  <img src="imagens/06conferenciaregistrada.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 7</b></sub>
+</p>
 
 Acione a opcão em outras ações monitor verificar a relação de produtos conferidos e produtos no pedido de venda.
 
-![07conferenciamonitor](07conferenciamonitor.png)
+<p align="center">
+  <img src="imagens/07conferenciamonitor.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 8</b></sub>
+</p>
 
 > ATENÇÃO → Precionando a tecla de atalho F12 a tela de monitor será apresentada para o pedido posicionado.
 
 Para fechar a conferência de embarque do pedido acione a opção `fechar`.
 
 
-![08fecharconferencia](08fecharconferencia.png)
+<p align="center">
+  <img src="imagens/08fecharconferencia.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 9</b></sub>
+</p>
 
 Para solicitar o faturamento do pedido e enviar o e-mail acione a opção `Solicitar faturamento`
 
-![09solicitarfaturamento](09solicitarfaturamento.png)
+<p align="center">
+  <img src="imagens/09solicitarfaturamento.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 10</b></sub>
+</p>
 
-![09.1confirmacaoemail](09.1confirmacaoemail.png)
+<p align="center">
+  <img src="imagens/09.1confirmacaoemail.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 11</b></sub>
+</p>
 
 Caso necessário é possível reabrir uma conferência de um pedido através da opção `Reabrir`
 
-![10reabrirconferencia](10reabrirconferencia.png)
+<p align="center">
+  <img src="imagens/10reabrirconferencia.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 12</b></sub>
+</p>
 
 Modelo de e-mail enviado quando há sobras de embarque.
 
-![11emailsolicitacaofaturamento](11emailsolicitacaofaturamento.png)
+<p align="center">
+  <img src="imagens/11emailsolicitacaofaturamento.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 13</b></sub>
+</p>
 
 Modelo de e-mail enviado quando não há sobras de embarque.
 
-![12emailfaturamentosemsobra](12emailfaturamentosemsobra.png)
+<p align="center">
+  <img src="imagens/12emailfaturamentosemsobra.png" alt="Conferência de embarque"><br>
+  <sub><b>Figura 14</b></sub>
+</p>
 
 ---
 
-# 4. Informações adicionais
+## 4. Informações adicionais
 
 - Apenas pedidos no status `CONFERIDO` podem iniciar a conferência de embarque.
 - E-mail de solicitação do fatumento só é enviado para conferência `Fechada`.
 - Após o envio com sucesso do e-mail de solicitação de faturamento o campo `Enviado (ZAO_ENVIA)` é marcado como `S` identificando que já foi enviado e-mail do pedido.
+
+---
+
+[⬅ Voltar ao índice](../../README.md)
+
+<p align="center">
+  <img src="../../imagens/logo-lisa.png" alt="Lisa" width="110"><br>
+  <sub>Lisa Logística Integrada Sulamericana · Tecnologia da Informação</sub>
+</p>
